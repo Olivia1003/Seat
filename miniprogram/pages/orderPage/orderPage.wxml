@@ -1,0 +1,14 @@
+<view>
+    <view class="order-page-container">
+        <view class="topBar-btn-wrap">
+            <button
+                class="topBar-btn {{currentTabId===1?'topBar-btn-acitve':'topBar-btn-plain'}}">
+                当前订单
+            </button>
+            <button class="topBar-btn {{currentTabId===2?'topBar-btn-acitve':'topBar-btn-plain'}}">
+                历史订单
+            </button>
+        </view>
+        <orderItem></orderItem>
+    </view>
+</view>

@@ -1,0 +1,20 @@
+.home-page-container {
+  padding: 60rpx 30rpx;
+}
+.home-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300rpx;
+  margin-bottom: 60rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+  box-shadow: 0 -1px 1px #ddd, /*top*/ 0 3px 10px #ddd,
+    /*bottom*/ -3px 0 10px #ddd, /*left*/ 3px 0 10px #ddd; /*right*/
+  border: none;
+}
+.home-btn-txt {
+  font-size: 40rpx;
+  color: #555;
+  letter-spacing: 15rpx;
+}

@@ -1,0 +1,10 @@
+<view>
+    <view class="home-page-container">
+        <button class="home-btn" bindtap="openScanCode">
+            <text class="home-btn-txt">扫码</text>
+        </button>
+        <button class="home-btn">
+            <text class="home-btn-txt">预约</text>
+        </button>
+    </view>
+</view>

@@ -1,0 +1,7 @@
+<view>
+    <view class="orderItem-wrap">
+        <view>
+            <text>hello</text>
+        </view>
+    </view>
+</view>

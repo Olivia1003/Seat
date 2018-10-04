@@ -1,0 +1,3 @@
+.orderItem-wrap {
+  padding: 10rpx;
+}

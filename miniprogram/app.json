@@ -1,13 +1,9 @@
 {
   "cloud": true,
   "pages": [
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib"
+    "pages/homePage/homePage",
+    "pages/orderPage/orderPage",
+    "pages/userPage/userPage"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -15,5 +11,32 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "云开发 QuickStart",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "position": "bottom",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "#aaa",
+    "color": "#999999",
+    "selectedColor": "#40a9ff",
+    "list": [
+      {
+        "pagePath": "pages/homePage/homePage",
+        "text": "首页",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home2.png"
+      },
+      {
+        "pagePath": "pages/orderPage/orderPage",
+        "text": "订单",
+        "iconPath": "images/icons/add.png",
+        "selectedIconPath": "images/icons/add2.png"
+      },
+      {
+        "pagePath": "pages/userPage/userPage",
+        "text": "我的",
+        "iconPath": "images/icons/mine.png",
+        "selectedIconPath": "images/icons/mine2.png"
+      }
+    ]
   }
 }
