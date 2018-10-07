@@ -3,7 +3,9 @@
   "pages": [
     "pages/homePage/homePage",
     "pages/orderPage/orderPage",
-    "pages/userPage/userPage"
+    "pages/userPage/userPage",
+    "pages/bookSelectPage/bookSelectPage",
+    "pages/selectSeatPage/selectSeatPage"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -18,8 +20,7 @@
     "borderStyle": "#aaa",
     "color": "#999999",
     "selectedColor": "#40a9ff",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/homePage/homePage",
         "text": "首页",
         "iconPath": "images/icons/home.png",

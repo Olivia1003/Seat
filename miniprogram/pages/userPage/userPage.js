@@ -4,5 +4,7 @@
  */
 
 Page({
-  data: {}
+  data: {
+    userPicUrl: "../../images/icons/mine.png"
+  }
 });

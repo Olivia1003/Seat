@@ -3,7 +3,7 @@
         <button class="home-btn" bindtap="openScanCode">
             <text class="home-btn-txt">扫码</text>
         </button>
-        <button class="home-btn">
+        <button class="home-btn" bindtap="goBookSelect">
             <text class="home-btn-txt">预约</text>
         </button>
     </view>

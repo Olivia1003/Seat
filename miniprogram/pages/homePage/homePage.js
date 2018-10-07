@@ -6,22 +6,35 @@
 Page({
   data: {},
   onLoad() {
-    console.log("home page loaded");
-    // wx.navigateTo({
-    //   url: "../orderPage/orderPage",
-    //   success(res) {
-    //     console.log("navigateTo success", res);
-    //   },
-    //   fail(err) {
-    //     console.log("navigateTo fail", err.errMsg);
-    //   }
-    // });
+    console.log("home page loaded")
+
+    // this.goBookSelect()
+
     wx.switchTab({
-      url: "../orderPage/orderPage"
+      url: "../userPage/userPage"
     });
   },
   openScanCode() {
-    console.log("openScanCode");
-    wx.scanCode();
+    console.log("openScanCode")
+    wx.scanCode({
+      success: (res) => {
+        console.log("scan code success", res)
+      },
+      fail: (res) => {
+        console.log("scan code fail", res)
+      }
+    })
+  },
+  goBookSelect() {
+    console.log('goBookSelect')
+    wx.navigateTo({
+      url: "../bookSelectPage/bookSelectPage",
+      success(res) {
+        console.log("navigateTo success", res)
+      },
+      fail(err) {
+        console.log("navigateTo fail", err)
+      }
+    })
   }
 });

@@ -1,0 +1,37 @@
+/* banner */
+.top-banner {
+    display: flex;
+    align-items: center;
+    height: 300rpx;
+    margin-bottom: 50rpx;
+    padding: 0 30rpx;
+    background-color: #3BAFDA
+}
+
+.user-name {
+    font-size: 38rpx;
+}
+
+.user-pic {
+    width: 100rpx;
+    height: 100rpx;
+    margin: 30rpx;
+    border-radius: 50%;
+    border: 2rpx solid #ffffff;
+}
+
+/* line items */
+.user-block-wrap {
+    margin-bottom: 30rpx;
+    border: none;
+    border-top: 0.5rpx solid #ccc;
+    border-bottom: 0.5rpx solid #ccc;
+}
+
+.full-line {
+    height: 1rpx;
+    margin: 0 10rpx;
+    border: none;
+    border-bottom: 0.5rpx solid #ccc;
+    background-color: transparent;
+}

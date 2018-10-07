@@ -1,7 +1,17 @@
 <view>
     <view class="orderItem-wrap">
         <view>
-            <text>hello</text>
+            <text>{{idNo}}</text>
+            <text>{{schoolName}}</text>
+            <text>{{floorName}}</text>
+        </view>
+        <view>
+            <text>{{seatNo}}</text>
+            <text>{{status}}</text>
+        </view>
+        <view>
+            <text>{{startTime}}</text>
+            <text>{{endTime}}</text>
         </view>
     </view>
 </view>

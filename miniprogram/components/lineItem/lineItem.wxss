@@ -1,0 +1,35 @@
+.line-item-wrap {
+    border: none;
+    height: 100rpx;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 34rpx;
+    background-color: #ffffff;
+}
+
+.left {
+    display: flex;
+    justify-content: center;
+}
+
+.left-icon {
+    width: 50rpx;
+    height: 50rpx;
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+}
+
+.right {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: 0
+}
+
+.right-icon {
+    width: 50rpx;
+    height: 50rpx;
+    margin-right: 30rpx;
+}

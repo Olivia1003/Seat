@@ -1,0 +1,15 @@
+.book-select-page-container {
+    padding: 30rpx;
+}
+
+.select-line {
+    margin-bottom: 20rpx;
+}
+
+.confirm-btn {
+    margin-top: 60rpx;
+    border-radius: 20rpx;
+    width: 60%;
+    border: none;
+    background-color: #ccc
+}

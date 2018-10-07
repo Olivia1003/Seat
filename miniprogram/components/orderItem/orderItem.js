@@ -4,27 +4,31 @@
  */
 Component({
   properties: {
-    idNumber: {
+    idNo: {
       type: String,
       value: "0"
     },
-    cover: {
+    schoolName: {
       type: String,
       value: ""
     },
-    avatarUrl: {
+    floorName: {
       type: String,
       value: ""
     },
-    nickName: {
+    seatNo: {
       type: String,
       value: ""
     },
-    title: {
+    status: {
       type: String,
       value: ""
     },
-    price: {
+    startTime: {
+      type: String,
+      value: ""
+    },
+    endTime: {
       type: String,
       value: ""
     }

@@ -1,0 +1,20 @@
+<view>
+    <view class="book-select-page-container">
+        <view class="select-line">
+            <picker mode="selector" bindchange="selectSchoolHandle" value="{{schoolList.length>0?schoolList[selectSchoolIndex]:'empty'}}" range="{{schoolList}}">
+                <view>选择学校：{{schoolList.length>0?schoolList[selectSchoolIndex]:'empty'}}</view>
+            </picker>
+        </view>
+        <view class="select-line">
+            <picker mode="selector" bindchange="selectFloorHandle" value="{{floorList.length>0?floorList[selectFloorIndex]:'empty'}}" range="{{floorList}}">
+                <view>选择楼层：{{floorList.length>0?floorList[selectFloorIndex]:'empty'}}</view>
+            </picker>
+        </view>
+        <view class="select-line">
+            <picker mode="date" bindchange="selectDateHandle" value="{{selectDate}}" start="2017-09-01" end="2019-09-01">
+                <view>选择日期：{{selectDate}}</view>
+            </picker>
+        </view>
+        <button bindtap="comfirmSelect" class="confirm-btn">submit</button>
+    </view>
+</view>

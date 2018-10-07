@@ -1,0 +1,11 @@
+<view>
+    <view class="top-banner">
+        <image class="user-pic" src="{{userPicUrl}}"></image>
+        <text class="user-name">name</text>
+    </view>
+    <view class="user-block-wrap">
+        <lineItem title="我的aaaa" iconUrl="../../images/icons-user/message.png"></lineItem>
+        <view class="full-line"></view>
+        <lineItem title="bbbb" iconUrl="../../images/icons-user/message.png"></lineItem>
+    </view>
+</view>
