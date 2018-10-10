@@ -1,6 +1,7 @@
 .home-page-container {
   padding: 60rpx 30rpx;
 }
+
 .home-btn {
   display: flex;
   align-items: center;
@@ -9,12 +10,17 @@
   margin-bottom: 60rpx;
   background-color: #fff;
   border-radius: 30rpx;
-  box-shadow: 0 -1px 1px #ddd, 
-   0 3px 10px #ddd,
-   -3px 0 10px #ddd, 
-   3px 0 10px #ddd;
+  /* box-shadow: 0 -3px 30px rgba(55, 188, 155, 0.1),
+    0 3px 30px rgba(55, 188, 155, 0.1),
+    -3px 0 30px rgba(55, 188, 155, 0.1),
+    3px 0 30px rgba(55, 188, 155, 0.1); */
+  box-shadow: 0 -3px 30px #eeeeee,
+    0 3px 30px #eeeeee,
+    -3px 0 30px #eeeeee,
+    3px 0 30px #eeeeee;
   border: none;
 }
+
 .home-btn-txt {
   font-size: 40rpx;
   color: #555;

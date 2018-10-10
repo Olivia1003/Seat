@@ -1,17 +1,47 @@
 <view>
     <view class="order-page-container">
         <view class="topBar-btn-wrap">
-            <button data-idNo="1" class="topBar-btn {{currentTabId==='1'?'topBar-btn-acitve':'topBar-btn-plain'}}" bindtap="clickTabHandle">
+            <button
+                data-idNo="1"
+                class="topBar-btn {{currentTabId==='1'?'topBar-btn-acitve':'topBar-btn-plain'}}"
+                bindtap="clickTabHandle"
+            >
                 当前订单
             </button>
-            <button data-idNo="2" class="topBar-btn {{currentTabId==='2'?'topBar-btn-acitve':'topBar-btn-plain'}}" bindtap="clickTabHandle">
+            <button
+                data-idNo="2"
+                class="topBar-btn {{currentTabId==='2'?'topBar-btn-acitve':'topBar-btn-plain'}}"
+                bindtap="clickTabHandle"
+            >
                 历史订单
             </button>
         </view>
-        <view wx:if="{{currentTabId==='1'}}" class="current-order-list">
-            <orderItem idNo="01" schoolName="school aaa" floorName="floor 2" seatNo="A123" status="...ing" startTime="2018-06-12 14:00" endTime="2018-06-12 15:00"></orderItem>
-            <orderItem idNo="02" schoolName="school aaa" floorName="floor 2" seatNo="A123" status="...ing" startTime="2018-06-12 14:00" endTime="2018-06-12 15:00"></orderItem>
+        <view
+            wx:if="{{currentTabId==='1'}}"
+            class="current-order-list"
+        >
+            <orderItem
+                idNo="01"
+                schoolName="school aaa"
+                floorName="floor 2"
+                seatNo="A123"
+                status="...ing"
+                startTime="2018-06-12 14:00"
+                endTime="2018-06-12 15:00"
+            ></orderItem>
+            <orderItem
+                idNo="02"
+                schoolName="school aaa"
+                floorName="floor 2"
+                seatNo="A123"
+                status="...ing"
+                startTime="2018-06-12 14:00"
+                endTime="2018-06-12 15:00"
+            ></orderItem>
         </view>
-        <view wx:if="{{currentTabId==='2'}}" class="history-order-list"></view>
+        <view
+            wx:if="{{currentTabId==='2'}}"
+            class="history-order-list"
+        ></view>
     </view>
 </view>

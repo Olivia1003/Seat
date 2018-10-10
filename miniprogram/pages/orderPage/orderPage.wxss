@@ -1,17 +1,26 @@
 .order-page-container {
   padding-bottom: 20rpx;
 }
+
 .topBar-btn-wrap {
   display: flex;
   flex-direction: row;
-  background-color: #ccc;
 }
+
 .topBar-btn {
   width: 50%;
+  border: none;
+  border-radius: 0;
+  background-color: #ffffff;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
 }
+
 .topBar-btn-acitve {
-  color: #3bafda;
+  color: #24a888;
+  border-bottom: 1px solid #24a888;
 }
+
 .topBar-btn-plain {
   color: #555;
 }
