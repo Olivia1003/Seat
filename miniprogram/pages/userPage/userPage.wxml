@@ -9,12 +9,12 @@
     <view class="user-block-wrap">
         <lineItem
             title="我的aaaa"
-            iconUrl="../../images/icons-user/message.png"
+            iconUrl="../../images/iconsUser/edit.png"
         ></lineItem>
         <view class="full-line"></view>
         <lineItem
             title="bbbb"
-            iconUrl="../../images/icons-user/message.png"
+            iconUrl="../../images/iconsUser/edit.png"
         ></lineItem>
     </view>
 </view>

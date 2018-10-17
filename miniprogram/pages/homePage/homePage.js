@@ -11,7 +11,7 @@ Page({
     // this.goBookSelect()
 
     wx.switchTab({
-      url: "../orderPage/orderPage"
+      url: "../userPage/userPage"
     });
   },
   openScanCode() {

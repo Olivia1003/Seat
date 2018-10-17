@@ -1,0 +1,30 @@
+<view>
+    <view class="seat-map-wrap">
+        <view class="seat-map">
+            <view
+                class="seat-item-wrap"
+                wx:for="{{seatItemList}}"
+                wx:key="id"
+                wx:for-item="seatData"
+                wx:for-index="index"
+            >
+                <seatItem
+                    type="{{seatData.type}}"
+                    status="{{seatData.status}}"
+                    gridX="{{seatData.gridX}}"
+                    gridY="{{seatData.gridY}}"
+                    bind:seatItemTap="itemTapHandle"
+                >
+                </seatItem>
+            </view>
+        </view>
+    </view>
+    <view class="footer">
+        <button
+            class="submit-btn"
+            bindtap="submitHandle"
+        >
+            submit
+        </button>
+    </view>
+</view>

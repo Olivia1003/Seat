@@ -1,0 +1,18 @@
+.seat-item {
+    position: absolute;
+    width: 50rpx;
+    height: 50rpx;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* background-color: #333; */
+    color: #fff;
+}
+
+.seat-icon {
+    position: absolute;
+    left: 5rpx;
+    top: 5rpx;
+    width: 40rpx;
+    height: 40rpx;
+}

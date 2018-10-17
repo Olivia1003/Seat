@@ -5,7 +5,7 @@
     height: 300rpx;
     margin-bottom: 50rpx;
     padding: 0 30rpx;
-    background-color: #3BAFDA
+    background-color: #37BC9B;
 }
 
 .user-name {

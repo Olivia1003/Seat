@@ -5,6 +5,6 @@
 
 Page({
   data: {
-    userPicUrl: "../../images/icons/mine.png"
+    userPicUrl: "../../images/icons/user_default.png"
   }
 });

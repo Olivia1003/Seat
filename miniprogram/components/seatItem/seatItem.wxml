@@ -1,0 +1,24 @@
+<view
+    class="seat-item"
+    style="top:{{offsetY}};left:{{offsetX}}"
+    bindtap="onTapHandle"
+>
+    <view wx:if="{{type===1&&status===0}}">
+        <image
+            class="seat-icon"
+            src="../../images/iconsSeat/chair_default.png"
+        />
+    </view>
+    <view wx:if="{{type===1&&status===1}}">
+        <image
+            class="seat-icon"
+            src="../../images/iconsSeat/chair_active.png"
+        />
+    </view>
+    <view wx:if="{{type===2}}">
+        <image
+            class="seat-icon"
+            src="../../images/iconsSeat/desk.png"
+        />
+    </view>
+</view>

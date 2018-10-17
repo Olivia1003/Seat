@@ -1,0 +1,27 @@
+.seat-map-wrap {
+    margin: 20rpx;
+    overflow: scroll;
+    width: 700rpx;
+    height: 700rpx;
+    border: 1rpx solid #333;
+}
+
+.seat-map {
+    position: relative;
+    width: 1800rpx;
+    height: 1800rpx;
+    background-color: #eeeeee;
+}
+
+.footer {
+    margin-top: 50rpx;
+}
+
+.submit-btn {
+    width: 60%;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-radius: 20rpx;
+    background-color: #37BC9B;
+    color: #ffffff;
+}

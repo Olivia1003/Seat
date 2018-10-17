@@ -23,20 +23,20 @@
     "list": [{
         "pagePath": "pages/homePage/homePage",
         "text": "首页",
-        "iconPath": "images/icons/home.png",
-        "selectedIconPath": "images/icons/home2.png"
+        "iconPath": "images/icons/home_default.png",
+        "selectedIconPath": "images/icons/home_active.png"
       },
       {
         "pagePath": "pages/orderPage/orderPage",
         "text": "订单",
-        "iconPath": "images/icons/add.png",
-        "selectedIconPath": "images/icons/add2.png"
+        "iconPath": "images/icons/list_default.png",
+        "selectedIconPath": "images/icons/list_active.png"
       },
       {
         "pagePath": "pages/userPage/userPage",
         "text": "我的",
-        "iconPath": "images/icons/mine.png",
-        "selectedIconPath": "images/icons/mine2.png"
+        "iconPath": "images/icons/user_default.png",
+        "selectedIconPath": "images/icons/user_active.png"
       }
     ]
   }

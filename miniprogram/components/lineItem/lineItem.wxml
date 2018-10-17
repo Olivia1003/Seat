@@ -1,9 +1,15 @@
 <view class="line-item-wrap">
     <view class="left">
-        <image class="left-icon" src="{{iconUrl}}"></image>
+        <image
+            class="left-icon"
+            src="{{iconUrl}}"
+        ></image>
         <text>{{title}}</text>
     </view>
     <view class="right">
-        <image class="right-icon" src="../../images/icons-user/right_arrow.png"></image>
+        <image
+            class="right-icon"
+            src="../../images/iconsUser/right_arrow_default.png"
+        ></image>
     </view>
 </view>
