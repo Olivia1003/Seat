@@ -20,28 +20,45 @@
             wx:if="{{currentTabId==='1'}}"
             class="current-order-list"
         >
-            <orderItem
-                idNo="01"
-                schoolName="school aaa"
-                floorName="floor 2"
-                seatNo="A123"
-                status="...ing"
-                startTime="2018-06-12 14:00"
-                endTime="2018-06-12 15:00"
-            ></orderItem>
-            <orderItem
-                idNo="02"
-                schoolName="school aaa"
-                floorName="floor 2"
-                seatNo="A123"
-                status="...ing"
-                startTime="2018-06-12 14:00"
-                endTime="2018-06-12 15:00"
-            ></orderItem>
+            <view
+                class="order-item-wrap"
+                wx:for="{{currentOrderList}}"
+                wx:key="idNo"
+                wx:for-item="orderData"
+                wx:for-index="index"
+            >
+                <orderItem
+                    idNo="{{orderData.idNo}}"
+                    schoolName="{{orderData.schoolName}}"
+                    floorName="{{orderData.floorName}}"
+                    seatNo="{{orderData.seatNo}}"
+                    status="{{orderData.status}}"
+                    startTime="{{orderData.startTime}}"
+                    endTime="{{orderData.endTime}}"
+                ></orderItem>
+            </view>
         </view>
         <view
             wx:if="{{currentTabId==='2'}}"
             class="history-order-list"
-        ></view>
+        >
+            <view
+                class="order-item-wrap"
+                wx:for="{{pastOrderList}}"
+                wx:key="idNo"
+                wx:for-item="orderData"
+                wx:for-index="index"
+            >
+                <orderItem
+                    idNo="{{orderData.idNo}}"
+                    schoolName="{{orderData.schoolName}}"
+                    floorName="{{orderData.floorName}}"
+                    seatNo="{{orderData.seatNo}}"
+                    status="{{orderData.status}}"
+                    startTime="{{orderData.startTime}}"
+                    endTime="{{orderData.endTime}}"
+                ></orderItem>
+            </view>
+        </view>
     </view>
 </view>

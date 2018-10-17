@@ -1,8 +1,10 @@
+/* common */
 .orderItem-wrap {
+  position: relative;
   display: flex;
   flex-direction: column;
-  padding: 10rpx;
-  background-color: #ccc;
+  padding: 10rpx 30rpx;
+  background-color: #eee;
   height: 200rpx;
   margin: 30rpx 20rpx;
   border-radius: 8rpx;
@@ -10,4 +12,75 @@
     0 3px 10px #ddd,
     -3px 0 10px #ddd,
     3px 0 10px #ddd;
+}
+
+
+
+/* top-line */
+.top-line {
+  line-height: 60rpx;
+}
+
+.id-txt {
+  margin-right: 30rpx;
+  font-size: 30rpx;
+  color: #777;
+}
+
+.school-txt {
+  font-size: 30rpx;
+  color: #777;
+}
+
+/* address-line */
+.address-line {
+  line-height: 60rpx;
+}
+
+.floor-txt {
+  margin-right: 30rpx;
+  font-size: 30rpx;
+  color: #777;
+}
+
+.seat-txt {
+  font-size: 30rpx;
+  color: #777;
+}
+
+.address-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+
+/* time-line */
+.time-line {
+  display: flex;
+  align-items: center;
+  line-height: 60rpx;
+}
+
+.time-txt {
+  font-size: 30rpx;
+  color: #777;
+}
+
+.time-icon {
+  width: 35rpx;
+  height: 35rpx;
+  margin-right: 10rpx;
+}
+
+/* status */
+.status-txt {
+  font-size: 30rpx;
+  color: #777;
+}
+
+.status-wrap {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  width: 100rpx;
 }

@@ -1,17 +1,26 @@
 <view>
     <view class="orderItem-wrap">
-        <view>
-            <text>{{idNo}}</text>
-            <text>{{schoolName}}</text>
-            <text>{{floorName}}</text>
+        <view class="top-line">
+            <text class="id-txt">{{idNo}}</text>
+            <text class="school-txt">{{schoolName}}</text>
         </view>
-        <view>
-            <text>{{seatNo}}</text>
-            <text>{{status}}</text>
+        <view class="address-line">
+            <image
+                class="address-icon"
+                src="../../images/iconsOrder/address.png"
+            />
+            <text class="floor-txt">{{floorName}}</text>
+            <text class="seat-txt">{{seatNo}}</text>
         </view>
-        <view>
-            <text>{{startTime}}</text>
-            <text>{{endTime}}</text>
+        <view class="time-line">
+            <image
+                class="time-icon"
+                src="../../images/iconsOrder/time.png"
+            />
+            <text class="time-txt">{{startTime}} - {{endTime}}</text>
+        </view>
+        <view class="status-wrap">
+            <text class="status-txt">{{status}}</text>
         </view>
     </view>
 </view>
