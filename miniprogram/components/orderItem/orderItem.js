@@ -24,6 +24,10 @@ Component({
       type: String,
       value: ""
     },
+    date: {
+      type: String,
+      value: ""
+    },
     startTime: {
       type: String,
       value: ""
@@ -42,5 +46,8 @@ Component({
   /**
    * 组件的方法列表
    */
-  methods: {}
+  methods: {},
+  attached() {
+    console.log('orderItem attached', this.data)
+  }
 });

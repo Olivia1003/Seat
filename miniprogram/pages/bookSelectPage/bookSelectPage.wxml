@@ -7,7 +7,13 @@
                 value="{{schoolList.length>0?schoolList[selectSchoolIndex]:'empty'}}"
                 range="{{schoolList}}"
             >
-                <view>选择学校：{{schoolList.length>0?schoolList[selectSchoolIndex]:'empty'}}</view>
+                <view class="select-line-inner">
+                    <image
+                        src="../../images/iconsSelector/school.png"
+                        class="select-icon"
+                    />
+                    <view>选择学校：{{schoolList.length>0?schoolList[selectSchoolIndex]:'empty'}}</view>
+                </view>
             </picker>
         </view>
         <view class="select-line">
@@ -17,7 +23,13 @@
                 value="{{floorList.length>0?floorList[selectFloorIndex]:'empty'}}"
                 range="{{floorList}}"
             >
-                <view>选择楼层：{{floorList.length>0?floorList[selectFloorIndex]:'empty'}}</view>
+                <view class="select-line-inner">
+                    <image
+                        src="../../images/iconsSelector/floor.png"
+                        class="select-icon"
+                    />
+                    <view>选择楼层：{{floorList.length>0?floorList[selectFloorIndex]:'empty'}}</view>
+                </view>
             </picker>
         </view>
         <view class="select-line">
@@ -28,12 +40,20 @@
                 start="2017-09-01"
                 end="2019-09-01"
             >
-                <view>选择日期：{{selectDate}}</view>
+                <view class="select-line-inner">
+                    <image
+                        src="../../images/iconsSelector/date.png"
+                        class="select-icon"
+                    />
+                    <view>选择日期：{{selectDate}}</view>
+                </view>
             </picker>
         </view>
         <button
             bindtap="comfirmSelect"
             class="confirm-btn"
-        >submit</button>
+        >
+            submit
+        </button>
     </view>
 </view>

@@ -1,7 +1,7 @@
 <view>
     <view class="orderItem-wrap">
         <view class="top-line">
-            <text class="id-txt">{{idNo}}</text>
+            <text class="id-txt">订单号：{{idNo}}</text>
             <text class="school-txt">{{schoolName}}</text>
         </view>
         <view class="address-line">
@@ -10,13 +10,14 @@
                 src="../../images/iconsOrder/address.png"
             />
             <text class="floor-txt">{{floorName}}</text>
-            <text class="seat-txt">{{seatNo}}</text>
+            <text class="seat-txt">{{seatNo}} 座位</text>
         </view>
         <view class="time-line">
             <image
                 class="time-icon"
                 src="../../images/iconsOrder/time.png"
             />
+            <text class="date-txt">{{date}}</text>
             <text class="time-txt">{{startTime}} - {{endTime}}</text>
         </view>
         <view class="status-wrap">

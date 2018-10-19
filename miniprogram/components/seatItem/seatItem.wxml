@@ -1,6 +1,6 @@
 <view
     class="seat-item"
-    style="top:{{offsetY}};left:{{offsetX}}"
+    style="top:{{offsetY}}rpx;left:{{offsetX}}rpx"
     bindtap="onTapHandle"
 >
     <view wx:if="{{type===1&&status===0}}">

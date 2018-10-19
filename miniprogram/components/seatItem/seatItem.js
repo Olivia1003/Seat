@@ -27,8 +27,8 @@ Component({
      * 组件的初始数据
      */
     data: {
-        offsetX: '40rpx',
-        offsetY: '30rpx'
+        offsetX: 40,
+        offsetY: 30
     },
 
     /**
@@ -61,8 +61,8 @@ Component({
         const gridLen = 50
         console.log('seatItem attached', this.properties, this.data)
         this.setData({
-            offsetX: this.properties.gridX * gridLen + 'rpx',
-            offsetY: this.properties.gridY * gridLen + 'rpx',
+            offsetX: this.properties.gridX * gridLen,
+            offsetY: this.properties.gridY * gridLen,
         })
     }
 });

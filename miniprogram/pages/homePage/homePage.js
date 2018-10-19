@@ -10,9 +10,9 @@ Page({
 
     // this.goBookSelect()
 
-    wx.switchTab({
-      url: "../orderPage/orderPage"
-    });
+    // wx.switchTab({
+    //   url: "../orderPage/orderPage"
+    // });
 
   },
   openScanCode() {

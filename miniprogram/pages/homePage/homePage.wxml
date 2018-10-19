@@ -4,12 +4,20 @@
             class="home-btn"
             bindtap="openScanCode"
         >
+            <image
+                src="../../images/icons/scan.png"
+                class="home-btn-icon-scan"
+            />
             <text class="home-btn-txt">扫码</text>
         </button>
         <button
             class="home-btn"
             bindtap="goBookSelect"
         >
+            <image
+                src="../../images/icons/add.png"
+                class="home-btn-icon-edit"
+            />
             <text class="home-btn-txt">预约</text>
         </button>
     </view>

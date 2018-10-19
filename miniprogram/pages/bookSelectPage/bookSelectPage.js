@@ -13,6 +13,17 @@ Page({
         floorList: ['floor 1', 'floor 2', 'floor 3']
     },
     onLoad() {
+        // 设置默认日期时间
+        const currentDate = new Date()
+        const currentDateStr = this.getDateHyphenFromDateObject(currentDate)
+        if (currentDateStr !== "") {
+            this.setData({
+                selectDate: currentDateStr
+            })
+        }
+
+    },
+    onShow() {
 
     },
     selectSchoolHandle(e) {
@@ -44,6 +55,20 @@ Page({
                 console.log("navigateTo fail", err);
             }
         })
+    },
+    /**
+     * 得到Hyphen时间
+     * input: Date Object
+     * output: 2018-08-20
+     */
+    getDateHyphenFromDateObject(d) {
+        if (!d) {
+            return ''
+        }
+        const year = d.getFullYear()
+        const month = ('0' + (d.getMonth() + 1)).slice(-2)
+        const day = ('0' + d.getDate()).slice(-2)
+        return year + '-' + month + '-' + day
     }
 
 });

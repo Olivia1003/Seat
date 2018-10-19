@@ -8,9 +8,10 @@
 
 .seat-map {
     position: relative;
-    width: 1800rpx;
-    height: 1800rpx;
-    background-color: #eeeeee;
+    /* width: 1000rpx; */
+    /* height: 1000rpx; */
+    /* background-color: #eeeeee; */
+    background-color: #ddd;
 }
 
 .footer {

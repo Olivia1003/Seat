@@ -1,6 +1,12 @@
 <view>
     <view class="seat-map-wrap">
-        <view class="seat-map">
+        <view
+            style="width:{{mapBaseWid}}rpx;height:{{mapBaseHei}}rpx;transform:scale({{mapScale}});"
+            class="seat-map"
+            bind:touchstart="touchMapStartHandle"
+            bind:touchmove="touchMapMoveHandle"
+            bind:touchend="touchMapEndHandle"
+        >
             <view
                 class="seat-item-wrap"
                 wx:for="{{seatItemList}}"

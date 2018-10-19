@@ -1,15 +1,32 @@
 .book-select-page-container {
-    padding: 30rpx;
+    padding: 50rpx 40rpx;
 }
 
+/* select line */
 .select-line {
-    margin-bottom: 20rpx;
+    margin-bottom: 30rpx;
 }
 
+.select-line-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.select-icon {
+    width: 38rpx;
+    height: 38rpx;
+    margin-right: 18rpx;
+}
+
+/* confirm btn */
 .confirm-btn {
     margin-top: 60rpx;
-    border-radius: 20rpx;
     width: 60%;
+    height: 80rpx;
+    line-height: 80rpx;
     border: none;
-    background-color: #ccc
+    border-radius: 20rpx;
+    background-color: #37BC9B;
+    color: #ffffff;
 }
