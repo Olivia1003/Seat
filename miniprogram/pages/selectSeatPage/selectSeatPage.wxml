@@ -1,7 +1,8 @@
 <view>
-    <view class="seat-map-wrap">
+    <!-- map -->
+    <!-- <view class="seat-map-wrap">
         <view
-            style="width:{{mapBaseWid}}rpx;height:{{mapBaseHei}}rpx;transform:scale({{mapScale}});"
+            style="width:{{mapBaseWid}}rpx;height:{{mapBaseHei}}rpx;transform:scale({{mapScale}});left:{{mapPosLeft}}rpx;top:{{mapPosTop}}rpx;"
             class="seat-map"
             bind:touchstart="touchMapStartHandle"
             bind:touchmove="touchMapMoveHandle"
@@ -20,17 +21,57 @@
                     gridX="{{seatData.gridX}}"
                     gridY="{{seatData.gridY}}"
                     bind:seatItemTap="itemTapHandle"
-                >
-                </seatItem>
+                ></seatItem>
             </view>
         </view>
-    </view>
+    </view> -->
+    <scroll-view
+        class="seat-map-wrap"
+        bindscroll="scrollHandle"
+        scroll-x
+        scroll-y
+    >
+        <!-- <view
+            style="width:{{mapScaleWid}}rpx;height:{{mapScaleHei}}rpx;"
+            class="map-inner-wrap"
+        > -->
+        <view
+            style="transform:scale({{mapScale}});"
+            class="seat-map"
+            bind:touchstart="touchMapStartHandle"
+            bind:touchmove="touchMapMoveHandle"
+            bind:touchend="touchMapEndHandle"
+        >
+            <view
+                class="seat-item-wrap"
+                wx:for="{{seatItemList}}"
+                wx:key="id"
+                wx:for-item="seatData"
+                wx:for-index="index"
+            >
+                <seatItem
+                    type="{{seatData.type}}"
+                    status="{{seatData.status}}"
+                    gridX="{{seatData.gridX}}"
+                    gridY="{{seatData.gridY}}"
+                    index="{{index}}"
+                    bind:seatItemTap="itemTapHandle"
+                ></seatItem>
+            </view>
+        </view>
+        <!-- </view> -->
+
+    </scroll-view>
+    <!-- footer -->
     <view class="footer">
         <button
             class="submit-btn"
             bindtap="submitHandle"
-        >
-            submit
-        </button>
+        >submit</button>
     </view>
+    <!-- modal -->
+    <selectModal
+        isShow="{{isShowModal}}"
+        bind:hideModal="hideModal"
+    ></selectModal>
 </view>

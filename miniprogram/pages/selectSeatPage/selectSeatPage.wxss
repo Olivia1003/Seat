@@ -1,17 +1,24 @@
 .seat-map-wrap {
+    position: relative;
     margin: 20rpx;
-    overflow: scroll;
+    /* overflow: scroll; */
     width: 700rpx;
     height: 700rpx;
     border: 1rpx solid #333;
 }
 
-.seat-map {
+.map-inner-wrap {
     position: relative;
-    /* width: 1000rpx; */
-    /* height: 1000rpx; */
-    /* background-color: #eeeeee; */
+}
+
+.seat-map {
+    position: absolute;
+    /* position: relative; */
+    width: 1500rpx;
+    height: 1500rpx;
+    transform-origin: top left;
     background-color: #ddd;
+    /* border: 3rpx solid #ff0000; */
 }
 
 .footer {

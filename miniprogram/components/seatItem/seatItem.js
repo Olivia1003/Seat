@@ -19,6 +19,10 @@ Component({
         gridY: {
             type: Number,
             value: 0
+        },
+        index: {
+            type: Number,
+            value: 0
         }
 
     },
@@ -37,21 +41,33 @@ Component({
     methods: {
         onTapHandle() {
             console.log('onTapHandle')
+            const {
+                type,
+                status,
+                index
+            } = this.data
 
-
-            if (this.data.type === 1) { // chair
-                const oldStatus = this.data.status
-                const newStatus = oldStatus ? 0 : 1
-                this.setData({
-                    status: newStatus
-                }, () => {
-                    console.log('setData success', this.data)
-                })
-
+            if (typeof index === 'number') {
                 this.triggerEvent('seatItemTap', {
-                    status: newStatus
+                    index: index
                 })
             }
+
+
+            // if (this.data.type === 1) { // chair
+            //     const oldStatus = this.data.status
+            //     const newStatus = oldStatus ? 0 : 1
+            //     this.setData({
+            //         status: newStatus
+            //     }, () => {
+            //         console.log('setData success', this.data)
+            //     })
+
+            //     this.triggerEvent('seatItemTap', {
+            //         status: newStatus,
+            //         index: index
+            //     })
+            // }
 
 
 

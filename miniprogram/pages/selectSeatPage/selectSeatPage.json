@@ -1,6 +1,7 @@
 {
     "navigationBarTitleText": "选择座位",
     "usingComponents": {
-        "seatItem": "../../components/seatItem/seatItem"
+        "seatItem": "../../components/seatItem/seatItem",
+        "selectModal": "../../components/selectModal/selectModal"
     }
 }

@@ -1,0 +1,55 @@
+<view class="modal-wrap">
+    <modal
+        hidden="{{!isShow}}"
+        title="选择需要的时间段"
+        confirm-text="提交"
+        cancel-text="取消"
+        bindcancel="cancelHandle"
+        bindconfirm="confirmHandle"
+    >
+        <view class="modal-body">
+            <!-- <text class="select-tip">tips</text> -->
+            <scroll-view
+                class="section-list-wrap"
+                scroll-y
+            >
+                <view class="section-list">
+                    <view
+                        class="section-item-wrap"
+                        wx:for="{{sectionItemList}}"
+                        wx:key="{{id}}"
+                        wx:for-item="sectionData"
+                        wx:for-index="index"
+                        data-idNo="{{sectionData.id}}"
+                        bindtap="tapSectionHandle"
+                    >
+                        <button
+                            class="section-item {{sectionData.isSelect?'section-item-active':''}}"
+                            bindtap="tapSectionHandle"
+                        >
+
+                            <text>{{sectionData.content}}</text>
+                        </button>
+                    </view>
+                </view>
+
+            </scroll-view>
+            <!-- <view class="section-list">
+                <view
+                    class="section-item-wrap"
+                    wx:for="{{sectionItemList}}"
+                    wx:key="{{id}}"
+                    wx:for-item="sectionData"
+                    wx:for-index="index"
+                >
+                    <button class="section-item">
+                        {{sectionData.content}}
+                    </button>
+                </view>
+            </view> -->
+
+        </view>
+    </modal>
+
+
+</view>
