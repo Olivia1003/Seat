@@ -8,9 +8,26 @@ Page({
         selectSchoolIndex: 0,
         selectFloorIndex: 0,
         selectDate: "",
-        selectTime: "",
+        // selectTime: "",
+        selectTimeSection: {
+            startHour: 12,
+            startMin: 30,
+            endHour: 14,
+            endMin: 0
+        },
+        selectTimeSectionStr: {
+            startHour: "12",
+            startMin: "30",
+            endHour: "14",
+            endMin: "00"
+        },
         schoolList: ['school a', 'school b', 'school c'],
-        floorList: ['floor 1', 'floor 2', 'floor 3']
+        floorList: ['floor 1', 'floor 2', 'floor 3'],
+        startHourList: [8, 9, 10],
+        startMinList: [0, 30],
+        endHourList: [8, 9, 10],
+        endMinList: [0, 30]
+
     },
     onLoad() {
         // 设置默认日期时间

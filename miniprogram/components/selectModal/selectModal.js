@@ -90,6 +90,12 @@ Component({
                 this.setData({
                     sectionItemList: newItemList
                 })
+            } else {
+                wx.showToast({
+                    title: '最多只能选择两个小时哦',
+                    icon: 'none',
+                    duration: 2000
+                })
             }
         },
         getSectionIndexById(selectId) {

@@ -1,5 +1,6 @@
 <view>
     <view class="book-select-page-container">
+        <!-- select options -->
         <view class="select-line">
             <picker
                 mode="selector"
@@ -49,11 +50,69 @@
                 </view>
             </picker>
         </view>
+        <view>
+            <!-- start time -->
+            <view class="start-time-wrap">
+                <image
+                    src="../../images/iconsSelector/time.png"
+                    class="select-icon"
+                />
+                <text>开始时间：</text>
+                <!-- hour -->
+                <picker
+                    mode="selector"
+                    value="{{selectTimeSection.startHour}}"
+                    range="{{startHourList}}"
+                >
+                    <view class="select-line-inner">
+                        <text>{{selectTimeSectionStr.startHour}}</text>
+                    </view>
+                </picker>
+                <text class="time-partition">:</text>
+                <!-- min -->
+                <picker
+                    mode="selector"
+                    value="{{selectTimeSection.startMin}}"
+                    range="{{startMinList}}"
+                >
+                    <view class="select-line-inner">
+                        <text>{{selectTimeSectionStr.startMin}}</text>
+                    </view>
+                </picker>
+            </view>
+
+
+            <!-- end time -->
+            <view class="end-time-wrap">
+                <text>结束时间：</text>
+                <!-- hour -->
+                <picker
+                    mode="selector"
+                    value="{{selectTimeSection.endHour}}"
+                    range="{{endHourList}}"
+                >
+                    <view class="select-line-inner">
+                        <text>{{selectTimeSectionStr.endHour}}</text>
+                    </view>
+                </picker>
+                <text class="time-partition">:</text>
+                <!-- min -->
+                <picker
+                    mode="selector"
+                    value="{{selectTimeSection.endMin}}"
+                    range="{{endMinList}}"
+                >
+                    <view class="select-line-inner">
+                        <text>{{selectTimeSectionStr.endMin}}</text>
+                    </view>
+                </picker>
+            </view>
+
+        </view>
+        <!-- submit button -->
         <button
             bindtap="comfirmSelect"
             class="confirm-btn"
-        >
-            submit
-        </button>
+        >submit</button>
     </view>
 </view>

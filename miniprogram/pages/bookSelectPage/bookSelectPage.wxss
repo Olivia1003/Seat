@@ -5,6 +5,9 @@
 /* select line */
 .select-line {
     margin-bottom: 30rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .select-line-inner {
@@ -19,9 +22,26 @@
     margin-right: 18rpx;
 }
 
+.start-time-wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.end-time-wrap {
+    display: flex;
+    flex-direction: row;
+    margin-left: 56rpx;
+    margin-top: 20rpx;
+}
+
+.time-partition {
+    margin: 0 10rpx;
+}
+
 /* confirm btn */
 .confirm-btn {
-    margin-top: 60rpx;
+    margin-top: 90rpx;
     width: 60%;
     height: 80rpx;
     line-height: 80rpx;
