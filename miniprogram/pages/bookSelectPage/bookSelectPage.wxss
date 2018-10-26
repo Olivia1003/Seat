@@ -1,10 +1,22 @@
 .book-select-page-container {
-    padding: 50rpx 40rpx;
+    padding: 5rpx;
+    background-color: #EEF1F6;
+}
+
+.select-block {
+    background-color: #ffffff;
+    margin: 30rpx 20rpx;
+    padding: 10rpx 25rpx;
+    border-radius: 12rpx;
+    box-shadow: 0 -1px 1px #dddddd,
+        0 3px 10px #dddddd,
+        -3px 0 10px #dddddd,
+        3px 0 10px #dddddd;
 }
 
 /* select line */
 .select-line {
-    margin-bottom: 30rpx;
+    margin: 20rpx 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -33,6 +45,7 @@
     flex-direction: row;
     margin-left: 56rpx;
     margin-top: 20rpx;
+    margin-bottom: 15rpx;
 }
 
 .time-partition {
@@ -41,8 +54,8 @@
 
 /* confirm btn */
 .confirm-btn {
-    margin-top: 90rpx;
-    width: 60%;
+    margin: 90rpx 20rpx;
+    /* width: 60%; */
     height: 80rpx;
     line-height: 80rpx;
     border: none;

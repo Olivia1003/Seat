@@ -26,7 +26,9 @@ Page({
         startHourList: [8, 9, 10],
         startMinList: [0, 30],
         endHourList: [8, 9, 10],
-        endMinList: [0, 30]
+        endMinList: [0, 30],
+        // for style
+        windowHeight: 800
 
     },
     onLoad() {
@@ -39,8 +41,29 @@ Page({
             })
         }
 
+        // get screen height
+        const _this = this
+        let hei = _this.data.windowHeight
+        wx.getSystemInfo({
+            success: function (res) {
+                console.log(res.screenHeight)
+                console.log(res.windowHeight)
+                hei = res.screenHeight
+            }
+        })
+        _this.setData({
+            windowHeight: hei
+        }, () => {
+            console.log(_this.data)
+        })
+
+
     },
     onShow() {
+
+    },
+    onReady() {
+
 
     },
     selectSchoolHandle(e) {

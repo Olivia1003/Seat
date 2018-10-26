@@ -1,6 +1,10 @@
-<view>
-    <view class="book-select-page-container">
-        <!-- select options -->
+<view
+    class="book-select-page-container"
+    style="height:{{windowHeight}}px;"
+>
+    <!-- select options -->
+    <!-- position block -->
+    <view class="select-block">
         <view class="select-line">
             <picker
                 mode="selector"
@@ -33,6 +37,8 @@
                 </view>
             </picker>
         </view>
+    </view>
+    <view class="select-block">
         <view class="select-line">
             <picker
                 mode="date"
@@ -80,8 +86,6 @@
                     </view>
                 </picker>
             </view>
-
-
             <!-- end time -->
             <view class="end-time-wrap">
                 <text>结束时间：</text>
@@ -107,12 +111,11 @@
                     </view>
                 </picker>
             </view>
-
         </view>
-        <!-- submit button -->
-        <button
-            bindtap="comfirmSelect"
-            class="confirm-btn"
-        >submit</button>
     </view>
+    <!-- submit button -->
+    <button
+        bindtap="comfirmSelect"
+        class="confirm-btn"
+    >submit</button>
 </view>
