@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <!--<meta http-equiv="Access-Control-Allow-Origin" content="*" />-->
+    <title>在线编辑座位</title>
+
+    <!---------css----------->
+    <link href="../css/global.css" rel="stylesheet">
+    <link href="../css/editSeat.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <div id="content-wrap">
+        <h2 class="global-title">在线编辑座位</h2>
+        <!--<p class="global-tip">Tips:可以选中左边按钮，点击画布添加座位，还可以删除座位，增减画布的行列数目，以及右上角的缩略图可以改变视角，放大缩小画布</p>-->
+        <div id="select-map-bar">
+            <div class="nice-select" name="nice-select">
+                <input type="text" value="打开地图" readonly>
+                <ul>
+                    <li data-value="0">新建地图</li>
+                    <li data-value="1">图书馆A一楼</li>
+                    <li data-value="2">图书馆B四楼</li>
+                </ul>
+            </div>
+        </div>
+        <div id="tool-bar">
+            <ul class="comp-list">
+                <li class="chair active">CHAIR</li>
+                <li class="desk">DESK</li>
+                <li class="door">DOOR</li>
+                <li class="delete">DELETE</li>
+            </ul>
+            <div class="edit-canvas-btn-group">
+                <button id="add-canvas-row">+ 行数</button>
+                <button id="delete-canvas-row">- 行数</button>
+                <br/>
+                <button id="add-canvas-col">+ 列数</button>
+                <button id="delete-canvas-col">- 列数</button>
+            </div>
+
+        </div>
+
+        <div id="canvas-wrap">
+            <!--<p class="canvas-fail-messa">您的浏览器不支持canvas，请换一个浏览器试试</p>-->
+            <!--<img id="canvas-bg" src="../images/bg.jpg"/>-->
+            <canvas id="canvas">您的浏览器不支持canvas，请换一个浏览器试试</canvas>
+        </div>
+
+
+        <div id="scanner">
+            <div class="scanner-head">
+                <button class="pull-up">
+                <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+            </button>
+
+            </div>
+
+            <div id="scan-wrap">
+                <img id="scan-body" src="" />
+                <div id="scan-cover"></div>
+            </div>
+
+            <div class="button-bar">
+                <button id="scale-larger">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </button>
+                <button id="scale-smaller">
+                    <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+                </button>
+                <button id="submit-data">
+                    <!--<span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>-->
+                    提交并保存
+                </button>
+            </div>
+
+        </div>
+
+        <div id="global-notice" style="display: none">
+            <p>notice</p>
+        </div>
+
+    </div>
+
+
+
+    <!----------js------------>
+    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <script src="../js/editSeat.js"></script>
+    <script src="../js/comps.js"></script>
+    <script src="../js/initMap.js"></script>
+
+
+    <script>
+
+
+    </script>
+
+</body>
+
+
+
+</html>

@@ -23,6 +23,10 @@ Component({
         index: {
             type: Number,
             value: 0
+        },
+        seatSlug: {
+            type: String,
+            value: 0
         }
 
     },
@@ -75,7 +79,7 @@ Component({
     },
     attached() {
         const gridLen = 50
-        console.log('seatItem attached', this.properties, this.data)
+        //console.log('seatItem attached', this.properties, this.data)
         this.setData({
             offsetX: this.properties.gridX * gridLen,
             offsetY: this.properties.gridY * gridLen,

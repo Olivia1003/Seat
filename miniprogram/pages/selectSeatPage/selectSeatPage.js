@@ -2,71 +2,72 @@
  * @author wjy
  * @description 选择座位页面
  */
-
+const app = getApp()
 Page({
     data: {
-        seatItemList: [{
-                id: "001",
-                gridX: 4,
-                gridY: 3,
-                type: 1,
-                status: 1
-            },
-            {
-                id: "002",
-                gridX: 5,
-                gridY: 3,
-                type: 1,
-                status: 0
-            },
-            {
-                id: "003",
-                gridX: 6,
-                gridY: 3,
-                type: 1,
-                status: 0
-            },
-            {
-                id: "004",
-                gridX: 4,
-                gridY: 4,
-                type: 2,
-                status: 0
-            },
-            {
-                id: "005",
-                gridX: 5,
-                gridY: 4,
-                type: 2,
-                status: 0
-            },
-            {
-                id: "006",
-                gridX: 6,
-                gridY: 4,
-                type: 2,
-                status: 0
-            },
-            {
-                id: "007",
-                gridX: 4,
-                gridY: 5,
-                type: 1,
-                status: 0
-            }, {
-                id: "008",
-                gridX: 5,
-                gridY: 5,
-                type: 1,
-                status: 0
-            }, {
-                id: "009",
-                gridX: 6,
-                gridY: 5,
-                type: 1,
-                status: 0
-            },
-        ],
+      seatItemList:[],
+        // seatItemList: [{
+        //         id: "001",
+        //         gridX: 4,
+        //         gridY: 3,
+        //         type: 1,
+        //         status: 1
+        //     },
+        //     {
+        //         id: "002",
+        //         gridX: 5,
+        //         gridY: 3,
+        //         type: 1,
+        //         status: 0
+        //     },
+        //     {
+        //         id: "003",
+        //         gridX: 6,
+        //         gridY: 3,
+        //         type: 1,
+        //         status: 0
+        //     },
+        //     {
+        //         id: "004",
+        //         gridX: 4,
+        //         gridY: 4,
+        //         type: 2,
+        //         status: 0
+        //     },
+        //     {
+        //         id: "005",
+        //         gridX: 5,
+        //         gridY: 4,
+        //         type: 2,
+        //         status: 0
+        //     },
+        //     {
+        //         id: "006",
+        //         gridX: 6,
+        //         gridY: 4,
+        //         type: 2,
+        //         status: 0
+        //     },
+        //     {
+        //         id: "007",
+        //         gridX: 4,
+        //         gridY: 5,
+        //         type: 1,
+        //         status: 0
+        //     }, {
+        //         id: "008",
+        //         gridX: 5,
+        //         gridY: 5,
+        //         type: 1,
+        //         status: 0
+        //     }, {
+        //         id: "009",
+        //         gridX: 6,
+        //         gridY: 5,
+        //         type: 1,
+        //         status: 0
+        //     },
+        // ],
         // 移动
         // mapPosLeft: 10,
         // mapPosTop: 10,
@@ -210,4 +211,27 @@ Page({
     //     });
     //     return res
     // }
+  onLoad: function (options) {
+    const that = this
+    that.setData({
+      startDate: options.startDate,
+      endDate: options.endDate,
+      today: options.today
+    });
+    wx.request({
+      url: app.globalData.baseUrl + "/seat/search?startDate=" + this.data.startDate + "&endDate=" + this.data.endDate,
+      method: "POST",
+      success: function (res) {
+        that.setData({
+          seatItemList: res.data.obj
+        })
+      },
+      fail: function () {
+
+      }
+    });
+
+  },
+  onShow(){
+  }
 });

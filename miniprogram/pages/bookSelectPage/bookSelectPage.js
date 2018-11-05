@@ -154,17 +154,32 @@ Page({
         }
     },
     comfirmSelect() {
-        console.log('comfirmSelect')
+      const formatTime = date => {
+        const year = date.getFullYear()
+        const month = date.getMonth() + 1
+        const day = date.getDate()
+        const hour = date.getHours()
+        const minute = date.getMinutes()
+        const second = date.getSeconds()
+
+        return [year, month, day].map(formatNumber).join('-')
+      }
+
+      const formatNumber = n => {
+        n = n.toString()
+        return n[1] ? n : '0' + n
+      }
+
+      console.log(this.data.selectDate)
+      console.log(this.data.selectTimeSection)
+      var startDate = this.data.selectDate + ' ' + this.data.selectTimeSection.startHour + ':' + this.data.selectTimeSection.startMin + ':00'
+      var endDate = this.data.selectDate + ' ' + this.data.selectTimeSection.endHour + ':' + this.data.selectTimeSection.endMin + ':00'
         wx.navigateTo({
-            url: "../selectSeatPage/selectSeatPage",
-            success(res) {
-                console.log("navigateTo success", res);
-            },
-            fail(err) {
-                console.log("navigateTo fail", err);
-            }
+          url: "../selectSeatPage/selectSeatPage?startDate=" + startDate + "&endDate=" + endDate + "&today=" + (this.data.selectDate == formatTime(new Date()) )
         })
     },
+
+    
     /**
      * 得到Hyphen时间
      * input: Date Object
