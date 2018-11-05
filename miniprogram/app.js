@@ -1,15 +1,33 @@
 //app.js
 App({
+  globalData: {
+    baseUrl: "http://localhost:8080",
+    code: null,
+    userInfo: null,
+    user: null
+  },
   onLaunch: function () {
-    
-    if (!wx.cloud) {
-      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
-    } else {
-      wx.cloud.init({
-        traceUser: true,
-      })
-    }
-
-    this.globalData = {}
+    const that = this
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          console.log('登录成功！' + res.code)
+          //换openid
+          wx.request({
+            url: that.globalData.baseUrl + "/seat/login?code=" + res.code,
+            method: "POST",
+            success: function (res) {
+              that.globalData.code = res.data.obj
+            },
+            fail: function () {
+              console.log("失败了");
+            }
+          });
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
   }
 })

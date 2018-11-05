@@ -1,10 +1,9 @@
 <view>
     <view class="top-banner">
-        <image
-            class="user-pic"
-            src="{{userPicUrl}}"
-        ></image>
-        <text class="user-name">name</text>
+       <open-data type="userAvatarUrl" class="user-pic"></open-data>
+        <open-data type="userNickName"></open-data>
+        <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+        
     </view>
     <view class="user-block-wrap">
         <lineItem
