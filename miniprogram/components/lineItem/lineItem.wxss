@@ -25,11 +25,15 @@
     display: flex;
     justify-content: center;
     position: absolute;
-    right: 0
+    right: 50rpx;
 }
 
 .right-icon {
     width: 50rpx;
     height: 50rpx;
     margin-right: 30rpx;
+}
+
+.info {
+    font-weight: bold;
 }

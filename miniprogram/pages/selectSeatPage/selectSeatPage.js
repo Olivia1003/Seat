@@ -6,66 +6,249 @@
 Page({
     data: {
         seatItemList: [{
-                id: "001",
-                gridX: 4,
-                gridY: 3,
-                type: 1,
-                status: 1
-            },
-            {
-                id: "002",
-                gridX: 5,
-                gridY: 3,
-                type: 1,
-                status: 0
-            },
-            {
-                id: "003",
-                gridX: 6,
-                gridY: 3,
-                type: 1,
-                status: 0
-            },
-            {
-                id: "004",
-                gridX: 4,
-                gridY: 4,
-                type: 2,
-                status: 0
-            },
-            {
-                id: "005",
-                gridX: 5,
-                gridY: 4,
-                type: 2,
-                status: 0
-            },
-            {
-                id: "006",
-                gridX: 6,
-                gridY: 4,
-                type: 2,
-                status: 0
-            },
-            {
-                id: "007",
-                gridX: 4,
-                gridY: 5,
-                type: 1,
-                status: 0
-            }, {
-                id: "008",
-                gridX: 5,
-                gridY: 5,
-                type: 1,
-                status: 0
-            }, {
-                id: "009",
-                gridX: 6,
-                gridY: 5,
-                type: 1,
-                status: 0
-            },
+            id: "001",
+            gridX: 4,
+            gridY: 3,
+            type: 1,
+            status: 1
+        },
+        {
+            id: "002",
+            gridX: 5,
+            gridY: 3,
+            type: 1,
+            status: 1
+        },
+        {
+            id: "003",
+            gridX: 6,
+            gridY: 3,
+            type: 1,
+            status: 0
+        },
+        {
+            id: "004",
+            gridX: 4,
+            gridY: 4,
+            type: 2,
+            status: 1
+        },
+        {
+            id: "005",
+            gridX: 5,
+            gridY: 4,
+            type: 2,
+            status: 0
+        },
+        {
+            id: "006",
+            gridX: 6,
+            gridY: 4,
+            type: 2,
+            status: 0
+        },
+        {
+            id: "007",
+            gridX: 4,
+            gridY: 5,
+            type: 1,
+            status: 0
+        }, {
+            id: "008",
+            gridX: 5,
+            gridY: 5,
+            type: 1,
+            status: 0
+        }, {
+            id: "009",
+            gridX: 6,
+            gridY: 5,
+            type: 1,
+            status: 0
+        },
+        {
+            id: "011",
+            gridX: 9,
+            gridY: 3,
+            type: 1,
+            status: 1
+        },
+        {
+            id: "012",
+            gridX: 10,
+            gridY: 3,
+            type: 1,
+            status: 0
+        },
+        {
+            id: "013",
+            gridX: 11,
+            gridY: 3,
+            type: 1,
+            status: 0
+        },
+        {
+            id: "014",
+            gridX: 9,
+            gridY: 4,
+            type: 2,
+            status: 0
+        },
+        {
+            id: "015",
+            gridX: 10,
+            gridY: 4,
+            type: 2,
+            status: 0
+        },
+        {
+            id: "016",
+            gridX: 11,
+            gridY: 4,
+            type: 2,
+            status: 0
+        },
+        {
+            id: "017",
+            gridX: 9,
+            gridY: 5,
+            type: 1,
+            status: 0
+        }, {
+            id: "018",
+            gridX: 10,
+            gridY: 5,
+            type: 1,
+            status: 0
+        }, {
+            id: "019",
+            gridX: 11,
+            gridY: 5,
+            type: 1,
+            status: 0
+        },
+        {
+            id: "021",
+            gridX: 4,
+            gridY: 7,
+            type: 1,
+            status: 1
+        },
+        {
+            id: "022",
+            gridX: 5,
+            gridY: 7,
+            type: 1,
+            status: 1
+        },
+        {
+            id: "023",
+            gridX: 6,
+            gridY: 7,
+            type: 1,
+            status: 0
+        },
+        {
+            id: "024",
+            gridX: 4,
+            gridY: 8,
+            type: 2,
+            status: 1
+        },
+        {
+            id: "025",
+            gridX: 5,
+            gridY: 8,
+            type: 2,
+            status: 0
+        },
+        {
+            id: "026",
+            gridX: 6,
+            gridY: 8,
+            type: 2,
+            status: 0
+        },
+        {
+            id: "027",
+            gridX: 4,
+            gridY: 9,
+            type: 1,
+            status: 0
+        }, {
+            id: "028",
+            gridX: 5,
+            gridY: 9,
+            type: 1,
+            status: 0
+        }, {
+            id: "029",
+            gridX: 6,
+            gridY: 9,
+            type: 1,
+            status: 0
+        },
+        {
+            id: "031",
+            gridX: 9,
+            gridY: 7,
+            type: 1,
+            status: 1
+        },
+        {
+            id: "032",
+            gridX: 10,
+            gridY: 7,
+            type: 1,
+            status: 0
+        },
+        {
+            id: "033",
+            gridX: 11,
+            gridY: 7,
+            type: 1,
+            status: 0
+        },
+        {
+            id: "034",
+            gridX: 9,
+            gridY: 8,
+            type: 2,
+            status: 0
+        },
+        {
+            id: "035",
+            gridX: 10,
+            gridY: 8,
+            type: 2,
+            status: 0
+        },
+        {
+            id: "036",
+            gridX: 11,
+            gridY: 8,
+            type: 2,
+            status: 0
+        },
+        {
+            id: "037",
+            gridX: 9,
+            gridY: 9,
+            type: 1,
+            status: 0
+        }, {
+            id: "038",
+            gridX: 10,
+            gridY: 9,
+            type: 1,
+            status: 0
+        }, {
+            id: "039",
+            gridX: 11,
+            gridY: 9,
+            type: 1,
+            status: 0
+        }
         ],
         // 移动
         // mapPosLeft: 10,

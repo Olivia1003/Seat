@@ -21,8 +21,8 @@ Page({
             endHour: "14",
             endMin: "00"
         },
-        schoolList: ['school a', 'school b', 'school c'],
-        floorList: ['floor 1', 'floor 2', 'floor 3'],
+        schoolList: ['华东师范大学', '同济大学', '复旦大学'],
+        floorList: ['中北图书馆一楼', '中北图书馆三楼', '中北图书馆四楼', '闵行图书馆一楼'],
         startHourList: [8, 9, 10],
         startMinList: [0, 30],
         endHourList: [8, 9, 10],

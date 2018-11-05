@@ -11,6 +11,10 @@ Component({
         iconUrl: {
             type: String,
             value: ""
+        },
+        info: {
+            type: String,
+            value: ""
         }
     },
 

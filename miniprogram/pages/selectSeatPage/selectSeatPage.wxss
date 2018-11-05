@@ -4,7 +4,8 @@
     /* overflow: scroll; */
     width: 700rpx;
     height: 700rpx;
-    border: 1rpx solid #333;
+    border: 1rpx solid #aaa;
+    border-radius: 10rpx;
 }
 
 .map-inner-wrap {
@@ -17,7 +18,7 @@
     width: 1500rpx;
     height: 1500rpx;
     transform-origin: top left;
-    background-color: #ddd;
+    background-color: #eee;
     /* border: 3rpx solid #ff0000; */
 }
 

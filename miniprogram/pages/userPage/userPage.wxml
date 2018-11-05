@@ -1,20 +1,11 @@
 <view>
     <view class="top-banner">
-        <image
-            class="user-pic"
-            src="{{userPicUrl}}"
-        ></image>
-        <text class="user-name">name</text>
+        <image class="user-pic" src="{{userPicUrl}}"></image>
+        <text class="user-name">取个名字</text>
     </view>
     <view class="user-block-wrap">
-        <lineItem
-            title="我的aaaa"
-            iconUrl="../../images/iconsUser/edit.png"
-        ></lineItem>
+        <lineItem title="我的积分" iconUrl="../../images/iconsUser/edit.png" info="200"></lineItem>
         <view class="full-line"></view>
-        <lineItem
-            title="bbbb"
-            iconUrl="../../images/iconsUser/edit.png"
-        ></lineItem>
+        <lineItem title="信用等级" iconUrl="../../images/iconsUser/edit.png" info="3"></lineItem>
     </view>
 </view>
