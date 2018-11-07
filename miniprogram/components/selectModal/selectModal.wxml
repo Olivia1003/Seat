@@ -24,10 +24,10 @@
                         bindtap="tapSectionHandle"
                     >
                         <button
+                            wx:if = "{{sectionData.ifShow ? true : false}}"
                             class="section-item {{sectionData.isSelect?'section-item-active':''}}"
                             bindtap="tapSectionHandle"
                         >
-
                             <text>{{sectionData.content}}</text>
                         </button>
                     </view>

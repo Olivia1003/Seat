@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,6 +34,7 @@ public class SeatController {
 
     private final static String floor= "中北图书馆三楼";
     private final static String school= "华东师范大学";
+    private  static int count = 1;
 
     private ObjectMapper mapper = new ObjectMapper();
 
@@ -83,7 +83,14 @@ public class SeatController {
             @RequestParam(value = "seatSlug") String seatSlug
     ) throws Exception {
         queryJson = new BaseJson();
-        queryJson.setObj(main.check(owner,seatSlug,new Date()));
+        if(count == 1){
+            queryJson.setObj(main.check(owner,seatSlug,new Date(118,10,8,8,55,0)));
+            count++;
+        }else{
+            queryJson.setObj(main.check(owner,seatSlug,new Date(118,10,8,9,55,0)));
+            count--;
+        }
+
         return queryJson;
     }
 
@@ -116,13 +123,11 @@ public class SeatController {
             @RequestParam(value = "owner") String owner
     ) throws Exception {
         queryJson = new BaseJson();
-        main.appoint(new Integer[]{12,13,14,15,16,17},"oxNlG49dl4e5c82MXlISUa_VtLXw","A 001");
-        main.appoint(new Integer[]{18,19},"oxNlG49dl4e5c82MXlISUa_VtLXw","A 001");
         SimpleDateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
         SimpleDateFormat df2 = new SimpleDateFormat("HH:mm:ss");//设置日期格式
         List<Record>records = main.getRecords(owner);
         List<OrderRecord>historyOrders = records.stream()
-                .filter(record -> record.getEndTime().before(new Date()))
+                .filter(record -> record.getEndTime().before(new Date())||((record.getCheckin())&&(record.getCheckout())))
                 .map(record -> {
                     OrderRecord order = new OrderRecord();
                     order.setIdNo(record.getSlug());
@@ -130,7 +135,11 @@ public class SeatController {
                     order.setEndTime(df2.format(record.getEndTime()));
                     order.setStartTime(df2.format(record.getStartTime()));
                     order.setSeatNo(record.getSeatSlug());
-                    order.setStatus("进行中");
+                    if (record.getCheckin()&&record.getCheckout()){
+                        order.setStatus("完美完成");
+                    }else{
+                        order.setStatus("违约");
+                    }
                     order.setFloorName(floor);
                     order.setSchoolName(school);
                     return order;
@@ -139,7 +148,7 @@ public class SeatController {
         orders.setHistoryOrders(historyOrders);
 
         List<OrderRecord>currentOrders = records.stream()
-                .filter(record -> record.getEndTime().after(new Date()))
+                .filter(record -> record.getEndTime().after(new Date())&&!((record.getCheckin())&&(record.getCheckout())))
                 .map(record -> {
                     OrderRecord order = new OrderRecord();
                     order.setIdNo(record.getSlug());

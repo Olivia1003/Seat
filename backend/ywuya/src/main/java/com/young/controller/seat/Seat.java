@@ -13,10 +13,12 @@ public class Seat {
     private String  x;
     private String  y;
     private String  type;
+    private String  status;
+
 
     public Seat(String seatSlug) {
         this.seatSlug = seatSlug;
-        for (int i = 0; i < seatTimeCount; i++) {
+        for (int i = 1; i <= seatTimeCount; i++) {
             seatTimesStatus.put(i, Boolean.TRUE);
         }
     }
@@ -46,24 +48,22 @@ public class Seat {
     }
 
     public Boolean available(int startIndex , int endIndex){
-
         for (int i = startIndex; i < endIndex+1; i++) {
             if (seatTimesStatus.containsKey(i)&&seatTimesStatus.get(i)){
                 return Boolean.TRUE;
             }
         }
-
         return Boolean.FALSE;
     }
 
     private Date parseStartDate(int i){
         Calendar calendar = Calendar.getInstance();
-        calendar.set(2018,Calendar.NOVEMBER,calendar.getTime().getDate()+i/(seatTimeCount/2),(i%(seatTimeCount/2)-1)/2+8,(i%(seatTimeCount/2)+1)%2*30);
+        calendar.set(2018,Calendar.NOVEMBER,calendar.getTime().getDate()+i/(seatTimeCount/2),(i%(seatTimeCount/2)-1)/2+8,(i%(seatTimeCount/2)+1)%2*30,0);
         return calendar.getTime();
     }
     private Date parseEndDate(int i){
         Calendar calendar = Calendar.getInstance();
-        calendar.set(2018,Calendar.NOVEMBER,calendar.getTime().getDate()+i/(seatTimeCount/2),(i%(seatTimeCount/2)-1)/2+8,(i%(seatTimeCount/2))%2*30);
+        calendar.set(2018,Calendar.NOVEMBER,calendar.getTime().getDate()+i/(seatTimeCount/2),(i%(seatTimeCount/2))/2+8,(i%(seatTimeCount/2))%2*30,0);
         return calendar.getTime();
     }
 
@@ -117,5 +117,13 @@ public class Seat {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

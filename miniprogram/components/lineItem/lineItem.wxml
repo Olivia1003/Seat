@@ -1,15 +1,13 @@
 <view class="line-item-wrap">
     <view class="left">
-        <image
-            class="left-icon"
-            src="{{iconUrl}}"
-        ></image>
+        <image class="left-icon" src="{{iconUrl}}"></image>
         <text>{{title}}</text>
     </view>
     <view class="right">
-        <image
+        <!-- <image
             class="right-icon"
             src="../../images/iconsUser/right_arrow_default.png"
-        ></image>
+        ></image> -->
+        <text class="info">{{info}}</text>
     </view>
 </view>

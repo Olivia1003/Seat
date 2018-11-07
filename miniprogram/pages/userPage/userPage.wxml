@@ -1,7 +1,7 @@
 <view>
     <view class="top-banner">
        <open-data type="userAvatarUrl" class="user-pic"></open-data>
-        <open-data type="userNickName"></open-data>
+        <open-data type="userNickName" class="user-name"></open-data>
         <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
         
     </view>
@@ -9,11 +9,13 @@
         <lineItem
             title="积分"
             iconUrl="../../images/iconsUser/edit.png"
+            info="225"
         ></lineItem>
         <view class="full-line"></view>
         <lineItem
             title="信誉等级"
             iconUrl="../../images/iconsUser/edit.png"
+            info="3"
         ></lineItem>
     </view>
 </view>

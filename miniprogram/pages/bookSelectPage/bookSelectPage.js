@@ -2,7 +2,7 @@
  * @author wjy
  * @description 预定选择页面
  */
-
+const app = getApp()
 Page({
     data: {
         selectSchoolIndex: 0,
@@ -10,22 +10,22 @@ Page({
         selectDate: "",
         // selectTime: "",
         selectTimeSection: {
-            startHour: 9,
-            startMin: 30,
-            endHour: 14,
+            startHour: 8,
+            startMin: 0,
+            endHour: 22,
             endMin: 0
         },
         selectTimeSectionStr: {
-            startHour: "12",
-            startMin: "30",
-            endHour: "14",
+            startHour: "8",
+            startMin: "00",
+            endHour: "22",
             endMin: "00"
         },
-        schoolList: ['school a', 'school b', 'school c'],
-        floorList: ['floor 1', 'floor 2', 'floor 3'],
-        startHourList: [8, 9, 10],
+      schoolList: ['华东师范大学'],
+      floorList: ['中北图书馆三楼'],
+        startHourList: [8, 9, 10,11,12,13,14,15,16,17,18,19,20,21,22],
         startMinList: [0, 30],
-        endHourList: [8, 9, 10],
+        endHourList: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
         endMinList: [0, 30],
         // for style
         windowHeight: 800
@@ -174,6 +174,7 @@ Page({
       console.log(this.data.selectTimeSection)
       var startDate = this.data.selectDate + ' ' + this.data.selectTimeSection.startHour + ':' + this.data.selectTimeSection.startMin + ':00'
       var endDate = this.data.selectDate + ' ' + this.data.selectTimeSection.endHour + ':' + this.data.selectTimeSection.endMin + ':00'
+      app.globalData.today = (this.data.selectDate == formatTime(new Date()))
         wx.navigateTo({
           url: "../selectSeatPage/selectSeatPage?startDate=" + startDate + "&endDate=" + endDate + "&today=" + (this.data.selectDate == formatTime(new Date()) )
         })

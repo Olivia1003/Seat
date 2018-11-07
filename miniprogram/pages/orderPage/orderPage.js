@@ -47,7 +47,7 @@ Page({
       })
     }
   },
-  onLoad(){
+  onShow(){
     const that = this
     wx.request({
       url: app.globalData.baseUrl + "/seat/record?owner=" + app.globalData.code,

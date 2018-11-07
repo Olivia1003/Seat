@@ -10,6 +10,7 @@
 
 .user-name {
     font-size: 38rpx;
+    color: #ffffff;
 }
 
 .user-pic {
@@ -18,6 +19,7 @@
     margin: 30rpx;
     border-radius: 50%;
     border: 2rpx solid #ffffff;
+    overflow: hidden;
 }
 
 /* line items */

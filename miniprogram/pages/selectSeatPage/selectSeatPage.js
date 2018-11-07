@@ -5,75 +5,8 @@
 const app = getApp()
 Page({
     data: {
-      seatItemList:[],
-        // seatItemList: [{
-        //         id: "001",
-        //         gridX: 4,
-        //         gridY: 3,
-        //         type: 1,
-        //         status: 1
-        //     },
-        //     {
-        //         id: "002",
-        //         gridX: 5,
-        //         gridY: 3,
-        //         type: 1,
-        //         status: 0
-        //     },
-        //     {
-        //         id: "003",
-        //         gridX: 6,
-        //         gridY: 3,
-        //         type: 1,
-        //         status: 0
-        //     },
-        //     {
-        //         id: "004",
-        //         gridX: 4,
-        //         gridY: 4,
-        //         type: 2,
-        //         status: 0
-        //     },
-        //     {
-        //         id: "005",
-        //         gridX: 5,
-        //         gridY: 4,
-        //         type: 2,
-        //         status: 0
-        //     },
-        //     {
-        //         id: "006",
-        //         gridX: 6,
-        //         gridY: 4,
-        //         type: 2,
-        //         status: 0
-        //     },
-        //     {
-        //         id: "007",
-        //         gridX: 4,
-        //         gridY: 5,
-        //         type: 1,
-        //         status: 0
-        //     }, {
-        //         id: "008",
-        //         gridX: 5,
-        //         gridY: 5,
-        //         type: 1,
-        //         status: 0
-        //     }, {
-        //         id: "009",
-        //         gridX: 6,
-        //         gridY: 5,
-        //         type: 1,
-        //         status: 0
-        //     },
-        // ],
-        // 移动
-        // mapPosLeft: 10,
-        // mapPosTop: 10,
-        // scrollStartX: 0,
-        // scrollStartY: 0,
-        // 缩放
+        seat:{},
+        seatItemList:[],
         mapBaseWid: 500,
         mapBaseHei: 500,
         mapScaleWid: 500,
@@ -83,7 +16,8 @@ Page({
         // modal
         isShowModal: false,
         // select state
-        hasSelect: false
+        hasSelect: false,
+        today:true
 
     },
     showModal() {
@@ -100,13 +34,18 @@ Page({
     itemTapHandle(e) {
         const {
             seatItemList,
-            hasSelect
+            hasSelect,
+            today
         } = this.data
         console.log('itemTapHandle', e.detail)
         const selectIndex = e.detail.index
         if ((!hasSelect) && selectIndex >= 0 && selectIndex < seatItemList.length) {
             const selectSeatData = seatItemList[selectIndex]
             console.log('selectSeatData', selectSeatData)
+          console.log('today', today)
+            this.setData({
+              seat: selectSeatData
+            })
             this.showModal()
         }
 
@@ -218,6 +157,7 @@ Page({
       endDate: options.endDate,
       today: options.today
     });
+    console.log('today', this.data.today)
     wx.request({
       url: app.globalData.baseUrl + "/seat/search?startDate=" + this.data.startDate + "&endDate=" + this.data.endDate,
       method: "POST",

@@ -3,63 +3,55 @@
  * @description 点击座位，选择时间段的modal
  */
 const MAX_SEC_NUM = 4
-
+const app = getApp()
 Component({
     properties: {
         isShow: {
             type: Boolean,
-            value: false
+            value: false,
+            observer: function (newVal, oldVal, changedPath) {
+              const {
+                sectionItemList,
+                seat,
+                today,
+              } = this.data
+              console.log('today', today)
+              console.log('seat', seat)
+              const dayOffset = app.globalData.today ? 0 : 28;
+              console.log('dayOffset', dayOffset)
+              var newList = []
+              for (let i = 0; i < 28; i++) {
+                newList.push(
+                  {
+                    id: i + 1,
+                    content: (8 + Math.round((i-i%2) / 2)) + ':' + ((i+1) % 2 == 0 ? '30' : '00') + '-' + (8 + Math.round(i / 2)) + ':' + ((i) % 2 == 0 ? '30' : '00'),
+                    isSelect: false,
+                    ifShow: seat.seatTimesStatus[i + 1 + dayOffset],
+                  }
+                )
+              }
+              this.setData({
+                sectionItemList: newList
+              })
+            }
         },
-
+        seat: {
+          type: Object,
+        },
+      today: {
+          type: Boolean
+        },
     },
 
     /**
      * 组件的初始数据
      */
     data: {
-        sectionItemList: [{
-                id: "01",
-                content: "12:00-12:30",
-                isSelect: false
-            },
-            {
-                id: "02",
-                content: "12:30-13:00",
-                isSelect: false
-            },
-            {
-                id: "03",
-                content: "12:30-13:00",
-                isSelect: false
-            }, {
-                id: "04",
-                content: "12:30-13:00",
-                isSelect: false
-            }, {
-                id: "05",
-                content: "12:30-13:00",
-                isSelect: false
-            },
-            {
-                id: "06",
-                content: "12:30-13:00",
-                isSelect: false
-            },
-            {
-                id: "07",
-                content: "12:30-13:00",
-                isSelect: false
-            },
-            {
-                id: "08",
-                content: "12:30-13:00",
-                isSelect: false
-            }
-        ],
+        sectionItemList: [],
         selectSecCnt: 0
 
     },
-
+  
     /**
      * 组件的方法列表
      */
@@ -69,11 +61,37 @@ Component({
             this.triggerEvent('hideModal')
         },
         confirmHandle() {
-            console.log('confirmHandle')
+          var chooseIndex = []
+          const dayOffset = app.globalData.today ? 0 : 28;
+          console.log('dayOffset', dayOffset)
+          this.data.sectionItemList.forEach((item, index) => {
+            if (item.isSelect) {
+              chooseIndex.push(item.id + dayOffset)
+            }
+          });
+          console.log(chooseIndex)
+          wx.request({
+            url: app.globalData.baseUrl + "/seat/appoint?times=" + chooseIndex + "&owner=" + app.globalData.code + "&seatSlug=" + this.data.seat.seatSlug,
+            method: "POST",
+            success: function (res) {
+              wx.showToast({
+                title: JSON.stringify(res.data.obj),
+                icon: 'none',
+                duration: 4000,
+                success: function () {
+                  wx.navigateBack({
+                    delta: 2
+                  })
+                }
+              })
+            },
+          });
         },
         tapSectionHandle(e) {
             const {
-                sectionItemList
+                sectionItemList,
+                seat,
+                today
             } = this.data
             console.log("tapSectionHandle", e.currentTarget.dataset)
             const idNo = e.currentTarget.dataset.idno
@@ -120,6 +138,13 @@ Component({
         }
     },
     attached() {
+     
+    },
+  pageLifetimes: {
+    // 组件所在页面的生命周期函数
+    show: function () { },
+    hide: function () { },
+    resize: function () { },
+  },
 
-    }
 });

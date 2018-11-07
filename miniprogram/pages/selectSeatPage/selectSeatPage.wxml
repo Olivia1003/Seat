@@ -52,6 +52,7 @@
                 <seatItem
                     type="{{seatData.type}}"
                     status="{{seatData.status}}"
+                    seatTimesStatus="{{seatData.seatTimesStatus}}"
                     gridX="{{seatData.x}}"
                     gridY="{{seatData.y}}"
                     index="{{index}}"
@@ -73,6 +74,8 @@
     <!-- modal -->
     <selectModal
         isShow="{{isShowModal}}"
+        seat="{{seat}}"
+        today="{{today}}"
         bind:hideModal="hideModal"
     ></selectModal>
 </view>

@@ -6,10 +6,7 @@ import org.springframework.stereotype.Component;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component("main")
@@ -28,8 +25,8 @@ public class Main {
     public static void main(String[] args) {
         Main main = new Main();
         main.init();
-        main.appoint(new Integer[]{12,13,14,15,16,17},"oxNlG49dl4e5c82MXlISUa_VtLXw","A 001");
-        List <Seat> availableSeats = main.available("2018-11-06 13:30:00","2018-11-06 16:30:00");
+        main.appoint(new Integer[]{29,30},"oxNlG49dl4e5c82MXlISUa_VtLXw","A 001");
+        List <Seat> availableSeats = main.available("2018-11-08 8:0:00","2018-11-08 9:0:00");
         Date now = new Date();
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -38,6 +35,7 @@ public class Main {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        availableSeats.stream().forEach(record -> System.out.println(record.getStatus()));
         System.out.println(main.check("oxNlG49dl4e5c82MXlISUa_VtLXw","A 001",now));
     }
 
@@ -58,10 +56,32 @@ public class Main {
         int startIndex = (startDate.getHours()-8)*2+(startDate.getMinutes()/30+1)+offset;
         int endIndex = (endDate.getHours()-8)*2+(endDate.getMinutes()/30)+offset;
 
-        System.out.println(startIndex);
-        System.out.println(endIndex);
-        System.out.println(seats.get(0).available(startIndex, endIndex));
-        return seats.stream().filter(seat -> seat.available(startIndex, endIndex)).collect(Collectors.toList());
+        seats.stream().forEach(seat -> {
+            if(seat.available(startIndex, endIndex)){
+                seat.setStatus("1");
+            }else{
+                seat.setStatus("0");
+            }
+        });
+        return seats.stream().map(seat -> {
+            Seat s = new Seat(seat.getSeatSlug());
+            s.setStatus(seat.getStatus());
+            s.setType(seat.getType());
+            HashMap<Integer , Boolean> nMap = new HashMap<>();
+            for (int i = 1; i < startIndex; i++) {
+                nMap.put(i,Boolean.FALSE);
+            }
+            for (int i = endIndex+1; i <= seatTimeCount; i++) {
+                nMap.put(i,Boolean.FALSE);
+            }
+            for (int i = startIndex; i <= endIndex; i++) {
+                nMap.put(i,seat.getSeatTimesStatus().get(i));
+            }
+            s.setSeatTimesStatus(nMap);
+            s.setX(seat.getX());
+            s.setY(seat.getY());
+            return s;
+        }).collect(Collectors.toList());
     }
 
     public String appoint(Integer[]times, String owner, String seatSlug){

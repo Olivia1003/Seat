@@ -27,6 +27,10 @@ Component({
         seatSlug: {
             type: String,
             value: 0
+        },
+        seatTimesStatus: {
+            type: Object,
+            value: 0
         }
 
     },
@@ -52,9 +56,11 @@ Component({
             } = this.data
 
             if (typeof index === 'number') {
+              if (type === 1 && status == 1){
                 this.triggerEvent('seatItemTap', {
-                    index: index
+                  index: index
                 })
+              }
             }
 
 
