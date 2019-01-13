@@ -1,24 +1,33 @@
 <view>
     <view class="home-page-container">
-        <button
-            class="home-btn"
-            bindtap="openScanCode"
-        >
-            <image
-                src="../../images/icons/scan.png"
-                class="home-btn-icon-scan"
-            />
-            <text class="home-btn-txt">扫码</text>
-        </button>
-        <button
-            class="home-btn"
-            bindtap="goBookSelect"
-        >
-            <image
-                src="../../images/icons/add.png"
-                class="home-btn-icon-edit"
-            />
-            <text class="home-btn-txt">预约</text>
-        </button>
+        <view class="top-btn-bar">
+            <button class="book-btn">
+                <text class="book-btn-txt">可视化选座</text>
+            </button>
+            <button class="book-btn">
+                <text class="book-btn-txt">智能选座</text>
+            </button>
+        </view>
+        <view class="my-seat-wrap">
+            <text class="my-seat-title">我的座位</text>
+            <!-- 无座位 -->
+            <view
+                class="no-seat-wrap"
+                wx:if="{{orderList.length===0}}"
+            >
+                <text>您没有预定任何座位</text>
+            </view>
+            <!-- 有座位 -->
+            <view
+                class="has-seat-wrap"
+                wx:if="{{orderList.length>0}}"
+            >
+                <orderDetail>
+
+                </orderDetail>
+            </view>
+
+
+        </view>
     </view>
 </view>

@@ -1,0 +1,118 @@
+/* common */
+.orderItem-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10rpx 30rpx;
+    /* background-color: #EEF1F6; */
+    background-color: rgb(250, 250, 250);
+    height: 200rpx;
+    margin: 35rpx 20rpx;
+    border-radius: 8rpx;
+    box-shadow: 0 -1px 1px #eee,
+        0 3px 10px #eee,
+        -3px 0 10px #eee,
+        3px 0 10px #eee;
+}
+
+
+
+/* top-line */
+.top-line {
+    line-height: 60rpx;
+}
+
+.id-txt {
+    margin-right: 30rpx;
+    font-size: 30rpx;
+    color: #777;
+}
+
+.school-txt {
+    font-size: 30rpx;
+    color: #777;
+}
+
+/* address-line */
+.address-line {
+    line-height: 60rpx;
+}
+
+.floor-txt {
+    margin-right: 30rpx;
+    font-size: 30rpx;
+    color: #333333;
+}
+
+.seat-txt {
+    font-size: 36rpx;
+    color: #333333;
+}
+
+.address-icon {
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+}
+
+/* time-line */
+.time-line {
+    display: flex;
+    align-items: center;
+    line-height: 60rpx;
+}
+
+.date-txt {
+    font-size: 30rpx;
+    color: #333333;
+    margin-right: 20rpx;
+}
+
+.time-txt {
+    font-size: 36rpx;
+    color: #333333;
+    /* color: #3D9970; */
+}
+
+.time-icon {
+    width: 35rpx;
+    height: 35rpx;
+    margin-right: 10rpx;
+}
+
+/* status-bar */
+.status-bar {
+    position: absolute;
+    top: 20rpx;
+    right: 20rpx;
+    /* width: 300rpx; */
+}
+
+.status-wrap {}
+
+.status-txt {
+    font-size: 35rpx;
+    color: #333333;
+    /* white-space: nowrap; */
+}
+
+/* btn-bar */
+.btn-bar {
+    margin-top: 20rpx;
+    display: flex;
+    flex-direction: row;
+}
+
+.order-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200rpx;
+    height: 60rpx;
+    border-radius: 5rpx;
+    background-color: #ccc;
+}
+
+.order-btn-txt {
+    font-size: 30rpx;
+}

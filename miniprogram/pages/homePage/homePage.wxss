@@ -1,40 +1,38 @@
 .home-page-container {
-  padding: 60rpx 40rpx;
+  /* padding: 60rpx 40rpx; */
 }
 
-.home-btn {
+/* top-bar */
+.top-btn-bar {
+  padding: 60rpx 0rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.book-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 300rpx;
-  margin-bottom: 60rpx;
+  height: 100rpx;
+  width: 300rpx;
+  margin: 0 50rpx;
   background-color: #fff;
   border-radius: 30rpx;
-  /* box-shadow: 0 -3px 30px rgba(55, 188, 155, 0.1),
-    0 3px 30px rgba(55, 188, 155, 0.1),
-    -3px 0 30px rgba(55, 188, 155, 0.1),
-    3px 0 30px rgba(55, 188, 155, 0.1); */
-  box-shadow: 0 -3px 30px #eeeeee,
-    0 3px 30px #eeeeee,
-    -3px 0 30px #eeeeee,
-    3px 0 30px #eeeeee;
+  box-shadow: 0 -3rpx 30rpx #eeeeee,
+    0 3rpx 30rpx #eeeeee,
+    -3rpx 0 30rpx #eeeeee,
+    3rpx 0 30rpx #eeeeee;
   border: none;
 }
 
-.home-btn-txt {
-  font-size: 40rpx;
+.book-btn-txt {
+  font-size: 30rpx;
   color: #555;
-  letter-spacing: 15rpx;
+  letter-spacing: 2rpx;
 }
 
-.home-btn-icon-scan {
-  width: 40rpx;
-  height: 40rpx;
-  margin-right: 30rpx;
-}
-
-.home-btn-icon-edit {
-  width: 45rpx;
-  height: 45rpx;
-  margin-right: 30rpx;
+/* my-seat */
+.my-seat-wrap {
+  margin-top: 20rpx;
 }

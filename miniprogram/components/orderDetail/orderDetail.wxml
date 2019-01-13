@@ -1,0 +1,103 @@
+<view>
+    <view class="orderItem-wrap">
+        <view class="address-line">
+            <image
+                class="address-icon"
+                src="../../images/iconsOrder/address.png"
+            />
+            <text class="floor-txt">{{detail.floorName}}</text>
+            <text class="seat-txt">{{detail.seatNo}} 座位</text>
+        </view>
+        <view class="time-line">
+            <image
+                class="time-icon"
+                src="../../images/iconsOrder/time.png"
+            />
+            <text class="date-txt">{{detail.date}}</text>
+            <!-- <text class="time-txt">{{startTime}} - {{endTime}}</text> -->
+        </view>
+        <!-- status-bar -->
+        <view class="status-bar">
+            <!-- 未到时间 status=1 -->
+            <view
+                class="status-wrap"
+                wx:if="{{detail.status===1}}"
+            >
+                <text class="status-txt">未到时间</text>
+            </view>
+            <!-- 未签到 status=2 -->
+            <view
+                class="status-wrap"
+                wx:if="{{detail.status===2}}"
+            >
+                <text class="status-txt">未签到</text>
+            </view>
+            <!-- 在座 status=3 -->
+            <view
+                class="status-wrap"
+                wx:if="{{detail.status===3}}"
+            >
+                <text class="status-txt">已签到，在座</text>
+            </view>
+            <!-- 暂离 status=4-->
+            <view
+                class="status-wrap"
+                wx:if="{{detail.status===4}}"
+            >
+                <text class="status-txt">暂离，还剩5min</text>
+            </view>
+        </view>
+        <!-- btn-bar -->
+        <!-- 未到时间 status=1 -->
+        <view
+            class="btn-bar"
+            wx:if="{{detail.status===1}}"
+        >
+            <button class="order-btn">
+                <text class="order-btn-txt">未到时间</text>
+            </button>
+            <button class="order-btn">
+                <text class="order-btn-txt">取消占座</text>
+            </button>
+        </view>
+        <!-- 未签到 status=2 -->
+        <view
+            class="btn-bar"
+            wx:if="{{detail.status===2}}"
+        >
+            <button class="order-btn">
+                <text class="order-btn-txt">签到</text>
+            </button>
+            <button class="order-btn">
+                <text class="order-btn-txt">取消占座</text>
+            </button>
+        </view>
+        <!-- 在座 status=3 -->
+        <view
+            class="btn-bar"
+            wx:if="{{detail.status===3}}"
+        >
+            <button class="order-btn">
+                <text class="order-btn-txt">暂离 20min</text>
+            </button>
+            <button class="order-btn">
+                <text class="order-btn-txt">暂离 60min</text>
+            </button>
+            <button class="order-btn">
+                <text class="order-btn-txt">扫码退座</text>
+            </button>
+        </view>
+        <!-- 暂离 status=4-->
+        <view
+            class="btn-bar"
+            wx:if="{{detail.status===4}}"
+        >
+            <button class="order-btn">
+                <text class="order-btn-txt">扫码回座</text>
+            </button>
+            <button class="order-btn">
+                <text class="order-btn-txt">扫码退座</text>
+            </button>
+        </view>
+    </view>
+</view>

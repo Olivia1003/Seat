@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "Seat"
+  "navigationBarTitleText": "Seat",
+  "usingComponents": {
+    "orderDetail": "../../components/orderDetail/orderDetail"
+  }
 }

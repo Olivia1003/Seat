@@ -4,7 +4,11 @@
  */
 
 Page({
-  data: {},
+  data: {
+    orderList: [{
+      id: '123'
+    }]
+  },
   onLoad() {
     console.log("home page loaded")
 
