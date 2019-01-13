@@ -67,7 +67,6 @@
                 <!-- hour -->
                 <picker
                     mode="selector"
-                    bindchange="selectStartHourHandle"
                     value="{{selectTimeSection.startHour}}"
                     range="{{startHourList}}"
                 >
@@ -79,7 +78,6 @@
                 <!-- min -->
                 <picker
                     mode="selector"
-                    bindchange="selectStartMinHandle"
                     value="{{selectTimeSection.startMin}}"
                     range="{{startMinList}}"
                 >
@@ -94,7 +92,6 @@
                 <!-- hour -->
                 <picker
                     mode="selector"
-                    bindchange="selectEndHourHandle"
                     value="{{selectTimeSection.endHour}}"
                     range="{{endHourList}}"
                 >
@@ -106,7 +103,6 @@
                 <!-- min -->
                 <picker
                     mode="selector"
-                    bindchange="selectEndMinHandle"
                     value="{{selectTimeSection.endMin}}"
                     range="{{endMinList}}"
                 >
