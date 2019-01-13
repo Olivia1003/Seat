@@ -1,8 +1,8 @@
 {
   "cloud": true,
   "pages": [
-    "pages/homePage/homePage",
     "pages/bookSelectPage/bookSelectPage",
+    "pages/homePage/homePage",
     "pages/selectSeatPage/selectSeatPage",
     "pages/orderPage/orderPage",
     "pages/userPage/userPage"

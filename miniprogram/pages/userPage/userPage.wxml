@@ -7,13 +7,13 @@
     </view>
     <view class="user-block-wrap">
         <lineItem
-            title="积分"
+            title="我的aaaa"
             iconUrl="../../images/iconsUser/edit.png"
             info="225"
         ></lineItem>
         <view class="full-line"></view>
         <lineItem
-            title="信誉等级"
+            title="bbbb"
             iconUrl="../../images/iconsUser/edit.png"
             info="3"
         ></lineItem>

@@ -2,7 +2,7 @@
  * @author wjy
  * @description 首页
  */
-const app = getApp();
+
 Page({
   data: {},
   onLoad() {
@@ -20,21 +20,6 @@ Page({
     wx.scanCode({
       success: (res) => {
         console.log("scan code success", res)
-        wx.request({
-          url: app.globalData.baseUrl + "/seat/check?owner=" + app.globalData.code + "&seatSlug=" + res.result,
-          method: "POST",
-          success: function (res) {
-            wx.showToast({
-              title: JSON.stringify(res.data.obj),
-              icon: 'none',
-              duration: 4000,
-            })
-            
-          },
-          fail: function () {
-
-          }
-        });
       },
       fail: (res) => {
         console.log("scan code fail", res)

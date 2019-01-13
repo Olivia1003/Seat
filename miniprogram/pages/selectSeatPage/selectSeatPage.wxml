@@ -52,11 +52,9 @@
                 <seatItem
                     type="{{seatData.type}}"
                     status="{{seatData.status}}"
-                    seatTimesStatus="{{seatData.seatTimesStatus}}"
-                    gridX="{{seatData.x}}"
-                    gridY="{{seatData.y}}"
+                    gridX="{{seatData.gridX}}"
+                    gridY="{{seatData.gridY}}"
                     index="{{index}}"
-                    slug="{{seatData.seatSlug}}"
                     bind:seatItemTap="itemTapHandle"
                 ></seatItem>
             </view>
