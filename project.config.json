@@ -2,16 +2,15 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true,
-		"nodeModules": true
+		"newFeature": true
 	},
 	"appid": "wx7fc8664bf44dbec4",
 	"projectname": "Seat",
-	"libVersion": "2.3.2",
+	"libVersion": "2.2.5",
 	"condition": {
 		"search": {
 			"current": -1,
