@@ -5,7 +5,7 @@
     <!-- select options -->
     <!-- position block -->
     <view class="select-block">
-        <view class="select-line">
+        <!-- <view class="select-line">
             <picker
                 mode="selector"
                 bindchange="selectSchoolHandle"
@@ -20,7 +20,7 @@
                     <view>选择学校：{{schoolList.length>0?schoolList[selectSchoolIndex]:'empty'}}</view>
                 </view>
             </picker>
-        </view>
+        </view> -->
         <view class="select-line">
             <picker
                 mode="selector"
@@ -39,8 +39,9 @@
         </view>
     </view>
     <view class="select-block">
+        <!-- 选择日期 -->
         <view class="select-line">
-            <picker
+            <!-- <picker
                 mode="date"
                 bindchange="selectDateHandle"
                 value="{{selectDate}}"
@@ -53,6 +54,20 @@
                         class="select-icon"
                     />
                     <view>选择日期：{{selectDate}}</view>
+                </view>
+            </picker> -->
+            <picker
+                mode="selector"
+                bindchange="selectDateHandle"
+                value="{{dateList[selectDateIndex]||''}}"
+                range="{{dateList}}"
+            >
+                <view class="select-line-inner">
+                    <image
+                        src="../../images/iconsSelector/date.png"
+                        class="select-icon"
+                    />
+                    <view>选择日期：{{dateList[selectDateIndex]||''}}</view>
                 </view>
             </picker>
         </view>
@@ -67,6 +82,7 @@
                 <!-- hour -->
                 <picker
                     mode="selector"
+                    bindchange="selectStartHourHandle"
                     value="{{selectTimeSection.startHour}}"
                     range="{{startHourList}}"
                 >
@@ -78,6 +94,7 @@
                 <!-- min -->
                 <picker
                     mode="selector"
+                    bindchange="selectStartMinHandle"
                     value="{{selectTimeSection.startMin}}"
                     range="{{startMinList}}"
                 >
@@ -92,6 +109,7 @@
                 <!-- hour -->
                 <picker
                     mode="selector"
+                    bindchange="selectEndHourHandle"
                     value="{{selectTimeSection.endHour}}"
                     range="{{endHourList}}"
                 >
@@ -103,6 +121,7 @@
                 <!-- min -->
                 <picker
                     mode="selector"
+                    bindchange="selectEndMinHandle"
                     value="{{selectTimeSection.endMin}}"
                     range="{{endMinList}}"
                 >
@@ -117,5 +136,5 @@
     <button
         bindtap="comfirmSelect"
         class="confirm-btn"
-    >submit</button>
+    >确定</button>
 </view>

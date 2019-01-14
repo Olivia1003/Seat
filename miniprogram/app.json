@@ -2,10 +2,10 @@
   "cloud": true,
   "pages": [
     "pages/homePage/homePage",
-    "pages/bookSelectPage/bookSelectPage",
+    "pages/userPage/userPage",
     "pages/selectSeatPage/selectSeatPage",
-    "pages/orderPage/orderPage",
-    "pages/userPage/userPage"
+    "pages/bookSelectPage/bookSelectPage",
+    "pages/orderPage/orderPage"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

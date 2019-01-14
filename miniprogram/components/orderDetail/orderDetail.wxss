@@ -1,5 +1,5 @@
 /* common */
-.orderItem-wrap {
+.order-detail-wrap {
     position: relative;
     display: flex;
     flex-direction: column;

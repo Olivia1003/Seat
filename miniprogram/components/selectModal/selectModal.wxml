@@ -8,7 +8,6 @@
         bindconfirm="confirmHandle"
     >
         <view class="modal-body">
-            <!-- <text class="select-tip">tips</text> -->
             <scroll-view
                 class="section-list-wrap"
                 scroll-y
@@ -24,7 +23,6 @@
                         bindtap="tapSectionHandle"
                     >
                         <button
-                            wx:if = "{{sectionData.ifShow ? true : false}}"
                             class="section-item {{sectionData.isSelect?'section-item-active':''}}"
                             bindtap="tapSectionHandle"
                         >
@@ -34,19 +32,7 @@
                 </view>
 
             </scroll-view>
-            <!-- <view class="section-list">
-                <view
-                    class="section-item-wrap"
-                    wx:for="{{sectionItemList}}"
-                    wx:key="{{id}}"
-                    wx:for-item="sectionData"
-                    wx:for-index="index"
-                >
-                    <button class="section-item">
-                        {{sectionData.content}}
-                    </button>
-                </view>
-            </view> -->
+
 
         </view>
     </modal>

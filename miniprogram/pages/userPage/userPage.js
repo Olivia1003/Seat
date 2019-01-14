@@ -5,6 +5,12 @@
 
 Page({
   data: {
-    userPicUrl: "../../images/icons/user_default.png"
+    userData: {
+      school: '华东师范大学',
+      point: 300,
+      rank: 2,
+      hour: 12,
+    }
+    // userPicUrl: "../../images/icons/user_default.png"
   }
 });

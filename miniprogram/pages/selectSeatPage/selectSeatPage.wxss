@@ -1,3 +1,7 @@
+.container {
+    padding: 20rpx 30rpx;
+}
+
 .seat-map-wrap {
     position: relative;
     margin: 20rpx;
@@ -5,6 +9,42 @@
     width: 700rpx;
     height: 700rpx;
     border: 1rpx solid #333;
+}
+
+/* header */
+.header {
+    margin-bottom: 20rpx;
+}
+
+.header-title {
+    font-size: 30rpx;
+}
+
+.header-txt {
+    margin: 0 10rpx;
+    font-size: 30rpx;
+}
+
+.header-item-list {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10rpx;
+}
+
+.header-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20rpx;
+    padding: 6rpx 10rpx;
+    background-color: #37BC9B;
+    border-radius: 10rpx;
+}
+
+.header-item-txt {
+    font-size: 28rpx;
+    line-height: 30rpx;
+    color: #ffffff;
 }
 
 .map-inner-wrap {
@@ -32,4 +72,31 @@
     border-radius: 20rpx;
     background-color: #37BC9B;
     color: #ffffff;
+}
+
+/* quick-select */
+.quick-select {
+    position: absolute;
+    bottom: 150rpx;
+    right: 50rpx;
+    /* background-color: transparent; */
+    /* border: none; */
+    /* border: 1px solid #f00; */
+    /* outline: none; */
+}
+
+.quick-select-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    /* outline: none; */
+    border-color: transparent;
+    /* border-radius: 20rpx; */
+}
+
+.quick-select-icon {
+    width: 50rpx;
+    height: 50rpx;
 }

@@ -1,7 +1,10 @@
 <view>
     <view class="home-page-container">
         <view class="top-btn-bar">
-            <button class="book-btn">
+            <button
+                class="book-btn"
+                bindtap="goBookSelect"
+            >
                 <text class="book-btn-txt">可视化选座</text>
             </button>
             <button class="book-btn">
@@ -28,6 +31,25 @@
             </view>
 
 
+        </view>
+        <view class="bottom-bar">
+            <text class="bottom-bar-title">更多功能</text>
+            <view class="bottom-item-list">
+                <view class="bottom-item">
+                    <image
+                        class="bottom-item-icon"
+                        src="../../images/icons/scan.png"
+                    />
+                    <text class="bottom-item-title">监督举报</text>
+                </view>
+                <view class="bottom-item">
+                    <image
+                        class="bottom-item-icon"
+                        src="../../images/icons/scan.png"
+                    />
+                    <text class="bottom-item-title">监督举报</text>
+                </view>
+            </view>
         </view>
     </view>
 </view>

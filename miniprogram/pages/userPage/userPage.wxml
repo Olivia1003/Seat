@@ -1,21 +1,51 @@
 <view>
     <view class="top-banner">
-       <open-data type="userAvatarUrl" class="user-pic"></open-data>
-        <open-data type="userNickName" class="user-name"></open-data>
-        <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
-        
+        <open-data
+            type="userAvatarUrl"
+            class="user-pic"
+        ></open-data>
+        <view class="user-right-block">
+            <open-data
+                type="userNickName"
+                class="user-name"
+            ></open-data>
+            <view class="user-school">
+                <text>{{userData.school}}</text>
+            </view>
+        </view>
+
+        <button
+            wx:if="{{canIUse}}"
+            open-type="getUserInfo"
+            bindgetuserinfo="bindGetUserInfo"
+        >授权登录</button>
+
     </view>
     <view class="user-block-wrap">
         <lineItem
-            title="我的aaaa"
+            title="积分"
             iconUrl="../../images/iconsUser/edit.png"
-            info="225"
-        ></lineItem>
+            info="{{userData.point+'分'}}"
+        />
         <view class="full-line"></view>
         <lineItem
-            title="bbbb"
+            title="信用等级"
             iconUrl="../../images/iconsUser/edit.png"
-            info="3"
-        ></lineItem>
+            info="{{userData.rank+'级'}}"
+        />
+        <view class="full-line"></view>
+        <lineItem
+            title="累计学习"
+            iconUrl="../../images/iconsUser/edit.png"
+            info="{{userData.hour+'小时'}}"
+        />
+        <view class="full-line"></view>
+        <lineItem
+            title="设置"
+            iconUrl="../../images/iconsUser/edit.png"
+            info=""
+        />
+        <view class="full-line"></view>
+
     </view>
 </view>

@@ -1,4 +1,4 @@
-<view>
+<view class="container">
     <!-- map -->
     <!-- <view class="seat-map-wrap">
         <view
@@ -25,6 +25,34 @@
             </view>
         </view>
     </view> -->
+
+    <!-- header -->
+    <view class="header">
+        <text class="header-title">已选：</text>
+        <text class="header-txt">{{searchData.school}}</text>
+        <text class="header-txt">{{searchData.floor}}</text>
+
+        <view class="header-item-list">
+            <view class="header-item">
+                <text class="header-item-txt">{{searchData.date}}</text>
+            </view>
+            <view class="header-item">
+                <text class="header-item-txt">{{searchData.time}}</text>
+            </view>
+
+            <view
+                class="header-item"
+                wx:for="{{searchData.keywords}}"
+                wx:for-item="kItem"
+                wx:key="{{index}}"
+            >
+                <text class="header-item-txt">{{kItem}}</text>
+            </view>
+
+        </view>
+
+
+    </view>
     <scroll-view
         class="seat-map-wrap"
         bindscroll="scrollHandle"
@@ -63,13 +91,24 @@
 
     </scroll-view>
     <!-- footer -->
-    <view class="footer">
+    <!-- <view class="footer">
         <button
             class="submit-btn"
             bindtap="submitHandle"
         >submit</button>
-    </view>
+    </view> -->
     <!-- modal -->
+    <!-- 一键选座 -->
+    <view class="quick-select">
+        <button class="quick-select-btn">
+            <image
+                class="quick-select-icon"
+                src="../../images/icons/add.png"
+            />
+            <text>一键选座</text>
+        </button>
+    </view>
+    <!-- 选择时间段 -->
     <selectModal
         isShow="{{isShowModal}}"
         seat="{{seat}}"

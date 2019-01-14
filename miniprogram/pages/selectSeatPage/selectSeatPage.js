@@ -83,10 +83,19 @@ Page({
         isShowModal: false,
         // select state
         hasSelect: false,
-        today:true
+        today: true,
+        // 已选信息
+        searchData: {
+            school: '华东师范大学',
+            floor: 'floor 1',
+            date: '3-12',
+            time: '12:00-14:00',
+            keywords: ['靠窗', '靠过道']
+        }
 
     },
     showModal() {
+        console.log('show modal')
         this.setData({
             isShowModal: true
         })
@@ -108,9 +117,9 @@ Page({
         if ((!hasSelect) && selectIndex >= 0 && selectIndex < seatItemList.length) {
             const selectSeatData = seatItemList[selectIndex]
             console.log('selectSeatData', selectSeatData)
-          console.log('today', today)
+            console.log('today', today)
             this.setData({
-              seat: selectSeatData
+                seat: selectSeatData
             })
             this.showModal()
         }

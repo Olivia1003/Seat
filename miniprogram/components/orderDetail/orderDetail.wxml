@@ -1,5 +1,5 @@
 <view>
-    <view class="orderItem-wrap">
+    <view class="order-detail-wrap">
         <view class="address-line">
             <image
                 class="address-icon"

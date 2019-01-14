@@ -7,7 +7,8 @@ Page({
     data: {
         selectSchoolIndex: 0,
         selectFloorIndex: 0,
-        selectDate: "",
+        // selectDate: "",
+        selectDateIndex: 0,
         // selectTime: "",
         selectTimeSection: {
             startHour: 8,
@@ -21,9 +22,10 @@ Page({
             endHour: "22",
             endMin: "00"
         },
-      schoolList: ['华东师范大学'],
-      floorList: ['中北图书馆三楼'],
-        startHourList: [8, 9, 10,11,12,13,14,15,16,17,18,19,20,21,22],
+        schoolList: ['华东师范大学'],
+        floorList: ['中北图书馆三楼'],
+        dateList: ['2019-03-12（今天）', '2019-03-13（明天）'],
+        startHourList: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
         startMinList: [0, 30],
         endHourList: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
         endMinList: [0, 30],
@@ -81,8 +83,76 @@ Page({
     selectDateHandle(e) {
         console.log('select date', e.detail)
         this.setData({
-            selectDate: e.detail.value
+            selectDateIndex: e.detail.value
         })
+    },
+    selectStartHourHandle(e) {
+        console.log('select start hour', e.detail)
+        const {
+            selectTimeSection,
+            startHourList
+        } = this.data
+        const newIndex = parseInt(e.detail.value)
+        if (newIndex >= 0 && newIndex < startHourList.length) {
+            const newTimeSection = JSON.parse(JSON.stringify(selectTimeSection))
+            newTimeSection.startHour = startHourList[newIndex]
+            this.setData({
+                selectTimeSection: newTimeSection
+            }, () => {
+                this.freshTimeSectionStr()
+            })
+        }
+    },
+    selectStartMinHandle(e) {
+        console.log('select start min', e.detail)
+        const {
+            selectTimeSection,
+            startMinList
+        } = this.data
+        const newIndex = parseInt(e.detail.value)
+        if (newIndex >= 0 && newIndex < startMinList.length) {
+            const newTimeSection = JSON.parse(JSON.stringify(selectTimeSection))
+            newTimeSection.startMin = startMinList[newIndex]
+            this.setData({
+                selectTimeSection: newTimeSection
+            }, () => {
+                this.freshTimeSectionStr()
+            })
+        }
+    },
+    selectEndHourHandle(e) {
+        console.log('select end hour', e.detail)
+        const {
+            selectTimeSection,
+            endHourList
+        } = this.data
+        const newIndex = parseInt(e.detail.value)
+        if (newIndex >= 0 && newIndex < endHourList.length) {
+            const newTimeSection = JSON.parse(JSON.stringify(selectTimeSection))
+            newTimeSection.endHour = endHourList[newIndex]
+            this.setData({
+                selectTimeSection: newTimeSection
+            }, () => {
+                this.freshTimeSectionStr()
+            })
+        }
+    },
+    selectEndMinHandle(e) {
+        console.log('select end min', e.detail)
+        const {
+            selectTimeSection,
+            endMinList
+        } = this.data
+        const newIndex = parseInt(e.detail.value)
+        if (newIndex >= 0 && newIndex < endMinList.length) {
+            const newTimeSection = JSON.parse(JSON.stringify(selectTimeSection))
+            newTimeSection.endMin = endMinList[newIndex]
+            this.setData({
+                selectTimeSection: newTimeSection
+            }, () => {
+                this.freshTimeSectionStr()
+            })
+        }
     },
     comfirmSelect() {
         console.log('comfirmSelect')
@@ -109,6 +179,19 @@ Page({
         const month = ('0' + (d.getMonth() + 1)).slice(-2)
         const day = ('0' + d.getDate()).slice(-2)
         return year + '-' + month + '-' + day
+    },
+    freshTimeSectionStr() {
+        const {
+            selectTimeSection
+        } = this.data
+        const newTimeStr = JSON.parse(JSON.stringify(selectTimeSection))
+        newTimeStr.startHour = ('0' + selectTimeSection.startHour).slice(-2)
+        newTimeStr.startMin = ('0' + selectTimeSection.startMin).slice(-2)
+        newTimeStr.endHour = ('0' + selectTimeSection.endHour).slice(-2)
+        newTimeStr.endMin = ('0' + selectTimeSection.endMin).slice(-2)
+        this.setData({
+            selectTimeSectionStr: newTimeStr
+        })
     }
 
 });
