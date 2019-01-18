@@ -16,18 +16,23 @@
             <!-- 无座位 -->
             <view
                 class="no-seat-wrap"
-                wx:if="{{orderList.length===0}}"
+                wx:if="{{!isShowOrder}}"
             >
                 <text>您没有预定任何座位</text>
             </view>
             <!-- 有座位 -->
             <view
                 class="has-seat-wrap"
-                wx:if="{{orderList.length>0}}"
+                wx:if="{{isShowOrder}}"
             >
-                <orderDetail>
-
-                </orderDetail>
+                <view
+                    wx:for="{{orderList}}"
+                    wx:key="{{order_id}}"
+                    wx:for-item="orderItem"
+                    wx:for-index="index"
+                >
+                    <orderDetail orderData="{{orderItem}}" />
+                </view>
             </view>
 
 

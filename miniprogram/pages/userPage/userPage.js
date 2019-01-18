@@ -12,5 +12,18 @@ Page({
       hour: 12,
     }
     // userPicUrl: "../../images/icons/user_default.png"
+  },
+  onLoad() {
+    console.log('userPage onLoad')
+    // wx.request({
+    //   url: 'http://localhost:3000/getUserInfo',
+    //   method: "GET",
+    //   success: function (res) {
+    //     console.log('getUserInfo response success', res)
+    //   },
+    //   fail: function () {
+    //     console.log('getUserInfo response fail')
+    //   }
+    // });
   }
 });
