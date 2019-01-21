@@ -107,7 +107,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200rpx;
+    width: 175rpx;
     height: 60rpx;
     border-radius: 5rpx;
     background-color: #ccc;
@@ -115,4 +115,5 @@
 
 .order-btn-txt {
     font-size: 30rpx;
+    white-space: nowrap;
 }

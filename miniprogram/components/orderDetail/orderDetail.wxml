@@ -18,40 +18,40 @@
         </view>
         <!-- status-bar -->
         <view class="status-bar">
-            <!-- 未到时间 status=1 -->
+            <!-- 未到时间 status=1 , isInTime=false -->
             <view
                 class="status-wrap"
-                wx:if="{{orderData.status==='1'}}"
+                wx:if="{{orderData.status==='1'&&(!orderData.isInTime)}}"
             >
                 <text class="status-txt">未到时间</text>
             </view>
-            <!-- 未签到 status=2 -->
+            <!-- 未签到 status=1 , isInTime=true -->
+            <view
+                class="status-wrap"
+                wx:if="{{orderData.status==='1'&&orderData.isInTime}}"
+            >
+                <text class="status-txt">未签到</text>
+            </view>
+            <!-- 在座 status=2 -->
             <view
                 class="status-wrap"
                 wx:if="{{orderData.status==='2'}}"
             >
-                <text class="status-txt">未签到</text>
+                <text class="status-txt">已签到，在座</text>
             </view>
-            <!-- 在座 status=3 -->
+            <!-- 暂离 status=3-->
             <view
                 class="status-wrap"
                 wx:if="{{orderData.status==='3'}}"
-            >
-                <text class="status-txt">已签到，在座</text>
-            </view>
-            <!-- 暂离 status=4-->
-            <view
-                class="status-wrap"
-                wx:if="{{orderData.status==='4'}}"
             >
                 <text class="status-txt">暂离，还剩5min</text>
             </view>
         </view>
         <!-- btn-bar -->
-        <!-- 未到时间 status=1 -->
+        <!-- 未到时间 status=1 , isInTime=false -->
         <view
             class="btn-bar"
-            wx:if="{{orderData.status==='1'}}"
+            wx:if="{{orderData.status==='1'&&(!orderData.isInTime)}}"
         >
             <button
                 class="order-btn"
@@ -60,43 +60,64 @@
                 <text class="order-btn-txt">取消占座</text>
             </button>
         </view>
-        <!-- 未签到 status=2 -->
+        <!-- 未签到 status=1 , isInTime=true -->
+        <view
+            class="btn-bar"
+            wx:if="{{orderData.status==='1'&&orderData.isInTime}}"
+        >
+            <button
+                class="order-btn"
+                bindtap="orderScanIn"
+            >
+                <text class="order-btn-txt">签到</text>
+            </button>
+            <button
+                class="order-btn"
+                bindtap="cancelOrder"
+            >
+                <text class="order-btn-txt">取消占座</text>
+            </button>
+        </view>
+        <!-- 在座 status=2 -->
         <view
             class="btn-bar"
             wx:if="{{orderData.status==='2'}}"
         >
-            <button class="order-btn">
-                <text class="order-btn-txt">签到</text>
+            <button
+                class="order-btn"
+                bindtap="orderScanLeaveShort"
+            >
+                <text class="order-btn-txt">暂离 20min</text>
             </button>
-            <button class="order-btn">
-                <text class="order-btn-txt">取消占座</text>
+            <button
+                class="order-btn"
+                bindtap="orderScanLeaveLong"
+            >
+                <text class="order-btn-txt">暂离 60min</text>
+            </button>
+            <button
+                class="order-btn"
+                bindtap="cancelOrder"
+            >
+                <text class="order-btn-txt">退座</text>
             </button>
         </view>
-        <!-- 在座 status=3 -->
+        <!-- 暂离 status=3-->
         <view
             class="btn-bar"
             wx:if="{{orderData.status==='3'}}"
         >
-            <button class="order-btn">
-                <text class="order-btn-txt">暂离 20min</text>
-            </button>
-            <button class="order-btn">
-                <text class="order-btn-txt">暂离 60min</text>
-            </button>
-            <button class="order-btn">
-                <text class="order-btn-txt">扫码退座</text>
-            </button>
-        </view>
-        <!-- 暂离 status=4-->
-        <view
-            class="btn-bar"
-            wx:if="{{orderData.status==='4'}}"
-        >
-            <button class="order-btn">
+            <button
+                class="order-btn"
+                bindtap="orderScanBack"
+            >
                 <text class="order-btn-txt">扫码回座</text>
             </button>
-            <button class="order-btn">
-                <text class="order-btn-txt">扫码退座</text>
+            <button
+                class="order-btn"
+                bindtap="cancelOrder"
+            >
+                <text class="order-btn-txt">退座</text>
             </button>
         </view>
     </view>

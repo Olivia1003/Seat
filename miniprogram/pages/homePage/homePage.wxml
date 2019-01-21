@@ -31,7 +31,10 @@
                     wx:for-item="orderItem"
                     wx:for-index="index"
                 >
-                    <orderDetail orderData="{{orderItem}}" />
+                    <orderDetail
+                        orderData="{{orderItem}}"
+                        bind:reloadPage="reloadPage"
+                    />
                 </view>
             </view>
 
