@@ -83,13 +83,19 @@
 /* status */
 .status-wrap {
   position: absolute;
-  top: 20rpx;
-  right: 20rpx;
-  width: 120rpx;
+  top: 15rpx;
+  right: 25rpx;
+  /* width: 250rpx; */
 }
 
-.status-txt {
-  font-size: 35rpx;
-  color: #333333;
+.status-txt-current {
+  font-size: 30rpx;
+  color: #3D9970;
+  /* white-space: nowrap; */
+}
+
+.status-txt-past {
+  font-size: 30rpx;
+  color: #555555;
   /* white-space: nowrap; */
 }

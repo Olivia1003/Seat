@@ -16,6 +16,7 @@
                 历史订单
             </button>
         </view>
+        <!-- 当前订单 -->
         <view
             wx:if="{{currentTabId==='1'}}"
             class="current-order-list"
@@ -23,22 +24,14 @@
             <view
                 class="order-item-wrap"
                 wx:for="{{currentOrderList}}"
-                wx:key="idNo"
+                wx:key="orderId"
                 wx:for-item="orderData"
                 wx:for-index="index"
             >
-                <orderItem
-                    idNo="{{orderData.idNo}}"
-                    schoolName="{{orderData.schoolName}}"
-                    floorName="{{orderData.floorName}}"
-                    seatNo="{{orderData.seatNo}}"
-                    status="{{orderData.status}}"
-                    date="{{orderData.date}}"
-                    startTime="{{orderData.startTime}}"
-                    endTime="{{orderData.endTime}}"
-                ></orderItem>
+                <orderItem orderData="{{orderData}}" />
             </view>
         </view>
+        <!-- 历史订单 -->
         <view
             wx:if="{{currentTabId==='2'}}"
             class="history-order-list"
@@ -46,20 +39,11 @@
             <view
                 class="order-item-wrap"
                 wx:for="{{pastOrderList}}"
-                wx:key="idNo"
+                wx:key="orderId"
                 wx:for-item="orderData"
                 wx:for-index="index"
             >
-                <orderItem
-                    idNo="{{orderData.idNo}}"
-                    schoolName="{{orderData.schoolName}}"
-                    floorName="{{orderData.floorName}}"
-                    seatNo="{{orderData.seatNo}}"
-                    status="{{orderData.status}}"
-                    date="{{orderData.date}}"
-                    startTime="{{orderData.startTime}}"
-                    endTime="{{orderData.endTime}}"
-                ></orderItem>
+                <orderItem orderData="{{orderData}}" />
             </view>
         </view>
     </view>

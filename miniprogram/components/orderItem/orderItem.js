@@ -4,44 +4,30 @@
  */
 Component({
   properties: {
-    idNo: {
-      type: String,
-      value: "0"
-    },
-    schoolName: {
-      type: String,
-      value: ""
-    },
-    floorName: {
-      type: String,
-      value: ""
-    },
-    seatNo: {
-      type: String,
-      value: ""
-    },
-    status: {
-      type: String,
-      value: ""
-    },
-    date: {
-      type: String,
-      value: ""
-    },
-    startTime: {
-      type: String,
-      value: ""
-    },
-    endTime: {
-      type: String,
-      value: ""
+    orderData: {
+      type: Object,
+      value: {
+        // seatId: '',
+        // seatName: '',
+        // school: '',
+        // floor: '',
+        // orderId: '',
+        // date: '',
+        // timeSec: '',
+        // statusName: '',
+        // isCurrent: false,
+        // // keywords: '',
+        // // isInTime: false
+      }
     }
   },
 
   /**
    * 组件的初始数据
    */
-  data: {},
+  data: {
+
+  },
 
   /**
    * 组件的方法列表

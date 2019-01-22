@@ -17,9 +17,9 @@ const TIME_SECTIONS = [
  * @param {Array} 用数字表示的时间段，[0,1,2]
  * @return {string} 转成前端展示的格式，'08:00-12:00'
  */
-export function getTimeStrFromNumber() {
-    const input = [0, 1, 2]
-    if (input.length > 0) {
+export function getTimeStrFromNumber(input) {
+    // const input = [0, 1, 2]
+    if (input && input.length > 0) {
         const startIndex = input[0]
         const endIndex = input[input.length - 1]
         if (startIndex >= 0 && startIndex < TIME_SECTIONS.length &&

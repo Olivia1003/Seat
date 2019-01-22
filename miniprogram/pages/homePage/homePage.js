@@ -7,8 +7,12 @@ import {
   getGlobal
 } from '../../common/global'
 import {
-  isInTimeSection
+  isInTimeSection,
+  getTimeStrFromNumber
 } from '../../common/timeSecUtil'
+import {
+  sendRequest
+} from '../../common/serverUtil';
 
 Page({
   data: {
@@ -32,10 +36,8 @@ Page({
     const _this = this
     const baseUrl = getGlobal('baseUrl')
     console.log('getOrderData request userId', userId, baseUrl)
-    wx.request({
-      url: `${baseUrl}/order/search?userId=${userId}`,
-      method: "GET",
-      success: function (res) {
+    sendRequest('GET', `${baseUrl}/order/search?userId=${userId}`)
+      .then((res) => {
         console.log('getOrderData response success', res)
         if (res.data) {
           // 只显示进行中or未来的订单
@@ -49,9 +51,12 @@ Page({
           if (orderList.length > 0) {
             // 判断每个订单是否在时间段内
             const newOrderList = orderList.map((oItem) => {
+              const timeSec = getTimeStrFromNumber(oItem.timeList)
+              const isInTime = isInTimeSection(new Date(2019, 1, 20, 8, 20), oItem.date, oItem.timeList) //temp
               return {
                 ...oItem,
-                isInTime: isInTimeSection(new Date(2019, 1, 20, 8, 20), oItem.date, oItem.timeList) //temp
+                isInTime,
+                timeSec
               }
             })
             _this.setData({
@@ -66,11 +71,9 @@ Page({
             })
           }
         }
-      },
-      fail: function () {
+      }, (res) => {
         console.log('getOrderData response fail')
-      }
-    });
+      })
   },
   // 重新加载页面
   reloadPage() {

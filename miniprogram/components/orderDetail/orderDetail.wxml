@@ -6,7 +6,7 @@
                 src="../../images/iconsOrder/address.png"
             />
             <text class="floor-txt">{{orderData.floor}}</text>
-            <text class="seat-txt">{{orderData.name}} 座位</text>
+            <text class="seat-txt">{{orderData.seatName}} 座位</text>
         </view>
         <view class="time-line">
             <image
@@ -14,7 +14,7 @@
                 src="../../images/iconsOrder/time.png"
             />
             <text class="date-txt">{{orderData.date}}</text>
-            <!-- <text class="time-txt">{{startTime}} - {{endTime}}</text> -->
+            <text class="time-txt">{{orderData.timeSec}}</text>
         </view>
         <!-- status-bar -->
         <view class="status-bar">

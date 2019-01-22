@@ -3,9 +3,9 @@
   "pages": [
     "pages/homePage/homePage",
     "pages/userPage/userPage",
+    "pages/orderPage/orderPage",
     "pages/selectSeatPage/selectSeatPage",
-    "pages/bookSelectPage/bookSelectPage",
-    "pages/orderPage/orderPage"
+    "pages/bookSelectPage/bookSelectPage"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

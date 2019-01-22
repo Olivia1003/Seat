@@ -37,6 +37,10 @@ Component({
      * 组件的初始数据
      */
     data: {
+        userData: {
+            leaveShort: 3,
+            leaveLong: 1
+        },
         orderData: {
             seatId: '',
             seatName: '',
@@ -45,7 +49,7 @@ Component({
             keywords: '',
             orderId: '',
             date: '',
-            timeList: '',
+            timeSec: '',
             status: '',
             isInTime: false
         },
@@ -69,10 +73,8 @@ Component({
                         const orderId = _this.data.orderData.orderId
                         const baseUrl = getGlobal('baseUrl')
                         console.log('cancelOrder', _this.data.orderData, baseUrl)
-                        wx.request({
-                            url: `${baseUrl}/order?orderId=${orderId}`,
-                            method: "DELETE",
-                            success: function (res) {
+                        sendRequest('DELETE', `${baseUrl}/order?orderId=${orderId}`)
+                            .then((res) => {
                                 console.log('cancelOrder response success', res)
                                 if (parseInt(res.data.flag) === 1) {
                                     wx.showToast({
@@ -92,59 +94,49 @@ Component({
                                         duration: 2000
                                     })
                                 }
-
-                            },
-                            fail: function () {
+                            }, (res) => {
                                 console.log('cancelOrder response fail')
-                            }
-                        });
+                            })
                     } else {
                         console.log('cancel')
                     }
-
                 },
                 fail: function () {
                     console.log('fail')
                 }
             })
         },
-        // 改变该订单状态
-        changeOrderStatus(status) {
+        /**
+         * 改变该订单状态
+         * @param status 新状态
+         * @param leaveType status=3时，判断是短期暂离还是长期暂离
+         */
+        changeOrderStatus(status, leaveType = 1) {
             const _this = this
-            const orderId = this.data.orderData.orderId
-            const newStatus = status || '1'
-            const baseUrl = getGlobal('baseUrl')
-            // console.log('changeOrderStatus request', orderId)
-            sendRequest('PUT', `${baseUrl}/order/update?orderId=${orderId}&status=${newStatus}`)
-                .then((res) => {
-                    console.log('changeOrderStatus response success', res)
-                    if (parseInt(res.data.flag) === 1) {
-                        wx.showToast({
-                            title: '签到成功',
-                            icon: 'success',
-                            duration: 2000,
-                        })
-                        setTimeout(() => {
-                            _this.triggerEvent('reloadPage')
-                        }, 2000);
-                    } else {
-                        wx.showToast({
-                            title: '签到失败，请稍后再试',
-                            icon: 'none',
-                            duration: 2000,
-                        })
-                    }
-                }, (res) => {
-                    console.log('changeOrderStatus response fail', res)
-                    wx.showToast({
-                        title: '签到失败，请稍后再试',
-                        icon: 'none',
-                        duration: 2000,
+            return new Promise((resolve, reject) => {
+                const orderId = _this.data.orderData.orderId
+                const newStatus = status || '1'
+                const baseUrl = getGlobal('baseUrl')
+                const reqUrl = `${baseUrl}/order/update?orderId=${orderId}&status=${newStatus}&leaveType=${leaveType}`
+                // console.log('changeOrderStatus request', orderId)
+                sendRequest('PUT', reqUrl)
+                    .then((res) => {
+                        console.log('changeOrderStatus response success', res)
+                        if (parseInt(res.data.flag) === 1) {
+                            resolve()
+                        } else {
+                            reject()
+                        }
+                    }, (res) => {
+                        console.log('changeOrderStatus response fail', res)
+                        reject()
                     })
-                })
+            })
+
         },
         // 签到
         orderScanIn() {
+            const _this = this
             scanSeatCode().then((scanRes) => {
                 console.log('scanRes ok', scanRes)
                 if (scanRes && scanRes.seatId) {
@@ -158,6 +150,22 @@ Component({
                     if (scanRes.seatId === String(this.data.orderData.seatId) &&
                         status === '1' && isInTimeSection(new Date(2019, 1, 20, 8, 20), date, timeList)) {
                         this.changeOrderStatus('2')
+                            .then(() => {
+                                wx.showToast({
+                                    title: '签到成功',
+                                    icon: 'success',
+                                    duration: 2000,
+                                })
+                                setTimeout(() => {
+                                    _this.triggerEvent('reloadPage')
+                                }, 2000);
+                            }, () => {
+                                wx.showToast({
+                                    title: '签到失败，请稍后再试',
+                                    icon: 'none',
+                                    duration: 2000,
+                                })
+                            })
                     } else {
                         wx.showToast({
                             title: '请稍后再试',
@@ -181,11 +189,65 @@ Component({
         },
         // 暂离20min
         orderScanLeaveShort() {
-            console.log('orderScanLeaveShort')
+            this.orderScanLeave(1)
         },
         // 暂离60min
         orderScanLeaveLong() {
-            console.log('orderScanLeaveLong')
+            this.orderScanLeave(2)
+        },
+        orderScanLeave(leaveType) {
+            const _this = this
+            const leaveCount = (leaveType === 1 ?
+                _this.data.userData.leaveShort :
+                _this.data.userData.leaveLong) || 0
+            console.log('leaveCount', leaveCount)
+            if (leaveCount > 0) {
+                const title = `确认要签离吗？（本月还剩${leaveCount}次）`
+                wx.showModal({
+                    content: title,
+                    showCancel: true,
+                    cancelText: '取消',
+                    confirmText: '确认',
+                    success: function (res) {
+                        console.log('success', res)
+                        if (res.confirm) {
+                            console.log('leave request')
+                            _this.changeOrderStatus('3', leaveType)
+                                .then((res) => {
+                                    console.log('orderScanLeave success', res)
+                                    wx.showToast({
+                                        title: '暂离成功',
+                                        icon: 'success',
+                                        duration: 2000,
+                                    })
+                                    setTimeout(() => {
+                                        _this.triggerEvent('reloadPage')
+                                    }, 2000);
+                                }, (res) => {
+                                    console.log('orderScanLeaveShort fail', res)
+                                    wx.showToast({
+                                        title: '暂离失败，请稍后再试',
+                                        icon: 'none',
+                                        duration: 2000,
+                                    })
+                                })
+                        }
+                    },
+                    fail: function (res) {
+                        console.log('fail', res)
+                    }
+                })
+            } else {
+                const leaveName = leaveType === 1 ? '短期暂离' : '长期暂离'
+                wx.showModal({
+                    content: `本月已经没有${leaveName}次数了哦`,
+                    showCancel: false,
+                    confirmText: '好的',
+                    success: function (res) {
+                        console.log('success', res)
+                    }
+                })
+            }
         }
     },
     attached() {
