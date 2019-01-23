@@ -13,6 +13,9 @@ import {
 import {
   sendRequest
 } from '../../common/serverUtil';
+import {
+  userLogin
+} from '../../common/loginUtil'
 
 Page({
   data: {
@@ -21,7 +24,20 @@ Page({
     pastOrderList: []
   },
   onLoad() {
-    this.getOrderData()
+    const userId = getGlobal('userId')
+    if (userId) {
+      this.getOrderData()
+    } else {
+      userLogin().then(() => {
+        this.getOrderData()
+      }, () => {
+        wx.showToast({
+          title: '登录失败，请稍后再试',
+          icon: 'none',
+          duration: 2000,
+        })
+      })
+    }
   },
   clickTabHandle(e) {
     const newId = e.target.dataset.idno
@@ -34,7 +50,7 @@ Page({
   },
   // 获取用户订单信息
   getOrderData() {
-    const userId = '1003'
+    const userId = getGlobal('userId')
     const _this = this
     const baseUrl = getGlobal('baseUrl')
     sendRequest('GET', `${baseUrl}/order/search?userId=${userId}`)

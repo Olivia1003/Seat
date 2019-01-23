@@ -27,7 +27,20 @@ Page({
   },
   onLoad() {
     console.log('userPage onLoad')
-    userLogin()
+    const userId = getGlobal('userId')
+    if (userId) {
+      this.getUserData()
+    } else {
+      userLogin().then(() => {
+        this.getUserData()
+      }, () => {
+        wx.showToast({
+          title: '登录失败，请稍后再试',
+          icon: 'none',
+          duration: 2000,
+        })
+      })
+    }
     // this.getUserData()
     // 查看是否授权
     // wx.getSetting({
@@ -49,7 +62,7 @@ Page({
   // 从服务获取用户信息
   getUserData() {
     const baseUrl = getGlobal('baseUrl')
-    const userId = 1003
+    const userId = getGlobal('userId')
     sendRequest('GET', `${baseUrl}/user?userId=${userId}`)
       .then((res) => {
         console.log('getUserData success', res)

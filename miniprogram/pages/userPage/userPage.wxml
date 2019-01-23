@@ -15,12 +15,12 @@
             </view>
         </view>
 
-        <button
+        <!-- <button
             wx:if="{{canIUse}}"
             open-type="getUserInfo"
             bindgetuserinfo="bindGetUserInfo"
         >授权登录</button>
-        <view wx:else>请升级微信版本</view>
+        <view wx:else>请升级微信版本</view> -->
     </view>
     <!-- 其他信息 -->
     <view class="user-block-wrap">

@@ -13,6 +13,9 @@ import {
 import {
   sendRequest
 } from '../../common/serverUtil';
+import {
+  userLogin
+} from '../../common/loginUtil'
 
 Page({
   data: {
@@ -21,7 +24,20 @@ Page({
   },
   onLoad() {
     console.log("home page loaded")
-    this.getOrderData()
+    const userId = getGlobal('userId')
+    if (userId) {
+      this.getOrderData()
+    } else {
+      userLogin().then(() => {
+        this.getOrderData()
+      }, () => {
+        wx.showToast({
+          title: '登录失败，请稍后再试',
+          icon: 'none',
+          duration: 2000,
+        })
+      })
+    }
 
     // this.goBookSelect()
 
@@ -32,14 +48,14 @@ Page({
   },
   // 获取用户订单信息
   getOrderData() {
-    const userId = '1003'
+    const userId = getGlobal('userId')
     const _this = this
     const baseUrl = getGlobal('baseUrl')
     console.log('getOrderData request userId', userId, baseUrl)
     sendRequest('GET', `${baseUrl}/order/search?userId=${userId}`)
       .then((res) => {
         console.log('getOrderData response success', res)
-        if (res.data) {
+        if (res.data && res.data.length > 0) {
           // 只显示进行中or未来的订单
           const orderList = res.data.filter((oItem) => {
             const {
