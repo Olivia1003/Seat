@@ -1,3 +1,6 @@
 {
-    "navigationBarTitleText": "select"
+    "navigationBarTitleText": "select",
+    "usingComponents": {
+        "selectModal": "../../components/selectModal/selectModal"
+    }
 }

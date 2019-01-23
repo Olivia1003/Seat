@@ -132,6 +132,23 @@
             </view>
         </view>
     </view>
+    <view class="select-line">
+        <button
+            bindtap="clickTimeSelect"
+            bindtap="showModal"
+        >
+            选择时间
+        </button>
+    </view>
+    <view wx:if="{{isShowModal}}">
+        <text>hello</text>
+        <selectModal
+            seatTimeData="{{modalSeatData}}"
+            bind:confirm="confirmSelect"
+            bind:cancel="hideModal"
+        />
+    </view>
+
     <!-- submit button -->
     <button
         bindtap="comfirmSelect"

@@ -6,16 +6,20 @@ const MAX_SEC_NUM = 4
 const app = getApp()
 Component({
     properties: {
-        isShow: {
-            type: Boolean,
-            value: false,
-        },
-        seat: {
-            type: Object,
-        },
-        today: {
-            type: Boolean
-        },
+        // isShow: {
+        //     type: Boolean,
+        //     value: false,
+        // },
+        // seat: {
+        //     type: Object,
+        // },
+        // today: {
+        //     type: Boolean
+        // },
+        seatTimeData: {
+            type: Array,
+            value: []
+        }
     },
 
     /**
@@ -23,47 +27,55 @@ Component({
      */
     data: {
         sectionItemList: [{
-                id: "01",
+                secId: 1,
                 content: "12:00-12:30",
-                isSelect: false
+                isSelect: false,
+                isFree: true
             },
             {
-                id: "02",
+                secId: 2,
                 content: "12:30-13:00",
-                isSelect: false
+                isSelect: false,
+                isFree: true
             },
             {
-                id: "03",
+                secId: 3,
                 content: "12:30-13:00",
-                isSelect: false
+                isSelect: false,
+                isFree: true
             }, {
-                id: "04",
+                secId: 4,
                 content: "12:30-13:00",
-                isSelect: false
+                isSelect: false,
+                isFree: true
             }, {
-                id: "05",
+                secId: 5,
                 content: "12:30-13:00",
-                isSelect: false
+                isSelect: false,
+                isFree: true
             },
             {
-                id: "06",
+                secId: 6,
                 content: "12:30-13:00",
-                isSelect: false
+                isSelect: false,
+                isFree: false
             },
             {
-                id: "07",
+                secId: 7,
                 content: "12:30-13:00",
-                isSelect: false
+                isSelect: false,
+                isFree: true
             },
             {
-                id: "08",
+                secId: 8,
                 content: "12:30-13:00",
-                isSelect: false
+                isSelect: false,
+                isFree: true
             }
         ],
-
-        selectSecCnt: 0
-
+        selectSecCnt: 0,
+        selectType: 1, // 1=选择开始时间，2=选择结束时间
+        lastSelectId: 0
     },
 
     /**
@@ -72,70 +84,108 @@ Component({
     methods: {
         cancelHandle() {
             console.log('cancelHandle')
-            this.triggerEvent('hideModal')
+            this.triggerEvent('cancel')
         },
         confirmHandle() {
-            var chooseIndex = []
-            const dayOffset = app.globalData.today ? 0 : 28;
-            console.log('dayOffset', dayOffset)
-            this.data.sectionItemList.forEach((item, index) => {
-                if (item.isSelect) {
-                    chooseIndex.push(item.id + dayOffset)
+            const {
+                sectionItemList
+            } = this.data
+            const selectSecList = []
+            sectionItemList.forEach((sItem) => {
+                if (sItem.isFree && sItem.isSelect) {
+                    selectSecList.push(sItem.secId)
                 }
             });
-            console.log(chooseIndex)
-            wx.request({
-                url: app.globalData.baseUrl + "/seat/appoint?times=" + chooseIndex + "&owner=" + app.globalData.code + "&seatSlug=" + this.data.seat.seatSlug,
-                method: "POST",
-                success: function (res) {
-                    wx.showToast({
-                        title: JSON.stringify(res.data.obj),
-                        icon: 'none',
-                        duration: 4000,
-                        success: function () {
-                            wx.navigateBack({
-                                delta: 2
-                            })
-                        }
-                    })
-                },
-            });
+            // console.log('confirmHandle', selectSecList)
+            this.triggerEvent('confirm', {
+                selectSecList
+            })
+
+            // console.log(chooseIndex)
+            // wx.request({
+            //     url: app.globalData.baseUrl + "/seat/appoint?times=" + chooseIndex + "&owner=" + app.globalData.code + "&seatSlug=" + this.data.seat.seatSlug,
+            //     method: "POST",
+            //     success: function (res) {
+            //         wx.showToast({
+            //             title: JSON.stringify(res.data.obj),
+            //             icon: 'none',
+            //             duration: 4000,
+            //             success: function () {
+            //                 wx.navigateBack({
+            //                     delta: 2
+            //                 })
+            //             }
+            //         })
+            //     },
+            // });
         },
         tapSectionHandle(e) {
             const {
                 sectionItemList,
-                seat,
-                today
+                selectType,
+                lastSelectId
             } = this.data
-            const idNo = e.currentTarget.dataset.idno
-            const selectIndex = this.getSectionIndexById(idNo)
+            const selectId = e.currentTarget.dataset.secid
+            const isFree = e.currentTarget.dataset.isfree
+            if (!isFree) {
+                return
+            }
+            // const selectIndex = this.getSectionIndexById(idNo)
+            console.log('tapSectionHandle secId', selectId)
             const newItemList = JSON.parse(JSON.stringify(sectionItemList))
-            if (newItemList[selectIndex]) {
-                newItemList[selectIndex].isSelect = !newItemList[selectIndex].isSelect
-            }
-            const newSelectCnt = this.getSelectSecCnt(newItemList)
-            if (newSelectCnt <= MAX_SEC_NUM) {
-                this.setData({
-                    sectionItemList: newItemList
+            let newSelectType = selectType
+            if (selectType === 1) { // 选择开始时间
+                newSelectType = 2
+                // if (newItemList[selectIndex]) {
+                //     newItemList[selectIndex].isSelect = true
+                // }
+                newItemList.forEach((sItem) => {
+                    sItem.isSelect = (sItem.secId === selectId)
                 })
-            } else {
-                wx.showToast({
-                    title: '最多只能选择两个小时哦',
-                    icon: 'none',
-                    duration: 2000
-                })
-            }
-        },
-        getSectionIndexById(selectId) {
-            let res = -1
-            this.data.sectionItemList.forEach((item, index) => {
-                if (item.id === selectId) {
-                    res = index
+            } else if (selectType === 2) { // 选择结束时间
+                newSelectType = 1
+                if (selectId < lastSelectId) {
+                    wx.showToast({
+                        title: '结束时间必须大于开始时间哦',
+                        icon: 'none',
+                        duration: 2000
+                    })
                     return
                 }
-            });
-            return res
+                newItemList.forEach((sItem) => {
+                    sItem.isSelect = sItem.secId >= lastSelectId && sItem.secId <= selectId
+                })
+            }
+            this.setData({
+                sectionItemList: newItemList,
+                selectType: newSelectType,
+                lastSelectId: selectId
+            })
+
+
+            // const newSelectCnt = this.getSelectSecCnt(newItemList)
+            // if (newSelectCnt <= MAX_SEC_NUM) {
+            //     this.setData({
+            //         sectionItemList: newItemList
+            //     })
+            // } else {
+            //     wx.showToast({
+            //         title: '最多只能选择两个小时哦',
+            //         icon: 'none',
+            //         duration: 2000
+            //     })
+            // }
         },
+        // getSectionIndexById(selectId) {
+        //     let res = -1
+        //     this.data.sectionItemList.forEach((sItem, index) => {
+        //         if (sItem.secId === selectId) {
+        //             res = index
+        //             return
+        //         }
+        //     });
+        //     return res
+        // },
         getSelectSecCnt(dataList) {
             let res = 0
             dataList.forEach((item, index) => {
@@ -147,7 +197,7 @@ Component({
         }
     },
     attached() {
-
+        console.log('select modal attached seatTimeData', this.data.seatTimeData)
     },
     pageLifetimes: {
         // 组件所在页面的生命周期函数

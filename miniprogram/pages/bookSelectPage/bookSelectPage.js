@@ -30,7 +30,11 @@ Page({
         endHourList: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
         endMinList: [0, 30],
         // for style
-        windowHeight: 800
+        windowHeight: 800,
+        // modal
+        isShowModal: true,
+        modalSeatData: [],
+
 
     },
     onLoad() {
@@ -192,6 +196,27 @@ Page({
         this.setData({
             selectTimeSectionStr: newTimeStr
         })
+    },
+    clickTimeSelect() {
+        console.log('clickTimeSelect')
+    },
+    // modal
+    showModal() {
+        this.setData({
+            isShowModal: true
+        })
+    },
+    hideModal() {
+        this.setData({
+            isShowModal: false
+        })
+    },
+    confirmSelect(res) {
+        const {
+            selectSecList
+        } = res.detail
+        console.log('confirmSelect', selectSecList)
+
     }
 
 });

@@ -26,14 +26,23 @@
     line-height: 60rpx;
     font-size: 30rpx;
     /* white-space: nowrap; */
-    background-color: #ffffff;
-    border: 1px solid #3D9970;
     border-radius: 7rpx;
+}
+
+.section-item-free {
+    background-color: #ffffff;
+    border: 2px solid #3D9970;
     color: #3D9970;
 }
 
 .section-item-active {
-    border: 1px solid #37BC9B;
+    border: 2px solid #37BC9B;
     background-color: #37BC9B;
     color: #ffffff;
+}
+
+.section-item-used {
+    border: 2px solid #ccc;
+    background-color: #ffffff;
+    color: #ccc;
 }

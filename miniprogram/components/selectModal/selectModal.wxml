@@ -1,7 +1,7 @@
 <view class="modal-wrap">
     <modal
-        hidden="{{!isShow}}"
-        title="选择需要的时间段"
+        hidden="{{false}}"
+        title="{{selectType===1?'选择开始时间':'选择结束时间'}}"
         confirm-text="提交"
         cancel-text="取消"
         bindcancel="cancelHandle"
@@ -19,21 +19,27 @@
                         wx:key="{{id}}"
                         wx:for-item="sectionData"
                         wx:for-index="index"
-                        data-idNo="{{sectionData.id}}"
+                        data-secId="{{sectionData.secId}}"
+                        data-isFree="{{sectionData.isFree}}"
                         bindtap="tapSectionHandle"
                     >
+                        <!-- 可选 -->
                         <button
-                            class="section-item {{sectionData.isSelect?'section-item-active':''}}"
-                            bindtap="tapSectionHandle"
+                            class="section-item section-item-free {{sectionData.isSelect?'section-item-active':''}}"
+                            wx:if="{{sectionData.isFree}}"
+                        >
+                            <text>{{sectionData.content}}</text>
+                        </button>
+                        <!-- 不可选 -->
+                        <button
+                            class="section-item section-item-used"
+                            wx:if="{{!sectionData.isFree}}"
                         >
                             <text>{{sectionData.content}}</text>
                         </button>
                     </view>
                 </view>
-
             </scroll-view>
-
-
         </view>
     </modal>
 
