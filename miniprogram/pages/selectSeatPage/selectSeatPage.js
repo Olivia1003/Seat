@@ -112,9 +112,8 @@ Page({
             date: '2019-02-10',
             timeSec: '[1,2,3]'
         })
-        this.getSeatData()
     },
-    // 保存url中搜索信息
+    // 保存url中搜索信息，并且请求服务
     setSearchData(params) {
         const {
             floorId,
@@ -127,7 +126,7 @@ Page({
                 schoolName: '华东师范大学',
                 floorId,
                 floorName,
-                date: '3-12',
+                date,
                 timeSec: JSON.parse(timeSec),
                 timeSecStr: getTimeStrFromNumber(JSON.parse(timeSec)),
                 keywords: ['window'],
@@ -136,6 +135,8 @@ Page({
             // console.log('set searchData', searchData)
             this.setData({
                 searchData
+            }, () => {
+                this.getSeatData()
             })
         }
     },
@@ -159,6 +160,23 @@ Page({
             sendRequest('GET', reqUrl)
                 .then((res) => {
                     console.log('getSeatData success', res)
+                    // 处理seat数据
+                    if (res.data && res.data.length > 0) {
+                        const seatItemList = res.data.map((sItem) => {
+                            return {
+                                seatId: sItem.seatId,
+                                gridX: sItem.position && sItem.position[0] || 0,
+                                gridY: sItem.position && sItem.position[1] || 0,
+                                type: sItem.seatType,
+                                status: sItem.isFree ? 1 : 0,
+                                timeList: sItem.timeList
+                            }
+                        })
+                        console.log('set seatItemList', seatItemList)
+                        this.setData({
+                            seatItemList
+                        })
+                    }
                 }, (res) => {
                     console.log('getSeatData fail', res)
                 })
