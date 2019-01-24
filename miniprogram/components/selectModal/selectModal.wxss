@@ -6,7 +6,7 @@
 }
 
 .section-list-wrap {
-    height: 500rpx;
+    height: 800rpx;
     width: 540rpx;
 }
 
@@ -25,7 +25,7 @@
     width: 230rpx;
     line-height: 60rpx;
     font-size: 30rpx;
-    /* white-space: nowrap; */
+    white-space: nowrap;
     border-radius: 7rpx;
 }
 

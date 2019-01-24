@@ -2,7 +2,15 @@
  * @author wjy
  * @description 选择座位页面
  */
-
+import {
+    sendRequest
+} from '../../common/serverUtil'
+import {
+    getGlobal
+} from '../../common/global'
+import {
+    getTimeStrFromNumber
+} from '../../common/timeSecUtil'
 Page({
     data: {
         seatItemList: [{
@@ -65,7 +73,7 @@ Page({
                 gridY: 5,
                 type: 1,
                 status: 0
-            },
+            }
         ],
         // 移动
         // mapPosLeft: 10,
@@ -86,13 +94,76 @@ Page({
         today: true,
         // 已选信息
         searchData: {
-            school: '华东师范大学',
-            floor: 'floor 1',
+            schoolName: '华东师范大学',
+            floorId: '1',
+            floorName: 'aaaa',
             date: '3-12',
-            time: '12:00-14:00',
-            keywords: ['靠窗', '靠过道']
+            timeSec: '[0,1,2,3]',
+            timeSecStr: '08:00-10:00',
+            // keywords: ['window']
         }
+    },
+    onLoad(params) {
+        // this.setSearchData(params)
+        // temp
+        this.setSearchData({
+            floorId: 1,
+            floorName: '中北一楼',
+            date: '2019-02-10',
+            timeSec: '[1,2,3]'
+        })
+        this.getSeatData()
+    },
+    // 保存url中搜索信息
+    setSearchData(params) {
+        const {
+            floorId,
+            floorName,
+            date,
+            timeSec
+        } = params
+        if (floorId && date && timeSec && JSON.parse(timeSec)) {
+            const searchData = {
+                schoolName: '华东师范大学',
+                floorId,
+                floorName,
+                date: '3-12',
+                timeSec: JSON.parse(timeSec),
+                timeSecStr: getTimeStrFromNumber(JSON.parse(timeSec)),
+                keywords: ['window'],
+                keywordsStr: ['靠窗']
+            }
+            // console.log('set searchData', searchData)
+            this.setData({
+                searchData
+            })
+        }
+    },
+    // 根据searchData请求服务
+    getSeatData() {
+        const {
+            searchData
+        } = this.data
+        console.log('getSeatData', searchData)
+        const {
+            floorId,
+            date,
+            timeSec,
+            keywords
+        } = searchData
+        if (floorId) { // TODO：动态改变搜索条件
+            const timeList = JSON.stringify(timeSec)
+            const keywordList = JSON.stringify(keywords)
+            const baseUrl = getGlobal('baseUrl')
+            const reqUrl = `${baseUrl}/seat/search?floorId=${floorId}&date=${date}&timeList=${timeList}&keywords=${keywordList}`
+            sendRequest('GET', reqUrl)
+                .then((res) => {
+                    console.log('getSeatData success', res)
+                }, (res) => {
+                    console.log('getSeatData fail', res)
+                })
 
+        }
     },
     showModal() {
         console.log('show modal')

@@ -6,17 +6,7 @@ const MAX_SEC_NUM = 4
 const app = getApp()
 Component({
     properties: {
-        // isShow: {
-        //     type: Boolean,
-        //     value: false,
-        // },
-        // seat: {
-        //     type: Object,
-        // },
-        // today: {
-        //     type: Boolean
-        // },
-        seatTimeData: {
+        sectionItemList: {
             type: Array,
             value: []
         }
@@ -26,53 +16,12 @@ Component({
      * 组件的初始数据
      */
     data: {
-        sectionItemList: [{
-                secId: 1,
-                content: "12:00-12:30",
-                isSelect: false,
-                isFree: true
-            },
-            {
-                secId: 2,
-                content: "12:30-13:00",
-                isSelect: false,
-                isFree: true
-            },
-            {
-                secId: 3,
-                content: "12:30-13:00",
-                isSelect: false,
-                isFree: true
-            }, {
-                secId: 4,
-                content: "12:30-13:00",
-                isSelect: false,
-                isFree: true
-            }, {
-                secId: 5,
-                content: "12:30-13:00",
-                isSelect: false,
-                isFree: true
-            },
-            {
-                secId: 6,
-                content: "12:30-13:00",
-                isSelect: false,
-                isFree: false
-            },
-            {
-                secId: 7,
-                content: "12:30-13:00",
-                isSelect: false,
-                isFree: true
-            },
-            {
-                secId: 8,
-                content: "12:30-13:00",
-                isSelect: false,
-                isFree: true
-            }
-        ],
+        // sectionItemList: [{
+        //     secId: 1,
+        //     content: "12:00-12:30",
+        //     isSelect: false,
+        //     isFree: true
+        // }],
         selectSecCnt: 0,
         selectType: 1, // 1=选择开始时间，2=选择结束时间
         lastSelectId: 0
@@ -100,24 +49,6 @@ Component({
             this.triggerEvent('confirm', {
                 selectSecList
             })
-
-            // console.log(chooseIndex)
-            // wx.request({
-            //     url: app.globalData.baseUrl + "/seat/appoint?times=" + chooseIndex + "&owner=" + app.globalData.code + "&seatSlug=" + this.data.seat.seatSlug,
-            //     method: "POST",
-            //     success: function (res) {
-            //         wx.showToast({
-            //             title: JSON.stringify(res.data.obj),
-            //             icon: 'none',
-            //             duration: 4000,
-            //             success: function () {
-            //                 wx.navigateBack({
-            //                     delta: 2
-            //                 })
-            //             }
-            //         })
-            //     },
-            // });
         },
         tapSectionHandle(e) {
             const {
@@ -130,15 +61,11 @@ Component({
             if (!isFree) {
                 return
             }
-            // const selectIndex = this.getSectionIndexById(idNo)
-            console.log('tapSectionHandle secId', selectId)
+            // console.log('tapSectionHandle secId', selectId)
             const newItemList = JSON.parse(JSON.stringify(sectionItemList))
             let newSelectType = selectType
             if (selectType === 1) { // 选择开始时间
                 newSelectType = 2
-                // if (newItemList[selectIndex]) {
-                //     newItemList[selectIndex].isSelect = true
-                // }
                 newItemList.forEach((sItem) => {
                     sItem.isSelect = (sItem.secId === selectId)
                 })
@@ -161,8 +88,6 @@ Component({
                 selectType: newSelectType,
                 lastSelectId: selectId
             })
-
-
             // const newSelectCnt = this.getSelectSecCnt(newItemList)
             // if (newSelectCnt <= MAX_SEC_NUM) {
             //     this.setData({
@@ -176,16 +101,6 @@ Component({
             //     })
             // }
         },
-        // getSectionIndexById(selectId) {
-        //     let res = -1
-        //     this.data.sectionItemList.forEach((sItem, index) => {
-        //         if (sItem.secId === selectId) {
-        //             res = index
-        //             return
-        //         }
-        //     });
-        //     return res
-        // },
         getSelectSecCnt(dataList) {
             let res = 0
             dataList.forEach((item, index) => {
@@ -197,7 +112,7 @@ Component({
         }
     },
     attached() {
-        console.log('select modal attached seatTimeData', this.data.seatTimeData)
+        // console.log('select modal attached seatTimeData', this.data)
     },
     pageLifetimes: {
         // 组件所在页面的生命周期函数

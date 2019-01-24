@@ -25,15 +25,15 @@
             <picker
                 mode="selector"
                 bindchange="selectFloorHandle"
-                value="{{floorList.length>0?floorList[selectFloorIndex]:'empty'}}"
-                range="{{floorList}}"
+                value="{{floorNameList.length>0?floorNameList[selectFloorIndex]:'empty'}}"
+                range="{{floorNameList}}"
             >
                 <view class="select-line-inner">
                     <image
                         src="../../images/iconsSelector/floor.png"
                         class="select-icon"
                     />
-                    <view>选择楼层：{{floorList.length>0?floorList[selectFloorIndex]:'empty'}}</view>
+                    <view>选择楼层：{{floorNameList.length>0?floorNameList[selectFloorIndex]:'empty'}}</view>
                 </view>
             </picker>
         </view>
@@ -41,21 +41,6 @@
     <view class="select-block">
         <!-- 选择日期 -->
         <view class="select-line">
-            <!-- <picker
-                mode="date"
-                bindchange="selectDateHandle"
-                value="{{selectDate}}"
-                start="2017-09-01"
-                end="2019-09-01"
-            >
-                <view class="select-line-inner">
-                    <image
-                        src="../../images/iconsSelector/date.png"
-                        class="select-icon"
-                    />
-                    <view>选择日期：{{selectDate}}</view>
-                </view>
-            </picker> -->
             <picker
                 mode="selector"
                 bindchange="selectDateHandle"
@@ -71,87 +56,33 @@
                 </view>
             </picker>
         </view>
-        <view>
-            <!-- start time -->
-            <view class="start-time-wrap">
-                <image
-                    src="../../images/iconsSelector/time.png"
-                    class="select-icon"
-                />
-                <text>开始时间：</text>
-                <!-- hour -->
-                <picker
-                    mode="selector"
-                    bindchange="selectStartHourHandle"
-                    value="{{selectTimeSection.startHour}}"
-                    range="{{startHourList}}"
-                >
-                    <view class="select-line-inner">
-                        <text>{{selectTimeSectionStr.startHour}}</text>
-                    </view>
-                </picker>
-                <text class="time-partition">:</text>
-                <!-- min -->
-                <picker
-                    mode="selector"
-                    bindchange="selectStartMinHandle"
-                    value="{{selectTimeSection.startMin}}"
-                    range="{{startMinList}}"
-                >
-                    <view class="select-line-inner">
-                        <text>{{selectTimeSectionStr.startMin}}</text>
-                    </view>
-                </picker>
-            </view>
-            <!-- end time -->
-            <view class="end-time-wrap">
-                <text>结束时间：</text>
-                <!-- hour -->
-                <picker
-                    mode="selector"
-                    bindchange="selectEndHourHandle"
-                    value="{{selectTimeSection.endHour}}"
-                    range="{{endHourList}}"
-                >
-                    <view class="select-line-inner">
-                        <text>{{selectTimeSectionStr.endHour}}</text>
-                    </view>
-                </picker>
-                <text class="time-partition">:</text>
-                <!-- min -->
-                <picker
-                    mode="selector"
-                    bindchange="selectEndMinHandle"
-                    value="{{selectTimeSection.endMin}}"
-                    range="{{endMinList}}"
-                >
-                    <view class="select-line-inner">
-                        <text>{{selectTimeSectionStr.endMin}}</text>
-                    </view>
-                </picker>
-            </view>
-        </view>
-    </view>
-    <view class="select-line">
-        <button
+        <!-- 选择时间段 -->
+        <view
+            class="select-line"
             bindtap="clickTimeSelect"
             bindtap="showModal"
         >
-            选择时间
-        </button>
+            <image
+                src="../../images/iconsSelector/time.png"
+                class="select-icon"
+            />
+            <text>选择时间：{{selectTimeStr||''}}</text>
+        </view>
     </view>
+
     <view wx:if="{{isShowModal}}">
-        <text>hello</text>
         <selectModal
-            seatTimeData="{{modalSeatData}}"
-            bind:confirm="confirmSelect"
+            sectionItemList="{{modalTimeData}}"
+            bind:confirm="confirmSelectModal"
             bind:cancel="hideModal"
         />
     </view>
 
     <!-- submit button -->
     <button
-        bindtap="comfirmSelect"
+        bindtap="commitSelect"
         class="confirm-btn"
-    >确定</button>
+    >
+        搜索
+    </button>
 </view>

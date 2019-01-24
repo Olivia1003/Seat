@@ -29,26 +29,24 @@
     <!-- header -->
     <view class="header">
         <text class="header-title">已选：</text>
-        <text class="header-txt">{{searchData.school}}</text>
-        <text class="header-txt">{{searchData.floor}}</text>
+        <text class="header-txt">{{searchData.schoolName}}</text>
+        <text class="header-txt">{{searchData.floorName}}</text>
 
         <view class="header-item-list">
             <view class="header-item">
                 <text class="header-item-txt">{{searchData.date}}</text>
             </view>
             <view class="header-item">
-                <text class="header-item-txt">{{searchData.time}}</text>
+                <text class="header-item-txt">{{searchData.timeSecStr}}</text>
             </view>
-
             <view
                 class="header-item"
-                wx:for="{{searchData.keywords}}"
+                wx:for="{{searchData.keywordsStr}}"
                 wx:for-item="kItem"
                 wx:key="{{index}}"
             >
                 <text class="header-item-txt">{{kItem}}</text>
             </view>
-
         </view>
 
 
@@ -108,11 +106,13 @@
             <text>一键选座</text>
         </button>
     </view>
-    <!-- 选择时间段 -->
-    <selectModal
-        isShow="{{isShowModal}}"
-        seat="{{seat}}"
-        today="{{today}}"
-        bind:hideModal="hideModal"
-    ></selectModal>
+    <!-- 选择时间段modal -->
+    <view wx:if="{{isShowModal}}">
+        <selectModal
+            sectionItemList="{{modalTimeData}}"
+            bind:confirm="comfirmModal"
+            bind:cancel="hideModal"
+        />
+    </view>
+
 </view>

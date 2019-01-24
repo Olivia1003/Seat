@@ -80,9 +80,40 @@ function addMinute(input, min) {
     return res;
 }
 
+/**
+ * 得到Hyphen时间
+ * @param {Date} input Date Object
+ * @return {string} 2018-08-20
+ */
+function getDateHyphenFromDateObject(input) {
+    if (!input) {
+        return ''
+    }
+    const year = input.getFullYear()
+    const month = ('0' + (input.getMonth() + 1)).slice(-2)
+    const day = ('0' + input.getDate()).slice(-2)
+    return year + '-' + month + '-' + day
+}
+/**
+ * 给日期加减
+ * @param {Date} input 
+ * @param {number} days 
+ * @return {Date} 
+ */
+function addDay(input, days) {
+    if (!(input instanceof Date)) {
+        return new Date()
+    }
+    const res = new Date(input)
+    res.setDate(input.getDate() + days)
+    return res
+}
+
 module.exports = {
     getEndTimeFromStartTime,
     getDateObjFromLongStr,
+    getDateHyphenFromDateObject,
+    addDay
     // getDateTimeFromStr,
     // getStrFromDateTime,
     // addMinute
