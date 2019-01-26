@@ -11,70 +11,19 @@ import {
 import {
     getTimeStrFromNumber
 } from '../../common/timeSecUtil'
+import {
+    userLogin
+} from '../../common/loginUtil'
+
 Page({
     data: {
         seatItemList: [{
-                id: "001",
-                gridX: 4,
-                gridY: 3,
-                type: 1,
-                status: 1
-            },
-            {
-                id: "002",
-                gridX: 5,
-                gridY: 3,
-                type: 1,
-                status: 0
-            },
-            {
-                id: "003",
-                gridX: 6,
-                gridY: 3,
-                type: 1,
-                status: 0
-            },
-            {
-                id: "004",
-                gridX: 4,
-                gridY: 4,
-                type: 2,
-                status: 0
-            },
-            {
-                id: "005",
-                gridX: 5,
-                gridY: 4,
-                type: 2,
-                status: 0
-            },
-            {
-                id: "006",
-                gridX: 6,
-                gridY: 4,
-                type: 2,
-                status: 0
-            },
-            {
-                id: "007",
-                gridX: 4,
-                gridY: 5,
-                type: 1,
-                status: 0
-            }, {
-                id: "008",
-                gridX: 5,
-                gridY: 5,
-                type: 1,
-                status: 0
-            }, {
-                id: "009",
-                gridX: 6,
-                gridY: 5,
-                type: 1,
-                status: 0
-            }
-        ],
+            id: "001",
+            gridX: 4,
+            gridY: 3,
+            type: 1,
+            status: 1
+        }],
         // 移动
         // mapPosLeft: 10,
         // mapPosTop: 10,
@@ -89,6 +38,8 @@ Page({
         moveOldDis: 0,
         // modal
         isShowModal: false,
+        modalTimeData: [],
+        selectSeatIndex: 0,
         // select state
         hasSelect: false,
         today: true,
@@ -198,20 +149,45 @@ Page({
     itemTapHandle(e) {
         const {
             seatItemList,
-            hasSelect,
-            today
+            modalTimeData
+            // hasSelect,
+            // today
         } = this.data
-        console.log('itemTapHandle', e.detail)
         const selectIndex = e.detail.index
-        if ((!hasSelect) && selectIndex >= 0 && selectIndex < seatItemList.length) {
-            const selectSeatData = seatItemList[selectIndex]
-            console.log('selectSeatData', selectSeatData)
-            console.log('today', today)
+        console.log('itemTapHandle', selectIndex, seatItemList, modalTimeData)
+        if (selectIndex >= 0 && selectIndex < seatItemList.length) {
+            const selectTimeSec = seatItemList[selectIndex].timeList
+            let newModalTimeData = []
+            if (selectTimeSec && selectTimeSec.length > 0) {
+                // 只显示可选的时间段
+                newModalTimeData = selectTimeSec.map((sItem) => {
+                    return {
+                        secId: sItem,
+                        content: getTimeStrFromNumber([sItem]),
+                        isSelect: false,
+                        isFree: true
+                    }
+                })
+            }
             this.setData({
-                seat: selectSeatData
+                modalTimeData: newModalTimeData,
+                selectSeatIndex: selectIndex
+            }, () => {
+                this.showModal()
             })
-            this.showModal()
+        } else {
+            console.log('itemTapHandle error')
         }
+
+        // if ((!hasSelect) && selectIndex >= 0 && selectIndex < seatItemList.length) {
+        //     const selectSeatData = seatItemList[selectIndex]
+        //     console.log('selectSeatData', selectSeatData)
+        //     console.log('today', today)
+        //     this.setData({
+        //         seat: selectSeatData
+        //     })
+        //     this.showModal()
+        // }
 
     },
     submitHandle() {
@@ -314,4 +290,46 @@ Page({
     //     });
     //     return res
     // }
+
+    // 选择完时间段，直接提交
+    confirmModal(res) {
+        const {
+            selectSeatIndex,
+            seatItemList,
+            searchData
+        } = this.data
+        const timeList = res.detail.selectSecList && JSON.stringify(res.detail.selectSecList) || ''
+        if (selectSeatIndex >= 0 && selectSeatIndex < seatItemList.length) {
+            const seatId = seatItemList[selectSeatIndex].seatId
+            const date = searchData.date
+            const userId = getGlobal('userId')
+            if (userId) {
+                this.bookSeatRush(seatId, date, timeList)
+            } else {
+                userLogin().then(() => {
+                    this.bookSeatRush(seatId, date, timeList)
+                }, () => {
+                    wx.showToast({
+                        title: '登录失败，请稍后再试',
+                        icon: 'none',
+                        duration: 2000,
+                    })
+                })
+            }
+        }
+    },
+    // 抢座
+    bookSeatRush(seatId, date, timeList) {
+        const userId = getGlobal('userId')
+        const userPoint = getGlobal('userPoint')
+        const baseUrl = getGlobal('baseUrl')
+        const reqUrl = `${baseUrl}/seat/rush?userId=${userId}&userPoint=${userPoint}&seatId=${seatId}&date=${date}&timeList=${timeList}`
+        console.log('bookSeatRush reqUrl', reqUrl)
+        sendRequest('PUT', reqUrl)
+            .then((res) => {
+                console.log('confirmModal rush success', res)
+            }, (res) => {
+                console.log('confirmModal rush fail', res)
+            })
+    }
 });

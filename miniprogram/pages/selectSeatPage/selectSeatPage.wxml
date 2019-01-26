@@ -110,7 +110,7 @@
     <view wx:if="{{isShowModal}}">
         <selectModal
             sectionItemList="{{modalTimeData}}"
-            bind:confirm="comfirmModal"
+            bind:confirm="confirmModal"
             bind:cancel="hideModal"
         />
     </view>
