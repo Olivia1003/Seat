@@ -62,7 +62,7 @@ Page({
             floorId: 1,
             floorName: '中北一楼',
             date: '2019-01-31',
-            timeSec: '[5,6]'
+            timeSec: '[5,6,7,8]'
         })
         // this.buildWebSocket()
     },
@@ -414,13 +414,13 @@ Page({
                             wx.showToast({
                                 title: '预约成功',
                                 icon: 'success',
-                                duration: 2000,
-                                complete: function () {
-                                    wx.switchTab({
-                                        url: "../homePage/homePage"
-                                    })
-                                }
+                                duration: 2000
                             })
+                            setTimeout(() => {
+                                wx.switchTab({
+                                    url: "../homePage/homePage"
+                                })
+                            }, 2000);
                         }
                     })
                 } else { // 预约失败or超过MAX_RE_GET_COUNT，刷新页面
