@@ -14,7 +14,8 @@ import {
 import {
     userLogin
 } from '../../common/loginUtil'
-
+const RE_GET_TIMEOUT = 1500 // 请求订单状态间隔
+const MAX_RE_GET_COUNT = 20 // 最大请求次数
 Page({
     data: {
         seatItemList: [{
@@ -45,12 +46,12 @@ Page({
         today: true,
         // 已选信息
         searchData: {
-            schoolName: '华东师范大学',
-            floorId: '1',
-            floorName: 'aaaa',
-            date: '3-12',
-            timeSec: '[0,1,2,3]',
-            timeSecStr: '08:00-10:00',
+            // schoolName: '华东师范大学',
+            // floorId: '1',
+            // floorName: 'aaaa',
+            // date: '3-12',
+            // timeSec: '[4]',
+            // timeSecStr: '08:00-10:00',
             // keywords: ['window']
         }
     },
@@ -60,9 +61,54 @@ Page({
         this.setSearchData({
             floorId: 1,
             floorName: '中北一楼',
-            date: '2019-02-10',
-            timeSec: '[1,2,3]'
+            date: '2019-01-31',
+            timeSec: '[5,6]'
         })
+        // this.buildWebSocket()
+    },
+    // 建立WebSocket
+    buildWebSocket() {
+        console.log('buildWebSocket')
+        // const wsUrl = 'wss://127.0.0.1:3001'
+        const wsUrl = 'ws://localhost:3001'
+        const SocketTask = wx.connectSocket({
+            url: wsUrl,
+            // header: {
+            //     'content-type': 'application/json'
+            // },
+            // method: 'GET',
+            // success: function (res) {
+            //     console.log('WebSocket连接创建', res)
+            // },
+            // fail: function (err) {
+            //     console.log('WebSocket连接创建fail', err)
+            // }
+        })
+        if (SocketTask) {
+            SocketTask.onOpen(res => {
+                console.log('监听 WebSocket 连接打开事件。', res)
+            })
+            SocketTask.onClose(onClose => {
+                console.log('监听 WebSocket 连接关闭事件。', onClose)
+            })
+            SocketTask.onError(onError => {
+                console.log('监听 WebSocket 错误。错误信息', onError)
+            })
+            SocketTask.onMessage(onMessage => {
+                console.log('监听WebSocket接受到服务器的消息事件。服务器返回的消息', onMessage)
+            })
+            // SocketTask.send({
+            //     data: {
+            //         name: 'hello'
+            //     },
+            //     success: function (res) {
+            //         console.log('websocket send success', res)
+            //     },
+            //     fail: function (err) {
+            //         console.log('websocket send fail', err)
+            //     }
+            // })
+        }
     },
     // 保存url中搜索信息，并且请求服务
     setSearchData(params) {
@@ -135,7 +181,6 @@ Page({
         }
     },
     showModal() {
-        console.log('show modal')
         this.setData({
             isShowModal: true
         })
@@ -154,7 +199,7 @@ Page({
             // today
         } = this.data
         const selectIndex = e.detail.index
-        console.log('itemTapHandle', selectIndex, seatItemList, modalTimeData)
+        // console.log('itemTapHandle', selectIndex, seatItemList, modalTimeData)
         if (selectIndex >= 0 && selectIndex < seatItemList.length) {
             const selectTimeSec = seatItemList[selectIndex].timeList
             let newModalTimeData = []
@@ -320,16 +365,81 @@ Page({
     },
     // 抢座
     bookSeatRush(seatId, date, timeList) {
-        const userId = getGlobal('userId')
-        const userPoint = getGlobal('userPoint')
+        const _this = this
+        wx.showLoading({
+            title: '正在抢座...',
+            mask: true,
+            success: function () {
+                const userId = getGlobal('userId')
+                const userPoint = getGlobal('userPoint')
+                const baseUrl = getGlobal('baseUrl')
+                const reqUrl = `${baseUrl}/seat/rush?userId=${userId}&userPoint=${userPoint}&seatId=${seatId}&date=${date}&timeList=${timeList}`
+                // console.log('bookSeatRush reqUrl', reqUrl)
+                sendRequest('PUT', reqUrl)
+                    .then((res) => {
+                        console.log('confirmModal rush success', res)
+                        const {
+                            timeStamp,
+                            flag
+                        } = res.data
+                        if (flag === 1) {
+                            _this.getRushStatus(userId, timeStamp, 0)
+                        } else {
+                            console.log('confirmModal rush fail')
+                        }
+                    }, (res) => {
+                        console.log('confirmModal rush fail', res)
+                    })
+            }
+        })
+    },
+    // 每隔一段时间向服务请求rush状态
+    getRushStatus(userId, timeStamp, count) {
+        const _this = this
+        console.log('getRushStatus', userId, timeStamp)
         const baseUrl = getGlobal('baseUrl')
-        const reqUrl = `${baseUrl}/seat/rush?userId=${userId}&userPoint=${userPoint}&seatId=${seatId}&date=${date}&timeList=${timeList}`
-        console.log('bookSeatRush reqUrl', reqUrl)
-        sendRequest('PUT', reqUrl)
+        sendRequest('GET', `${baseUrl}/seat/rushSearch?userId=${userId}&timeStamp=${timeStamp}`)
             .then((res) => {
-                console.log('confirmModal rush success', res)
-            }, (res) => {
-                console.log('confirmModal rush fail', res)
+                const {
+                    rushStatus
+                } = res.data
+                console.log('getRushStatus success', rushStatus)
+                if (rushStatus === 1 && (count + 1) <= MAX_RE_GET_COUNT) { // pending，再次请求
+                    setTimeout(() => {
+                        _this.getRushStatus(userId, timeStamp, ++count)
+                    }, RE_GET_TIMEOUT);
+                } else if (rushStatus === 2 && (count + 1) <= MAX_RE_GET_COUNT) { // 预约成功，跳转到首页
+                    wx.hideLoading({
+                        complete: function () {
+                            wx.showToast({
+                                title: '预约成功',
+                                icon: 'success',
+                                duration: 2000,
+                                complete: function () {
+                                    wx.switchTab({
+                                        url: "../homePage/homePage"
+                                    })
+                                }
+                            })
+                        }
+                    })
+                } else { // 预约失败or超过MAX_RE_GET_COUNT，刷新页面
+                    wx.hideLoading({
+                        complete: function () {
+                            wx.showToast({
+                                title: '预约失败，没有抢到～',
+                                icon: 'none',
+                                duration: 2000,
+                                complete: function () {
+                                    // _this.hideModal()
+                                    // _this.onLoad()
+                                }
+                            })
+                        }
+                    })
+                }
+            }, (err) => {
+                console.log('getRushStatus fail', err)
             })
     }
 });
