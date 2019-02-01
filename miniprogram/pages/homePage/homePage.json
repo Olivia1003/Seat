@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "Seat",
+  "navigationBarTitleText": "首页",
   "usingComponents": {
     "orderDetail": "../../components/orderDetail/orderDetail"
   }

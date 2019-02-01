@@ -2,14 +2,13 @@
     <view class="orderItem-wrap">
         <view class="top-line">
             <text class="id-txt">订单号：{{orderData.orderId}}</text>
-            <text class="school-txt">{{orderData.school}}</text>
         </view>
         <view class="address-line">
             <image
                 class="address-icon"
                 src="../../images/iconsOrder/address.png"
             />
-            <text class="floor-txt">{{orderData.floor}}</text>
+            <text class="floor-txt">{{orderData.floorName}}</text>
             <text class="seat-txt">{{orderData.seatName}} 座位</text>
         </view>
         <view class="time-line">

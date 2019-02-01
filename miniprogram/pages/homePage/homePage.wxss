@@ -1,22 +1,22 @@
 .home-page-container {
-  padding: 60rpx 40rpx;
+  padding: 60rpx 50rpx;
 }
 
 /* top-bar */
 .top-btn-bar {
-  padding: 60rpx 0rpx;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  /* width: 750rpx; */
 }
 
 .book-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
   height: 100rpx;
-  width: 300rpx;
-  margin: 0 50rpx;
+  width: 280rpx;
   background-color: #fff;
   border-radius: 30rpx;
   box-shadow: 0 -3rpx 30rpx #eeeeee,
@@ -32,18 +32,33 @@
   letter-spacing: 2rpx;
 }
 
+.book-btn-icon {
+  width: 35rpx;
+  height: 35rpx;
+  margin-right: 15rpx;
+}
+
 /* my-seat */
 .my-seat-wrap {
-  margin-top: 20rpx;
+  margin-top: 50rpx;
+}
+
+.my-seat-title {
+  font-size: 35rpx;
+}
+
+.my-seat-empty-txt {
+  color: #777777;
+  font-size: 30rpx;
 }
 
 /* bottom-bar */
 .bottom-bar {
-  margin-top: 20rpx;
+  margin-top: 30rpx;
 }
 
 .bottom-bar-title {
-  font-size: 40rpx;
+  font-size: 35rpx;
 }
 
 .bottom-item-list {
@@ -62,6 +77,7 @@
 .bottom-item-icon {
   width: 100rpx;
   height: 100rpx;
+  margin-bottom: 10rpx;
 }
 
 .bottom-item-title {

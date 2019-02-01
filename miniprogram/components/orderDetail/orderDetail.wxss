@@ -3,11 +3,10 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 10rpx 30rpx;
-    /* background-color: #EEF1F6; */
+    padding: 15rpx 30rpx;
     background-color: rgb(250, 250, 250);
-    height: 200rpx;
-    margin: 35rpx 20rpx;
+    height: 220rpx;
+    margin: 35rpx 0rpx;
     border-radius: 8rpx;
     box-shadow: 0 -1px 1px #eee,
         0 3px 10px #eee,
@@ -15,22 +14,9 @@
         3px 0 10px #eee;
 }
 
-
-
 /* top-line */
 .top-line {
     line-height: 60rpx;
-}
-
-.id-txt {
-    margin-right: 30rpx;
-    font-size: 30rpx;
-    color: #777;
-}
-
-.school-txt {
-    font-size: 30rpx;
-    color: #777;
 }
 
 /* address-line */
@@ -38,21 +24,23 @@
     line-height: 60rpx;
 }
 
-.floor-txt {
-    margin-right: 30rpx;
-    font-size: 30rpx;
-    color: #333333;
-}
-
-.seat-txt {
-    font-size: 36rpx;
-    color: #333333;
-}
-
 .address-icon {
     width: 30rpx;
     height: 30rpx;
-    margin-right: 10rpx;
+    margin-right: 15rpx;
+}
+
+.floor-txt {
+    margin-right: 30rpx;
+    font-size: 32rpx;
+    color: #333333;
+    font-weight: bold;
+}
+
+.seat-txt {
+    font-size: 32rpx;
+    color: #333333;
+    font-weight: bold;
 }
 
 /* time-line */
@@ -62,38 +50,51 @@
     line-height: 60rpx;
 }
 
+.time-icon {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 13rpx;
+}
+
 .date-txt {
-    font-size: 30rpx;
+    font-size: 32rpx;
     color: #333333;
     margin-right: 20rpx;
+    font-weight: bold;
 }
 
 .time-txt {
-    font-size: 36rpx;
+    font-size: 32rpx;
     color: #333333;
-    /* color: #3D9970; */
-}
-
-.time-icon {
-    width: 35rpx;
-    height: 35rpx;
-    margin-right: 10rpx;
+    font-weight: bold;
 }
 
 /* status-bar */
 .status-bar {
     position: absolute;
-    top: 20rpx;
-    right: 20rpx;
+    top: 18rpx;
+    right: 30rpx;
     /* width: 300rpx; */
 }
 
 .status-wrap {}
 
 .status-txt {
-    font-size: 35rpx;
+    font-size: 30rpx;
     color: #333333;
     /* white-space: nowrap; */
+}
+
+.status-txt-before {
+    color: #777777;
+}
+
+.status-txt-current {
+    color: #3D9970;
+}
+
+.status-txt-left {
+    color: #FFA631;
 }
 
 /* btn-bar */
@@ -109,11 +110,33 @@
     align-items: center;
     width: 175rpx;
     height: 60rpx;
-    border-radius: 5rpx;
-    background-color: #ccc;
+    border-radius: 10rpx;
+    letter-spacing: 1rpx;
+    outline: none;
+    border: none;
+    /* background-color: #ccc; */
 }
 
 .order-btn-txt {
     font-size: 30rpx;
     white-space: nowrap;
+}
+
+.order-btn-cancel {
+    width: 150rpx;
+    background-color: #777777;
+}
+
+.order-btn-txt-cancel {
+    color: #ffffff;
+    letter-spacing: 3rpx;
+}
+
+.order-btn-sign {
+    width: 180rpx;
+    background-color: #37BC9B;
+}
+
+.order-btn-txt-sign {
+    color: #ffffff;
 }

@@ -5,20 +5,28 @@
                 class="book-btn"
                 bindtap="goBookSelect"
             >
+                <image
+                    class="book-btn-icon"
+                    src="../../images/icons/scan.png"
+                />
                 <text class="book-btn-txt">可视化选座</text>
             </button>
             <button class="book-btn">
+                <image
+                    class="book-btn-icon"
+                    src="../../images/icons/home_ai.png"
+                />
                 <text class="book-btn-txt">智能选座</text>
             </button>
         </view>
         <view class="my-seat-wrap">
-            <text class="my-seat-title">我的座位</text>
+            <text class="my-seat-title">我的预定</text>
             <!-- 无座位 -->
             <view
                 class="no-seat-wrap"
                 wx:if="{{!isShowOrder}}"
             >
-                <text>您没有预定任何座位</text>
+                <text class="my-seat-empty-txt">您没有预定任何座位哦～</text>
             </view>
             <!-- 有座位 -->
             <view

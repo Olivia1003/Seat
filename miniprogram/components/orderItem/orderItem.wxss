@@ -15,8 +15,6 @@
     3px 0 10px #eee;
 }
 
-
-
 /* top-line */
 .top-line {
   line-height: 60rpx;
@@ -24,11 +22,6 @@
 
 .id-txt {
   margin-right: 30rpx;
-  font-size: 30rpx;
-  color: #777;
-}
-
-.school-txt {
   font-size: 30rpx;
   color: #777;
 }
@@ -84,7 +77,7 @@
 .status-wrap {
   position: absolute;
   top: 15rpx;
-  right: 25rpx;
+  right: 28rpx;
   /* width: 250rpx; */
 }
 

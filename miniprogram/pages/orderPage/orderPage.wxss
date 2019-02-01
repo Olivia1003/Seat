@@ -24,3 +24,16 @@
 .topBar-btn-plain {
   color: #555;
 }
+
+/* order-empty */
+.order-empty-wrap {
+  padding: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-empty-txt {
+  color: #777777;
+  font-size: 35rpx;
+}

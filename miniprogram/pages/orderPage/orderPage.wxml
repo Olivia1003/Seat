@@ -17,33 +17,50 @@
             </button>
         </view>
         <!-- 当前订单 -->
-        <view
-            wx:if="{{currentTabId==='1'}}"
-            class="current-order-list"
-        >
+        <view>
             <view
-                class="order-item-wrap"
-                wx:for="{{currentOrderList}}"
-                wx:key="orderId"
-                wx:for-item="orderData"
-                wx:for-index="index"
+                wx:if="{{currentTabId==='1'&&currentOrderList&&currentOrderList.length>0}}"
+                class="current-order-list"
             >
-                <orderItem orderData="{{orderData}}" />
+                <view
+                    class="order-item-wrap"
+                    wx:for="{{currentOrderList}}"
+                    wx:key="orderId"
+                    wx:for-item="orderData"
+                    wx:for-index="index"
+                >
+                    <orderItem orderData="{{orderData}}" />
+                </view>
+            </view>
+            <view
+                wx:if="{{currentTabId==='1'&&!(currentOrderList&&currentOrderList.length>0)}}"
+                class="order-empty-wrap"
+            >
+                <text class="order-empty-txt">没有当前订单哦～</text>
             </view>
         </view>
+
         <!-- 历史订单 -->
-        <view
-            wx:if="{{currentTabId==='2'}}"
-            class="history-order-list"
-        >
+        <view>
             <view
-                class="order-item-wrap"
-                wx:for="{{pastOrderList}}"
-                wx:key="orderId"
-                wx:for-item="orderData"
-                wx:for-index="index"
+                wx:if="{{currentTabId==='2'&&pastOrderList&&pastOrderList.length>0}}"
+                class="history-order-list"
             >
-                <orderItem orderData="{{orderData}}" />
+                <view
+                    class="order-item-wrap"
+                    wx:for="{{pastOrderList}}"
+                    wx:key="orderId"
+                    wx:for-item="orderData"
+                    wx:for-index="index"
+                >
+                    <orderItem orderData="{{orderData}}" />
+                </view>
+            </view>
+            <view
+                wx:if="{{currentTabId==='2'&&!(pastOrderList&&pastOrderList.length>0)}}"
+                class="order-empty-wrap"
+            >
+                <text class="order-empty-txt">没有历史订单哦～</text>
             </view>
         </view>
     </view>
