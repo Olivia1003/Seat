@@ -48,7 +48,16 @@
                 <text class="header-item-txt">{{kItem}}</text>
             </view>
         </view>
-
+        <!-- 刷新按钮 -->
+        <view
+            class="fresh-page-btn"
+            bindtap="freshPage"
+        >
+            <image
+                class="fresh-page-icon"
+                src="../../images/icons/refresh.png"
+            />
+        </view>
 
     </view>
     <scroll-view

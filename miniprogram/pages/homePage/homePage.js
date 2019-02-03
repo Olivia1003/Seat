@@ -117,5 +117,9 @@ Page({
         console.log("navigateTo fail", err)
       }
     })
+  },
+  freshPage() {
+    console.log('freshPage')
+    this.onLoad()
   }
 });

@@ -15,16 +15,18 @@ import {
     userLogin
 } from '../../common/loginUtil'
 const RE_GET_TIMEOUT = 1500 // 请求订单状态间隔
-const MAX_RE_GET_COUNT = 20 // 最大请求次数
+const MAX_RE_GET_COUNT = 10 // 最大请求次数
 Page({
     data: {
-        seatItemList: [{
-            id: "001",
-            gridX: 4,
-            gridY: 3,
-            type: 1,
-            status: 1
-        }],
+        seatItemList: [
+            // {
+            // id: "001",
+            // gridX: 4,
+            // gridY: 3,
+            // type: 1,
+            // status: 1
+            // }
+        ],
         // 移动
         // mapPosLeft: 10,
         // mapPosTop: 10,
@@ -251,7 +253,7 @@ Page({
         })
     },
     touchMapStartHandle(e) {
-        console.log('touchMapStartHandle', e.touches[0].clientX, e.touches[0].clientY)
+        // console.log('touchMapStartHandle', e.touches[0].clientX, e.touches[0].clientY)
         if (e.touches && e.touches.length === 1) { // 移动
             // this.data.scrollStartX = e.touches[0].clientX
             // this.data.scrollStartY = e.touches[0].clientY
@@ -320,10 +322,10 @@ Page({
 
     },
     touchMapEndHandle(e) {
-        console.log('touchMapEndHandle', e.changedTouches[0].clientX, e.changedTouches[0].clientY)
+        // console.log('touchMapEndHandle', e.changedTouches[0].clientX, e.changedTouches[0].clientY)
     },
     scrollHandle(e) {
-        console.log('scrollHandle', e.detail, this.data)
+        // console.log('scrollHandle', e.detail, this.data)
     },
     // getSeatIndexById(selectId) {
     //     let res = -1
@@ -441,5 +443,9 @@ Page({
             }, (err) => {
                 console.log('getRushStatus fail', err)
             })
+    },
+    freshPage() {
+        console.log('freshPage')
+        this.onLoad()
     }
 });

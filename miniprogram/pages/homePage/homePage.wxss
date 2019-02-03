@@ -40,6 +40,7 @@
 
 /* my-seat */
 .my-seat-wrap {
+  position: relative;
   margin-top: 50rpx;
 }
 
@@ -82,4 +83,16 @@
 
 .bottom-item-title {
   font-size: 30rpx;
+}
+
+/* fresh page */
+.fresh-page-btn {
+  position: absolute;
+  right: 20rpx;
+  top: 7rpx;
+}
+
+.fresh-page-icon {
+  width: 35rpx;
+  height: 35rpx;
 }

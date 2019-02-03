@@ -21,6 +21,16 @@
         </view>
         <view class="my-seat-wrap">
             <text class="my-seat-title">我的预定</text>
+            <!-- 刷新按钮 -->
+            <view
+                class="fresh-page-btn"
+                bindtap="freshPage"
+            >
+                <image
+                    class="fresh-page-icon"
+                    src="../../images/icons/refresh.png"
+                />
+            </view>
             <!-- 无座位 -->
             <view
                 class="no-seat-wrap"

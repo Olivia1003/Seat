@@ -13,6 +13,8 @@
 
 /* header */
 .header {
+    position: relative;
+    width: 100%;
     margin-bottom: 20rpx;
 }
 
@@ -99,4 +101,16 @@
 .quick-select-icon {
     width: 50rpx;
     height: 50rpx;
+}
+
+/* fresh page */
+.fresh-page-btn {
+    position: absolute;
+    right: 20rpx;
+    top: 7rpx;
+}
+
+.fresh-page-icon {
+    width: 35rpx;
+    height: 35rpx;
 }
