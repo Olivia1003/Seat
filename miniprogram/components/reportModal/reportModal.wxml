@@ -1,0 +1,46 @@
+<view class="modal-wrap">
+    <modal
+        hidden="{{false}}"
+        title="监督举报"
+        confirm-text="提交"
+        cancel-text="取消"
+        bindcancel="cancelHandle"
+        bindconfirm="confirmHandle"
+    >
+        <view class="modal-body">
+            <View class="report-item-wrap">
+                <image
+                    class="report-item-icon"
+                    src="../../images/icons/home_active.png"
+                />
+                <Text class="report-title">举报座位号：</Text>
+                <Text class="report-seat-txt">{{reportSeatName}}</Text>
+                <View
+                    class="scan-icon-wrap"
+                    bindtap="scanSeat"
+                >
+                    <image
+                        class="scan-icon"
+                        src="../../images/icons/scan.png"
+                    />
+                </View>
+            </View>
+
+            <View>
+                <View class="report-item-title-row">
+                    <image
+                        class="report-item-icon"
+                        src="../../images/icons/list_active.png"
+                    />
+                    <Text class="report-title">举报理由：</Text>
+                </View>
+                <textarea
+                    class="report-reason"
+                    placeholder="举报理由"
+                />
+                </View>
+        </view>
+    </modal>
+
+
+</view>

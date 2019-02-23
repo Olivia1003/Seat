@@ -61,21 +61,22 @@
         <view class="bottom-bar">
             <text class="bottom-bar-title">更多功能</text>
             <view class="bottom-item-list">
-                <view class="bottom-item">
+                <view
+                    class="bottom-item"
+                    bindtap="reportHandle"
+                >
                     <image
                         class="bottom-item-icon"
                         src="../../images/icons/scan.png"
                     />
                     <text class="bottom-item-title">监督举报</text>
                 </view>
-                <view class="bottom-item">
-                    <image
-                        class="bottom-item-icon"
-                        src="../../images/icons/scan.png"
-                    />
-                    <text class="bottom-item-title">监督举报</text>
-                </view>
+
             </view>
         </view>
+        <!-- 监督举报modal -->
+        <View wx:if="{{isShowReportModal}}">
+            <reportModal />
+        </View>
     </view>
 </view>

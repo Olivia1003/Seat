@@ -20,7 +20,8 @@ import {
 Page({
   data: {
     orderList: [],
-    isShowOrder: false
+    isShowOrder: false,
+    isShowReportModal: true
   },
   onLoad() {
     console.log("home page loaded")
@@ -121,5 +122,19 @@ Page({
   freshPage() {
     console.log('freshPage')
     this.onLoad()
+  },
+  // 监督举报
+  reportHandle() {
+    console.log('reportHandle')
+  },
+  showReportModal() {
+    this.setData({
+      isShowReportModal: true
+    })
+  },
+  hideReportModal() {
+    this.setData({
+      isShowReportModal: false
+    })
   }
 });

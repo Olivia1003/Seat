@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "首页",
   "usingComponents": {
-    "orderDetail": "../../components/orderDetail/orderDetail"
+    "orderDetail": "../../components/orderDetail/orderDetail",
+    "reportModal": "../../components/reportModal/reportModal"
+
   }
 }
