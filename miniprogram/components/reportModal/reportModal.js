@@ -21,8 +21,9 @@ Component({
      * 组件的初始数据
      */
     data: {
-        reportSeatId: '',
-        reportSeatName: 'A123'
+        reportSeatId: '112',
+        reportSeatName: 'A123',
+        reportDetail: '' // 举报理由
     },
 
     /**
@@ -50,13 +51,42 @@ Component({
                 console.log('scanSeatCode fail', err)
             })
         },
+        // 提交举报
         confirmHandle() {
-            console.log('confirmHandle')
-            this.triggerEvent('confirm')
+            const _this = this
+            const { reportSeatId, reportDetail } = this.data
+            console.log('confirmHandle', reportSeatId, reportDetail)
+            const baseUrl = getGlobal('baseUrl')
+            const userId = getGlobal('userId')
+            sendRequest('PUT', `${baseUrl}/report/userId=${userId}&seatId=${reportSeatId}&detail=${reportDetail}`)
+                .then((res) => {
+                    console.log('confirm report ok', res)
+                    wx.showToast({
+                        title: '举报已提交',
+                        icon: 'success',
+                        duration: 2000,
+                        success: () => {
+                            setTimeout(() => {
+                                _this.triggerEvent('hideModal')
+                            }, 2000);
+                        }
+                    })
+                }, (err) => {
+                    console.log('confirm report fail', err)
+                    this.triggerEvent('hideModal')
+                })
         },
         cancelHandle() {
             console.log('cancelHandle')
-            this.triggerEvent('cancel')
+            this.triggerEvent('hideModal')
+        },
+        // textArea输入时触发，记录输入值
+        reasonInputHandle(e) {
+            // console.log('reasonInputHandle', e.detail)
+            const reason = e.detail.value
+            this.setData({
+                reportDetail: reason
+            })
         }
     },
     attached() {

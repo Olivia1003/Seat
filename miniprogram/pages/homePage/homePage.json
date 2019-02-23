@@ -2,7 +2,8 @@
   "navigationBarTitleText": "首页",
   "usingComponents": {
     "orderDetail": "../../components/orderDetail/orderDetail",
-    "reportModal": "../../components/reportModal/reportModal"
+    "reportModal": "../../components/reportModal/reportModal",
+    "seatMapModal": "../../components/seatMapModal/seatMapModal"
 
   }
 }

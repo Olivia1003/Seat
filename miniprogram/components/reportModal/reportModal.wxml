@@ -37,6 +37,7 @@
                 <textarea
                     class="report-reason"
                     placeholder="举报理由"
+                    bindinput="reasonInputHandle"
                 />
                 </View>
         </view>

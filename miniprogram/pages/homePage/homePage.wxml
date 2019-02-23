@@ -63,7 +63,7 @@
             <view class="bottom-item-list">
                 <view
                     class="bottom-item"
-                    bindtap="reportHandle"
+                    bindtap="showReportModal"
                 >
                     <image
                         class="bottom-item-icon"
@@ -76,7 +76,14 @@
         </view>
         <!-- 监督举报modal -->
         <View wx:if="{{isShowReportModal}}">
-            <reportModal />
+            <reportModal bind:hideModal="hideReportModal" />
+        </View>
+        <!-- 查看座位 seatMapModal -->
+        <View wx:if="{{isShowSeatMapModal}}">
+            <seatMapModal
+                seatItemList="{{mapSeatList}}"
+                bind:hideModal="hideSeatMapModal"
+            />
         </View>
     </view>
 </view>

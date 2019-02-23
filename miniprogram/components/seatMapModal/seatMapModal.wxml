@@ -1,0 +1,53 @@
+<view class="modal-wrap">
+    <modal
+        hidden="{{false}}"
+        title="查看座位的位置"
+        confirm-text="知道了"
+        bindcancel="cancelHandle"
+        bindconfirm="confirmHandle"
+        showCancel="{{false}}"
+    >
+        <view class="modal-body">
+            <view class="address-line">
+                <image
+                    class="address-icon"
+                    src="../../images/icons/address.png"
+                />
+                <text class="address-item">华东师范大学</text>
+                <text class="address-item">中北三楼</text>
+            </view>
+            <scroll-view
+                class="seat-map-wrap"
+                bindscroll="scrollHandle"
+                scroll-x
+                scroll-y
+            >
+                <view
+                    style="transform:scale({{mapScale}});"
+                    class="seat-map"
+                    bind:touchstart="touchMapStartHandle"
+                    bind:touchmove="touchMapMoveHandle"
+                    bind:touchend="touchMapEndHandle"
+                >
+                    <view
+                        class="seat-item-wrap"
+                        wx:for="{{seatItemList}}"
+                        wx:key="id"
+                        wx:for-item="seatData"
+                        wx:for-index="index"
+                    >
+                        <seatItem
+                            type="{{seatData.type}}"
+                            status="{{seatData.status}}"
+                            gridX="{{seatData.gridX}}"
+                            gridY="{{seatData.gridY}}"
+                            index="{{index}}"
+                        ></seatItem>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </modal>
+
+
+</view>

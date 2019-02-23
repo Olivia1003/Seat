@@ -1,0 +1,6 @@
+{
+    "component": true,
+    "usingComponents": {
+        "seatItem": "../../components/seatItem/seatItem"
+    }
+}

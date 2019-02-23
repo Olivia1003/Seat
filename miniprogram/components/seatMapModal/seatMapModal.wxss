@@ -1,0 +1,32 @@
+.seat-map-wrap {
+    position: relative;
+    margin: 20rpx 5rpx;
+    width: 550rpx;
+    height: 600rpx;
+    border: 1rpx solid #999;
+}
+
+.seat-map {
+    position: absolute;
+    width: 1500rpx;
+    height: 1500rpx;
+    transform-origin: top left;
+    background-color: #ddd;
+}
+
+.address-line {
+    margin-left: 20rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.address-icon {
+    margin-right: 10rpx;
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.address-item {
+    margin-right: 15rpx;
+}

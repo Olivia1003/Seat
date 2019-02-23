@@ -20,10 +20,33 @@ import {
 Page({
   data: {
     orderList: [],
+    mapSeatList: [
+      {
+        id: "001",
+        gridX: 4,
+        gridY: 3,
+        type: 1,
+        status: 1
+      },
+      {
+        id: "002",
+        gridX: 3,
+        gridY: 3,
+        type: 1,
+        status: 0
+      }
+    ],
     isShowOrder: false,
-    isShowReportModal: true
+    isShowReportModal: false,
+    isShowSeatMapModal: false,
+
   },
   onLoad() {
+    // temp
+    setTimeout(() => {
+      this.showSeatMapModal()
+    }, 1000);
+
     console.log("home page loaded")
     const userId = getGlobal('userId')
     if (userId) {
@@ -124,8 +147,8 @@ Page({
     this.onLoad()
   },
   // 监督举报
-  reportHandle() {
-    console.log('reportHandle')
+  commitReport() {
+    console.log('commitReport')
   },
   showReportModal() {
     this.setData({
@@ -136,5 +159,46 @@ Page({
     this.setData({
       isShowReportModal: false
     })
+  },
+  showSeatMapModal() {
+    const seatId = '111'
+    const baseUrl = getGlobal('baseUrl')
+    sendRequest('GET', `${baseUrl}/seat/seatMap?seatId=${seatId}`)
+      .then((res) => {
+        console.log('get SeatMap ok', res)
+        if (res.data && res.data.seatList) {
+          const mapSeatList = res.data.seatList.map((sItem) => {
+            let resItem = {}
+            const pos = JSON.parse(sItem.position)
+            const isSameSeat = String(sItem.seatId) === String(seatId)
+            if (pos && pos.length >= 2) {
+              resItem = {
+                id: sItem.seatId,
+                gridX: pos[0],
+                gridY: pos[1],
+                type: sItem.type,
+                status: isSameSeat ? 1 : 0
+              }
+            }
+            return resItem
+          })
+          console.log('mapSeatList', mapSeatList)
+          this.setData({
+            mapSeatList
+          })
+        }
+      }, (err) => {
+        console.log('get SeatMap fail', err)
+      })
+    this.setData({
+      isShowSeatMapModal: true
+    })
+  },
+  hideSeatMapModal() {
+    console.log('hideSeatMapModal')
+    this.setData({
+      isShowSeatMapModal: false
+    })
   }
+
 });
