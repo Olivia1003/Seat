@@ -4,10 +4,26 @@
  */
 Component({
   properties: {
+    modalTitle: {
+      type: String,
+      value: ''
+    },
     seatItemList: {
       type: Array,
       value: []
-    }
+    },
+    schoolName: {
+      type: String,
+      value: ''
+    },
+    floorName: {
+      type: String,
+      value: ''
+    },
+    seatName: {
+      type: String,
+      value: ''
+    },
   },
 
   /**
@@ -31,7 +47,6 @@ Component({
     //     status: 0
     //   }
     // ]
-
   },
 
   /**

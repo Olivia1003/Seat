@@ -36,6 +36,9 @@ Page({
         status: 0
       }
     ],
+    mapSchoolName: '华东师范大学',
+    mapFloorName: '中北三楼',
+    mapSeatName: '',
     isShowOrder: false,
     isShowReportModal: false,
     isShowSeatMapModal: false,
@@ -43,9 +46,9 @@ Page({
   },
   onLoad() {
     // temp
-    setTimeout(() => {
-      this.showSeatMapModal()
-    }, 1000);
+    // setTimeout(() => {
+    //   this.showSeatMapModal()
+    // }, 1000);
 
     console.log("home page loaded")
     const userId = getGlobal('userId')
@@ -85,8 +88,7 @@ Page({
             const {
               status
             } = oItem
-            return status === '1' || status === '2' ||
-              status === '3' || status === '4'
+            return status === '1' || status === '2' || status === '3'
           })
           if (orderList.length > 0) {
             // 判断每个订单是否在时间段内
@@ -130,6 +132,7 @@ Page({
       }
     })
   },
+  // 可视化选座
   goBookSelect() {
     console.log('goBookSelect')
     wx.navigateTo({
@@ -141,6 +144,18 @@ Page({
         console.log("navigateTo fail", err)
       }
     })
+  },
+  // 智能选座
+  goAutoBook() {
+    console.log('goAutoBook')
+    const userId = getGlobal('userId')
+    const baseUrl = getGlobal('baseUrl')
+    sendRequest('GET', `${baseUrl}/order/autoBook?userId=${userId}`)
+      .then((res) => {
+        console.log('goAutoBook ok', res)
+      }, (err) => {
+        console.log('goAutoBook fail', err)
+      })
   },
   freshPage() {
     console.log('freshPage')
@@ -160,39 +175,49 @@ Page({
       isShowReportModal: false
     })
   },
-  showSeatMapModal() {
-    const seatId = '111'
-    const baseUrl = getGlobal('baseUrl')
-    sendRequest('GET', `${baseUrl}/seat/seatMap?seatId=${seatId}`)
-      .then((res) => {
-        console.log('get SeatMap ok', res)
-        if (res.data && res.data.seatList) {
-          const mapSeatList = res.data.seatList.map((sItem) => {
-            let resItem = {}
-            const pos = JSON.parse(sItem.position)
-            const isSameSeat = String(sItem.seatId) === String(seatId)
-            if (pos && pos.length >= 2) {
-              resItem = {
-                id: sItem.seatId,
-                gridX: pos[0],
-                gridY: pos[1],
-                type: sItem.type,
-                status: isSameSeat ? 1 : 0
+  showSeatMapModal(params) {
+    console.log('showSeatMapModal', params.detail)
+    if (params.detail && params.detail.seatId) {
+      const seatId = params.detail.seatId
+      const baseUrl = getGlobal('baseUrl')
+      // 获取楼层所有座位列表
+      sendRequest('GET', `${baseUrl}/seat/seatMap?seatId=${seatId}`)
+        .then((res) => {
+          console.log('get SeatMap ok', res)
+          if (res.data && res.data.seatList) {
+            let mapSeatName = ''
+            const mapSeatList = res.data.seatList.map((sItem) => {
+              let resItem = {}
+              const pos = JSON.parse(sItem.position)
+              const isSameSeat = String(sItem.seatId) === String(seatId)
+              if (isSameSeat) {
+                mapSeatName = sItem.name
               }
-            }
-            return resItem
-          })
-          console.log('mapSeatList', mapSeatList)
-          this.setData({
-            mapSeatList
-          })
-        }
-      }, (err) => {
-        console.log('get SeatMap fail', err)
-      })
-    this.setData({
-      isShowSeatMapModal: true
-    })
+              if (pos && pos.length >= 2) {
+                resItem = {
+                  id: sItem.seatId,
+                  gridX: pos[0],
+                  gridY: pos[1],
+                  type: sItem.type,
+                  status: isSameSeat ? 1 : 0
+                }
+              }
+              return resItem
+            })
+            console.log('mapSeatList', mapSeatList)
+            this.setData({
+              mapSeatList,
+              mapSeatName
+            }, () => {
+              this.setData({
+                isShowSeatMapModal: true
+              })
+            })
+          }
+        }, (err) => {
+          console.log('get SeatMap fail', err)
+        })
+    }
   },
   hideSeatMapModal() {
     console.log('hideSeatMapModal')

@@ -55,7 +55,8 @@ Page({
             // timeSec: '[4]',
             // timeSecStr: '08:00-10:00',
             // keywords: ['window']
-        }
+        },
+        fullTimeSecList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27],
     },
     onLoad(params) {
         // this.setSearchData(params)
@@ -196,7 +197,8 @@ Page({
     itemTapHandle(e) {
         const {
             seatItemList,
-            modalTimeData
+            modalTimeData,
+            fullTimeSecList
             // hasSelect,
             // today
         } = this.data
@@ -206,13 +208,14 @@ Page({
             const selectTimeSec = seatItemList[selectIndex].timeList
             let newModalTimeData = []
             if (selectTimeSec && selectTimeSec.length > 0) {
-                // 只显示可选的时间段
-                newModalTimeData = selectTimeSec.map((sItem) => {
+                // 只显示可选的时间段->显示所有时间段，不可选灰色
+                newModalTimeData = fullTimeSecList.map((sItem) => {
+                    const isFree = selectTimeSec.indexOf(sItem) >= 0
                     return {
                         secId: sItem,
                         content: getTimeStrFromNumber([sItem]),
                         isSelect: false,
-                        isFree: true
+                        isFree
                     }
                 })
             }

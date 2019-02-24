@@ -248,6 +248,13 @@ Component({
                     }
                 })
             }
+        },
+        // 展示seatMapModal
+        showSeatMap() {
+            if (this.data.orderData && this.data.orderData.seatId) {
+                const seatId = this.data.orderData.seatId
+                this.triggerEvent('showSeatMap', { seatId })
+            }
         }
     },
     attached() {

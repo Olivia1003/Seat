@@ -1,7 +1,7 @@
 <view class="modal-wrap">
     <modal
         hidden="{{false}}"
-        title="查看座位的位置"
+        title="{{modalTitle}}"
         confirm-text="知道了"
         bindcancel="cancelHandle"
         bindconfirm="confirmHandle"
@@ -13,8 +13,9 @@
                     class="address-icon"
                     src="../../images/icons/address.png"
                 />
-                <text class="address-item">华东师范大学</text>
-                <text class="address-item">中北三楼</text>
+                <text class="address-item">{{schoolName}}</text>
+                <text class="address-item">{{floorName}}</text>
+                <text class="address-item">{{seatName}}</text>
             </view>
             <scroll-view
                 class="seat-map-wrap"

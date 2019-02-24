@@ -11,7 +11,10 @@
                 />
                 <text class="book-btn-txt">可视化选座</text>
             </button>
-            <button class="book-btn">
+            <button
+                class="book-btn"
+                bindtap="goAutoBook"
+            >
                 <image
                     class="book-btn-icon"
                     src="../../images/icons/home_ai.png"
@@ -52,6 +55,7 @@
                     <orderDetail
                         orderData="{{orderItem}}"
                         bind:reloadPage="reloadPage"
+                        bind:showSeatMap="showSeatMapModal"
                     />
                 </view>
             </view>
@@ -81,7 +85,11 @@
         <!-- 查看座位 seatMapModal -->
         <View wx:if="{{isShowSeatMapModal}}">
             <seatMapModal
+                modalTitle="查看座位"
                 seatItemList="{{mapSeatList}}"
+                schoolName="{{mapSchoolName}}"
+                floorName="{{mapFloorName}}"
+                seatName="{{mapSeatName}}"
                 bind:hideModal="hideSeatMapModal"
             />
         </View>

@@ -54,6 +54,12 @@
             wx:if="{{orderData.status==='1'&&(!orderData.isInTime)}}"
         >
             <button
+                class="order-btn order-btn-sign"
+                bindtap="showSeatMap"
+            >
+                <text class="order-btn-txt order-btn-txt-sign">查看位置</text>
+            </button>
+            <button
                 class="order-btn order-btn-cancel"
                 bindtap="cancelOrder"
             >
@@ -65,6 +71,12 @@
             class="btn-bar"
             wx:if="{{orderData.status==='1'&&orderData.isInTime}}"
         >
+            <button
+                class="order-btn order-btn-sign"
+                bindtap="showSeatMap"
+            >
+                <text class="order-btn-txt order-btn-txt-sign">查看位置</text>
+            </button>
             <button
                 class="order-btn order-btn-sign"
                 bindtap="orderScanIn"
@@ -107,6 +119,12 @@
             class="btn-bar"
             wx:if="{{orderData.status==='3'}}"
         >
+            <button
+                class="order-btn order-btn-sign"
+                bindtap="showSeatMap"
+            >
+                <text class="order-btn-txt order-btn-txt-sign">查看位置</text>
+            </button>
             <button
                 class="order-btn order-btn-sign"
                 bindtap="orderScanBack"
